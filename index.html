@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cadastro AppRef</title>
 </head>
 <body>
@@ -35,7 +35,6 @@
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 
   <script>
-    // Config Firebase
     const firebaseConfig = {
       apiKey: "AIzaSyCzg9Pr8-7UGv7f451Vx30WpzwRcsGd_qs",
       authDomain: "appref-projeto.firebaseapp.com",
@@ -48,34 +47,43 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
-    // Estados e cidades (exemplo reduzido, dá pra expandir depois)
-    const cidadesPorUF = {
-      "SP": ["São Paulo", "Campinas", "Santos"],
-      "MG": ["Uberlândia", "Belo Horizonte", "Contagem"],
-      "RJ": ["Rio de Janeiro", "Niterói", "Petrópolis"]
-    };
-
     const lstUf = document.getElementById("lstUf");
     const lstCidade = document.getElementById("lstCidade");
 
-    // Carrega UFs
-    Object.keys(cidadesPorUF).forEach(uf => {
-      let option = document.createElement("option");
-      option.value = uf;
-      option.textContent = uf;
-      lstUf.appendChild(option);
+    const estados = [
+      "AC","AL","AM","AP","BA","CE","DF","ES","GO","MA",
+      "MG","MS","MT","PA","PB","PE","PI","PR","RJ","RN",
+      "RO","RR","RS","SC","SE","SP","TO"
+    ];
+
+    // Preenche lista de UFs
+    estados.forEach(uf => {
+      const opt = document.createElement("option");
+      opt.value = uf;
+      opt.textContent = uf;
+      lstUf.appendChild(opt);
     });
 
-    // Atualiza cidades conforme UF
+    // Carrega cidades de acordo com o estado
     lstUf.addEventListener("change", () => {
-      lstCidade.innerHTML = '<option value="">Selecione uma cidade</option>';
-      const cidades = cidadesPorUF[lstUf.value] || [];
-      cidades.forEach(cidade => {
-        let opt = document.createElement("option");
-        opt.value = cidade;
-        opt.textContent = cidade;
-        lstCidade.appendChild(opt);
-      });
+      const uf = lstUf.value;
+      lstCidade.innerHTML = '<option value="">Carregando cidades...</option>';
+
+      fetch(`./cidades/${uf.toLowerCase()}.json`)
+        .then(res => res.json())
+        .then(data => {
+          lstCidade.innerHTML = '<option value="">Selecione uma cidade</option>';
+          data.cidades.forEach(nome => {
+            const opt = document.createElement("option");
+            opt.value = nome;
+            opt.textContent = nome;
+            lstCidade.appendChild(opt);
+          });
+        })
+        .catch(err => {
+          console.error("Erro ao carregar cidades:", err);
+          lstCidade.innerHTML = '<option value="">Erro ao carregar cidades</option>';
+        });
     });
 
     async function salvarDados() {
