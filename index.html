@@ -1,68 +1,120 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cadastro - AppRef</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-      max-width: 400px;
-      margin: auto;
-    }
-    input, button {
-      width: 100%;
-      padding: 10px;
-      margin-top: 10px;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cadastro AppRef</title>
 </head>
 <body>
-  <h2>Cadastro de Usuário</h2>
-  <input type="text" id="nome" placeholder="Nome completo" />
-  <input type="email" id="email" placeholder="Email" />
-  <button onclick="salvarUsuario()">Cadastrar</button>
+  <h2>Cadastro de Acesso</h2>
+
+  <input type="email" id="txtEmail" placeholder="Email"><br>
+  <input type="password" id="txtSenha" placeholder="Senha"><br>
+
+  <select id="lstUf">
+    <option value="">Selecione um estado</option>
+  </select><br>
+
+  <select id="lstCidade">
+    <option value="">Selecione uma cidade</option>
+  </select><br>
+
+  <input type="url" id="lnkLinkPerfilSocial" placeholder="Link da rede social"><br>
+
+  <label>
+    <input type="checkbox" id="check"> Li e aceito os termos
+  </label><br><br>
+
+  <button onclick="salvarDados()">Cadastrar</button>
+  <button onclick="limparFormulario()">Cancelar</button>
+
   <p id="mensagem"></p>
 
-  <!-- Firebase SDK versão 8 (compatível com firebase.* global) -->
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+  <!-- Firebase SDK versão 8 -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 
   <script>
-    // 🔐 Cole aqui seu firebaseConfig
-const firebaseConfig = {
-  apiKey: "AIzaSyCzg9Pr8-7UGv7f451Vx30WpzwRcsGd_qs",
-  authDomain: "appref-projeto.firebaseapp.com",
-  projectId: "appref-projeto",
-  storageBucket: "appref-projeto.appspot.com",
-  messagingSenderId: "80380853942",
-  appId: "1:80380853942:web:2320fa16fa06f2ffa77017"
-};
+    // Config Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyCzg9Pr8-7UGv7f451Vx30WpzwRcsGd_qs",
+      authDomain: "appref-projeto.firebaseapp.com",
+      projectId: "appref-projeto",
+      storageBucket: "appref-projeto.appspot.com",
+      messagingSenderId: "80380853942",
+      appId: "1:80380853942:web:2320fa16fa06f2ffa77017"
+    };
 
-    // Inicializa Firebase
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
-    // Função de cadastro
-    async function salvarUsuario() {
-      const nome = document.getElementById("nome").value.trim();
-      const email = document.getElementById("email").value.trim();
+    // Estados e cidades (exemplo reduzido, dá pra expandir depois)
+    const cidadesPorUF = {
+      "SP": ["São Paulo", "Campinas", "Santos"],
+      "MG": ["Uberlândia", "Belo Horizonte", "Contagem"],
+      "RJ": ["Rio de Janeiro", "Niterói", "Petrópolis"]
+    };
 
-      if (!nome || !email) {
-        document.getElementById("mensagem").textContent = "Preencha todos os campos!";
+    const lstUf = document.getElementById("lstUf");
+    const lstCidade = document.getElementById("lstCidade");
+
+    // Carrega UFs
+    Object.keys(cidadesPorUF).forEach(uf => {
+      let option = document.createElement("option");
+      option.value = uf;
+      option.textContent = uf;
+      lstUf.appendChild(option);
+    });
+
+    // Atualiza cidades conforme UF
+    lstUf.addEventListener("change", () => {
+      lstCidade.innerHTML = '<option value="">Selecione uma cidade</option>';
+      const cidades = cidadesPorUF[lstUf.value] || [];
+      cidades.forEach(cidade => {
+        let opt = document.createElement("option");
+        opt.value = cidade;
+        opt.textContent = cidade;
+        lstCidade.appendChild(opt);
+      });
+    });
+
+    async function salvarDados() {
+      const email = document.getElementById("txtEmail").value.trim();
+      const senha = document.getElementById("txtSenha").value.trim();
+      const uf = lstUf.value;
+      const cidade = lstCidade.value;
+      const link = document.getElementById("lnkLinkPerfilSocial").value.trim();
+      const aceitou = document.getElementById("check").checked;
+
+      if (!email || !senha || !uf || !cidade || !link || !aceitou) {
+        document.getElementById("mensagem").textContent = "Preencha todos os campos e aceite os termos.";
         return;
       }
 
       try {
-        await db.collection("usuarios").add({ nome, email, criadoEm: new Date() });
+        await db.collection("usuarios").add({
+          email,
+          senha,
+          uf,
+          cidade,
+          linkPerfil: link,
+          criadoEm: new Date()
+        });
         document.getElementById("mensagem").textContent = "Cadastro realizado com sucesso!";
-        document.getElementById("nome").value = "";
-        document.getElementById("email").value = "";
+        limparFormulario();
       } catch (erro) {
-        console.error("Erro ao salvar:", erro);
+        console.error("Erro:", erro);
         document.getElementById("mensagem").textContent = "Erro ao cadastrar.";
       }
+    }
+
+    function limparFormulario() {
+      document.getElementById("txtEmail").value = "";
+      document.getElementById("txtSenha").value = "";
+      lstUf.value = "";
+      lstCidade.innerHTML = '<option value="">Selecione uma cidade</option>';
+      document.getElementById("lnkLinkPerfilSocial").value = "";
+      document.getElementById("check").checked = false;
     }
   </script>
 </body>
