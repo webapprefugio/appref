@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cadastro - AppRef</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      max-width: 400px;
+      margin: auto;
+    }
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Cadastro de Usuário</h2>
+  <input type="text" id="nome" placeholder="Nome completo" />
+  <input type="email" id="email" placeholder="Email" />
+  <button onclick="salvarUsuario()">Cadastrar</button>
+  <p id="mensagem"></p>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js"></script>
+
+  <script>
+    // 🔐 Cole aqui seu firebaseConfig
+    const firebaseConfig = {
+      apiKey: "SUA_API_KEY_AQUI",
+      authDomain: "appref-projeto.firebaseapp.com",
+      projectId: "appref-projeto",
+      storageBucket: "appref-projeto.appspot.com",
+      messagingSenderId: "SEU_ID",
+      appId: "SUA_APP_ID"
+    };
+
+    // Inicializa Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    // Função de cadastro
+    async function salvarUsuario() {
+      const nome = document.getElementById("nome").value.trim();
+      const email = document.getElementById("email").value.trim();
+
+      if (!nome || !email) {
+        document.getElementById("mensagem").textContent = "Preencha todos os campos!";
+        return;
+      }
+
+      try {
+        await db.collection("usuarios").add({ nome, email, criadoEm: new Date() });
+        document.getElementById("mensagem").textContent = "Cadastro realizado com sucesso!";
+        document.getElementById("nome").value = "";
+        document.getElementById("email").value = "";
+      } catch (erro) {
+        console.error("Erro ao salvar:", erro);
+        document.getElementById("mensagem").textContent = "Erro ao cadastrar.";
+      }
+    }
+  </script>
+</body>
+</html>
