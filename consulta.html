@@ -1,18 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Consulta - AppRef</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       padding: 20px;
-      max-width: 600px;
+      max-width: 900px;
       margin: auto;
-    }
-    h2 {
-      margin-bottom: 10px;
     }
     table {
       width: 100%;
@@ -23,6 +20,7 @@
       border: 1px solid #ccc;
       padding: 8px;
       text-align: left;
+      font-size: 14px;
     }
     th {
       background-color: #f2f2f2;
@@ -34,17 +32,20 @@
   <table>
     <thead>
       <tr>
-        <th>Nome</th>
         <th>Email</th>
+        <th>Senha</th>
+        <th>UF</th>
+        <th>Cidade</th>
+        <th>Perfil Social</th>
         <th>Data</th>
       </tr>
     </thead>
     <tbody id="tabela-usuarios">
-      <!-- Dados virão aqui -->
+      <!-- Dados carregados aqui -->
     </tbody>
   </table>
 
-  <!-- Firebase SDKs versão 8 -->
+  <!-- Firebase SDK versão 8 -->
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 
@@ -61,22 +62,27 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
-    // Carregar os dados
     db.collection("usuarios").orderBy("criadoEm", "desc").get().then(snapshot => {
       const tabela = document.getElementById("tabela-usuarios");
       snapshot.forEach(doc => {
-        const dados = doc.data();
+        const u = doc.data();
+        const data = u.criadoEm?.seconds
+          ? new Date(u.criadoEm.seconds * 1000).toLocaleString()
+          : "";
         const linha = `
           <tr>
-            <td>${dados.nome}</td>
-            <td>${dados.email}</td>
-            <td>${new Date(dados.criadoEm.seconds * 1000).toLocaleString()}</td>
+            <td>${u.email || ""}</td>
+            <td>${u.senha || ""}</td>
+            <td>${u.uf || ""}</td>
+            <td>${u.cidade || ""}</td>
+            <td><a href="${u.linkPerfil || "#"}" target="_blank">${u.linkPerfil || ""}</a></td>
+            <td>${data}</td>
           </tr>
         `;
         tabela.innerHTML += linha;
       });
-    }).catch(erro => {
-      console.error("Erro ao carregar usuários:", erro);
+    }).catch(err => {
+      console.error("Erro ao buscar dados:", err);
     });
   </script>
 </body>
