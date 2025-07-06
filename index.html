@@ -53,20 +53,31 @@
     let cidadesPorUF = {};
 
     // Carrega dados dos estados e cidades
-    Promise.all([
-      fetch("ufs.json").then(r => r.json()),
-      fetch("cidades.json").then(r => r.json())
-    ]).then(([estados, cidades]) => {
-      cidadesPorUF = cidades;
-      estados.forEach(estado => {
-        const opt = document.createElement("option");
-        opt.value = estado.abbr;
-        opt.textContent = estado.name;
-        lstUf.appendChild(opt);
-      });
-    }).catch(erro => {
-      console.error("Erro ao carregar estados/cidades:", erro);
-    });
+Promise.all([
+  fetch("ufs.json").then(r => r.json()),
+  fetch("cidades.json").then(r => r.json())
+]).then(([estados, cidades]) => {
+  // Mapeia ID do estado para sigla
+  const stateIdToAbbr = {};
+  estados.forEach(estado => {
+    stateIdToAbbr[estado.id] = estado.abbr;
+    const opt = document.createElement("option");
+    opt.value = estado.abbr;
+    opt.textContent = estado.name;
+    lstUf.appendChild(opt);
+  });
+
+  // Agrupa cidades por sigla de UF
+  cidades.forEach(cidade => {
+    const uf = stateIdToAbbr[cidade.state_id];
+    if (!uf) return;
+    if (!cidadesPorUF[uf]) cidadesPorUF[uf] = [];
+    cidadesPorUF[uf].push(cidade.name);
+  });
+}).catch(erro => {
+  console.error("Erro ao carregar estados/cidades:", erro);
+});
+
 
     // Atualiza cidades ao mudar UF
     lstUf.addEventListener("change", () => {
