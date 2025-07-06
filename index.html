@@ -49,37 +49,43 @@
 
     const lstUf = document.getElementById("lstUf");
     const lstCidade = document.getElementById("lstCidade");
-
     let cidadesPorUF = {};
 
-    // Carrega dados dos estados e cidades
-Promise.all([
-  fetch("ufs.json").then(r => r.json()),
-  fetch("cidades.json").then(r => r.json())
-]).then(([estados, cidades]) => {
-  // Mapeia ID do estado para sigla
-  const stateIdToAbbr = {};
-  estados.forEach(estado => {
-    stateIdToAbbr[estado.id] = estado.abbr;
-    const opt = document.createElement("option");
-    opt.value = estado.abbr;
-    opt.textContent = estado.name;
-    lstUf.appendChild(opt);
-  });
+    // Carrega dados de estados e cidades
+    Promise.all([
+      fetch("ufs.json").then(r => r.json()),
+      fetch("cidades.json").then(r => r.json())
+    ]).then(([estados, cidades]) => {
+      const stateIdToAbbr = {};
 
-  // Agrupa cidades por sigla de UF
-  cidades.forEach(cidade => {
-    const uf = stateIdToAbbr[cidade.state_id];
-    if (!uf) return;
-    if (!cidadesPorUF[uf]) cidadesPorUF[uf] = [];
-    cidadesPorUF[uf].push(cidade.name);
-  });
-}).catch(erro => {
-  console.error("Erro ao carregar estados/cidades:", erro);
-});
+      // Ordena estados por nome (com acento)
+      estados
+        .sort((a, b) => a.name.localeCompare(b.name, 'pt-BR'))
+        .forEach(estado => {
+          stateIdToAbbr[estado.id] = estado.abbr;
+          const opt = document.createElement("option");
+          opt.value = estado.abbr;
+          opt.textContent = estado.name;
+          lstUf.appendChild(opt);
+        });
 
+      // Agrupa cidades por UF
+      cidades.forEach(cidade => {
+        const uf = stateIdToAbbr[cidade.state_id];
+        if (!uf) return;
+        if (!cidadesPorUF[uf]) cidadesPorUF[uf] = [];
+        cidadesPorUF[uf].push(cidade.name);
+      });
 
-    // Atualiza cidades ao mudar UF
+      // Ordena todas as listas de cidades
+      Object.keys(cidadesPorUF).forEach(uf => {
+        cidadesPorUF[uf].sort((a, b) => a.localeCompare(b, 'pt-BR'));
+      });
+    }).catch(erro => {
+      console.error("Erro ao carregar estados/cidades:", erro);
+    });
+
+    // Atualiza cidades ao mudar o estado selecionado
     lstUf.addEventListener("change", () => {
       const uf = lstUf.value;
       lstCidade.innerHTML = '<option value="">Carregando cidades...</option>';
