@@ -54,8 +54,8 @@
 
     // Carrega dados dos estados e cidades
     Promise.all([
-      fetch("states.json").then(r => r.json()),
-      fetch("cities.json").then(r => r.json())
+      fetch("ufs.json").then(r => r.json()),
+      fetch("cidades.json").then(r => r.json())
     ]).then(([estados, cidades]) => {
       cidadesPorUF = cidades;
       estados.forEach(estado => {
