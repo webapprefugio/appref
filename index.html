@@ -1,147 +1,275 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cadastro AppRef</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Home | WebApp Refúgios</title>
+    <style>
+        :root {
+            --primary: #238636;
+            --secondary: #0d1117;
+            --text: #c9d1d9;
+            --radius: 12px;
+            --container-bg: #161b22;
+            --container-border: #30363d;
+            --button-bg: #238636;
+            --button-bg-hover: #2ea043;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: var(--secondary);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            background: linear-gradient(90deg, #161b22 0%, #238636 100%);
+            color: #fff;
+            padding: 1.5rem 2rem;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-bottom: 1px solid var(--container-border);
+        }
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 980px;
+            margin: 0 auto;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+        .nav-links li a {
+            color: #c9d1d9;
+            text-decoration: none;
+            font-size: 1.05rem;
+            padding: 0.4rem 1rem;
+            border-radius: 6px;
+            transition: background 0.2s, color 0.2s;
+        }
+        .nav-links li a:hover, .nav-links li a.active {
+            background: var(--button-bg);
+            color: #fff;
+        }
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+        }
+        .container {
+            background: var(--container-bg);
+            border-radius: var(--radius);
+            box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+            border: 1px solid var(--container-border);
+            max-width: 480px;
+            min-width: 320px;
+            width: 100%;
+            padding: 2rem;
+            margin: 1rem 0;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5em;
+            color: #8b949e;
+        }
+        button {
+            background: var(--button-bg);
+            color: #fff;
+            border: none;
+            border-radius: var(--radius);
+            padding: 0.8rem 2rem;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        button:hover { background: var(--button-bg-hover); }
+        .alt-btn { background: #30363d; color: #c9d1d9; }
+        .alt-btn:hover { background: #22262c; }
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            font-size: 0.95rem;
+            color: #8b949e;
+        }
+        @media (max-width: 600px) {
+            header { padding: 1rem 0.5rem; font-size: 1.1rem; }
+            .container { padding: 1rem; max-width: 98vw; }
+            h1 { font-size: 1.4rem; }
+            p { font-size: 1rem; }
+            .navbar { flex-direction: column; gap: 1rem; }
+            .nav-links { flex-direction: column; gap: 0.5rem; width: 100%; align-items: flex-start; }
+            .logo { margin-bottom: 0.5rem; }
+        }
+        @media (max-width: 400px) {
+            .container { padding: 0.5rem; }
+            h1 { font-size: 1.1rem; }
+        }
+        @media (max-width: 320px) {
+            body, html { min-width: 320px; overflow-x: auto; }
+            .container { min-width: 320px; }
+        }
+    </style>
 </head>
 <body>
-  <h2>Cadastro de Acesso</h2>
-
-  <input type="email" id="txtEmail" placeholder="Email"><br>
-  <input type="password" id="txtSenha" placeholder="Senha"><br>
-
-  <select id="lstUf">
-    <option value="">Selecione um estado</option>
-  </select><br>
-
-  <select id="lstCidade">
-    <option value="">Selecione uma cidade</option>
-  </select><br>
-
-  <input type="url" id="lnkLinkPerfilSocial" placeholder="Link da rede social"><br>
-
-  <label>
-    <input type="checkbox" id="check"> Li e aceito os termos
-  </label><br><br>
-
-  <button onclick="salvarDados()">Cadastrar</button>
-  <button onclick="limparFormulario()">Cancelar</button>
-
-  <p id="mensagem"></p>
-
-  <!-- Firebase SDK versão 8 -->
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-
-  <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyCzg9Pr8-7UGv7f451Vx30WpzwRcsGd_qs",
-      authDomain: "appref-projeto.firebaseapp.com",
-      projectId: "appref-projeto",
-      storageBucket: "appref-projeto.appspot.com",
-      messagingSenderId: "80380853942",
-      appId: "1:80380853942:web:2320fa16fa06f2ffa77017"
-    };
-
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
-
-    const lstUf = document.getElementById("lstUf");
-    const lstCidade = document.getElementById("lstCidade");
-    let cidadesPorUF = {};
-
-    // Carrega dados de estados e cidades
-    Promise.all([
-      fetch("ufs.json").then(r => r.json()),
-      fetch("cidades.json").then(r => r.json())
-    ]).then(([estados, cidades]) => {
-      const stateIdToAbbr = {};
-
-      // Ordena estados por nome (com acento)
-      estados
-        .sort((a, b) => a.name.localeCompare(b.name, 'pt-BR'))
-        .forEach(estado => {
-          stateIdToAbbr[estado.id] = estado.abbr;
-          const opt = document.createElement("option");
-          opt.value = estado.abbr;
-          opt.textContent = estado.name;
-          lstUf.appendChild(opt);
-        });
-
-      // Agrupa cidades por UF
-      cidades.forEach(cidade => {
-        const uf = stateIdToAbbr[cidade.state_id];
-        if (!uf) return;
-        if (!cidadesPorUF[uf]) cidadesPorUF[uf] = [];
-        cidadesPorUF[uf].push(cidade.name);
-      });
-
-      // Ordena todas as listas de cidades
-      Object.keys(cidadesPorUF).forEach(uf => {
-        cidadesPorUF[uf].sort((a, b) => a.localeCompare(b, 'pt-BR'));
-      });
-    }).catch(erro => {
-      console.error("Erro ao carregar estados/cidades:", erro);
-    });
-
-    // Atualiza cidades ao mudar o estado selecionado
-    lstUf.addEventListener("change", () => {
-      const uf = lstUf.value;
-      lstCidade.innerHTML = '<option value="">Carregando cidades...</option>';
-
-      const cidades = cidadesPorUF[uf];
-      if (cidades && Array.isArray(cidades)) {
-        lstCidade.innerHTML = '<option value="">Selecione uma cidade</option>';
-        cidades.forEach(cidade => {
-          const opt = document.createElement("option");
-          opt.value = cidade;
-          opt.textContent = cidade;
-          lstCidade.appendChild(opt);
-        });
-      } else {
-        lstCidade.innerHTML = '<option value="">Nenhuma cidade encontrada</option>';
-      }
-    });
-
-    async function salvarDados() {
-      const email = document.getElementById("txtEmail").value.trim();
-      const senha = document.getElementById("txtSenha").value.trim();
-      const uf = lstUf.value;
-      const cidade = lstCidade.value;
-      const link = document.getElementById("lnkLinkPerfilSocial").value.trim();
-      const aceitou = document.getElementById("check").checked;
-
-      if (!email || !senha || !uf || !cidade || !link || !aceitou) {
-        document.getElementById("mensagem").textContent = "Preencha todos os campos e aceite os termos.";
-        return;
-      }
-
-      try {
-        await db.collection("usuarios").add({
-          email,
-          senha,
-          uf,
-          cidade,
-          linkPerfil: link,
-          criadoEm: new Date()
-        });
-        document.getElementById("mensagem").textContent = "Cadastro realizado com sucesso!";
-        limparFormulario();
-      } catch (erro) {
-        console.error("Erro:", erro);
-        document.getElementById("mensagem").textContent = "Erro ao cadastrar.";
-      }
-    }
-
-    function limparFormulario() {
-      document.getElementById("txtEmail").value = "";
-      document.getElementById("txtSenha").value = "";
-      lstUf.value = "";
-      lstCidade.innerHTML = '<option value="">Selecione uma cidade</option>';
-      document.getElementById("lnkLinkPerfilSocial").value = "";
-      document.getElementById("check").checked = false;
-    }
-  </script>
+    <header>
+        <nav class="navbar">
+            <div class="logo">Bem vindo!</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="cadastro.html">Cadastrar</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="sobre.html">Sobre</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section style="width:100%; text-align:center; margin-bottom:2.5rem;">
+            <h1 style="font-size:2.3rem; color:#fff; margin-bottom:0.7rem; font-weight:bold; letter-spacing:0.5px;">Bem-vindo ao Portal WebApp Refúgios</h1>
+            <p style="font-size:1.2rem; color:#8b949e; margin-bottom:1.5rem;">Junte-se às pessoas de sua cidade que estão se organizando na criação de Refúgios para o Fim dos Tempos. Cadastre-se e entre em contato pelos links que elas disponibilizaram.</p>
+            <a href="cadastro.html" style="display:inline-block; background:var(--primary); color:#fff; font-size:1.15rem; font-weight:bold; padding:1rem 2.5rem; border-radius:var(--radius); text-decoration:none; box-shadow:0 2px 8px rgba(35,134,54,0.12); margin-bottom:0.5rem; transition:background 0.2s;">Quero me cadastrar!</a>
+        </section>
+        <section style="width:100%; max-width:1100px; margin:0 auto 2.5rem auto; position:relative;">
+            <h2 style="color:#fff; font-size:1.7rem; margin-bottom:1.5rem; text-align:center; font-weight:bold; letter-spacing:0.5px;">Veja sobre o que se trata os Refúgios</h2>
+            <div style="display:flex; align-items:center; justify-content:center; position:relative;">
+                <button id="scrollLeft" aria-label="Rolar vídeos para a esquerda" style="background:transparent; border:none; width:48px; height:48px; margin-right:1.5rem; cursor:pointer; z-index:2; display:flex; align-items:center; justify-content:center; transition:filter 0.2s; filter:drop-shadow(0 2px 8px #222);">
+                    <span style="display:inline-block; width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center;">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                    </span>
+                </button>
+                <div id="videoGallery" style="display:flex; overflow-x:hidden; gap:1.2rem; padding-bottom:0.5rem; scrollbar-width:thin; scrollbar-color:var(--primary) #222; scroll-behavior:smooth; width:calc(100% - 140px); max-width:900px;">
+                    <a href="https://www.youtube.com/watch?v=Qw7pU5P1b8g" target="_blank" style="background:#161b22; border-radius:14px; box-shadow:0 2px 8px rgba(0,0,0,0.10); overflow:hidden; text-decoration:none; color:var(--primary); width:220px; min-width:220px; display:flex; flex-direction:column; align-items:center; transition:transform 0.15s;">
+                        <img src="https://img.youtube.com/vi/Qw7pU5P1b8g/0.jpg" alt="Vídeo 1" style="width:100%; aspect-ratio:16/9; object-fit:cover;">
+                        <div style="padding:0.7rem; width:100%; text-align:left;">
+                            <span style="color:#fff; font-size:1rem; font-weight:500;">Música Católica Inspiradora</span>
+                        </div>
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=2Vv-BfVoq4g" target="_blank" style="background:#161b22; border-radius:14px; box-shadow:0 2px 8px rgba(0,0,0,0.10); overflow:hidden; text-decoration:none; color:var(--primary); width:220px; min-width:220px; display:flex; flex-direction:column; align-items:center; transition:transform 0.15s;">
+                        <img src="https://img.youtube.com/vi/2Vv-BfVoq4g/0.jpg" alt="Vídeo 2" style="width:100%; aspect-ratio:16/9; object-fit:cover;">
+                        <div style="padding:0.7rem; width:100%; text-align:left;">
+                            <span style="color:#fff; font-size:1rem; font-weight:500;">Homilia do Dia</span>
+                        </div>
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=3JWTaaS7LdU" target="_blank" style="background:#161b22; border-radius:14px; box-shadow:0 2px 8px rgba(0,0,0,0.10); overflow:hidden; text-decoration:none; color:var(--primary); width:220px; min-width:220px; display:flex; flex-direction:column; align-items:center; transition:transform 0.15s;">
+                        <img src="https://img.youtube.com/vi/3JWTaaS7LdU/0.jpg" alt="Vídeo 3" style="width:100%; aspect-ratio:16/9; object-fit:cover;">
+                        <div style="padding:0.7rem; width:100%; text-align:left;">
+                            <span style="color:#fff; font-size:1rem; font-weight:500;">Testemunhos de Fé</span>
+                        </div>
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=4p4fAKvB7Yg" target="_blank" style="background:#161b22; border-radius:14px; box-shadow:0 2px 8px rgba(0,0,0,0.10); overflow:hidden; text-decoration:none; color:var(--primary); width:220px; min-width:220px; display:flex; flex-direction:column; align-items:center; transition:transform 0.15s;">
+                        <img src="https://img.youtube.com/vi/4p4fAKvB7Yg/0.jpg" alt="Vídeo 4" style="width:100%; aspect-ratio:16/9; object-fit:cover;">
+                        <div style="padding:0.7rem; width:100%; text-align:left;">
+                            <span style="color:#fff; font-size:1rem; font-weight:500;">Louvor e Adoração</span>
+                        </div>
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=5qap5aO4i9A" target="_blank" style="background:#161b22; border-radius:14px; box-shadow:0 2px 8px rgba(0,0,0,0.10); overflow:hidden; text-decoration:none; color:var(--primary); width:220px; min-width:220px; display:flex; flex-direction:column; align-items:center; transition:transform 0.15s;">
+                        <img src="https://img.youtube.com/vi/5qap5aO4i9A/0.jpg" alt="Vídeo 5" style="width:100%; aspect-ratio:16/9; object-fit:cover;">
+                        <div style="padding:0.7rem; width:100%; text-align:left;">
+                            <span style="color:#fff; font-size:1rem; font-weight:500;">Missa ao Vivo</span>
+                        </div>
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=6Dh-RL__uN4" target="_blank" style="background:#161b22; border-radius:14px; box-shadow:0 2px 8px rgba(0,0,0,0.10); overflow:hidden; text-decoration:none; color:var(--primary); width:220px; min-width:220px; display:flex; flex-direction:column; align-items:center; transition:transform 0.15s;">
+                        <img src="https://img.youtube.com/vi/6Dh-RL__uN4/0.jpg" alt="Vídeo 6" style="width:100%; aspect-ratio:16/9; object-fit:cover;">
+                        <div style="padding:0.7rem; width:100%; text-align:left;">
+                            <span style="color:#fff; font-size:1rem; font-weight:500;">Palavra do Papa</span>
+                        </div>
+                    </a>
+                </div>
+                <button id="scrollRight" aria-label="Rolar vídeos para a direita" style="background:transparent; border:none; width:48px; height:48px; margin-left:1.5rem; cursor:pointer; z-index:2; display:flex; align-items:center; justify-content:center; transition:filter 0.2s; filter:drop-shadow(0 2px 8px #222);">
+                    <span style="display:inline-block; width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center;">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                    </span>
+                </button>
+            </div>
+            <script>
+                const gallery = document.getElementById('videoGallery');
+                const leftBtn = document.getElementById('scrollLeft');
+                const rightBtn = document.getElementById('scrollRight');
+                function moveCardToEnd() {
+                    const first = gallery.firstElementChild;
+                    gallery.appendChild(first);
+                }
+                function moveCardToStart() {
+                    const last = gallery.lastElementChild;
+                    gallery.insertBefore(last, gallery.firstElementChild);
+                }
+                leftBtn.onclick = () => {
+                    moveCardToStart();
+                    gallery.scrollLeft = 0;
+                };
+                rightBtn.onclick = () => {
+                    moveCardToEnd();
+                    gallery.scrollLeft = 0;
+                };
+            </script>
+        </section>
+        <section style="width:100%; max-width:1100px; margin:0 auto 2.5rem auto; display:block;">
+            <div style="background:var(--secondary); border-radius:var(--radius); border:1px solid var(--container-border); padding:1.5rem; box-shadow:0 2px 8px rgba(0,0,0,0.07); margin-bottom:2rem; max-width:600px; margin-left:auto; margin-right:auto;">
+                <h2 style="color:#fff; font-size:1.05rem; margin-bottom:1rem; text-align:center;">Sites Recomendados</h2>
+                <div style="display:flex; gap:1.2rem;">
+                    <ul style="list-style:none; padding:0; font-size:0.92rem; flex:1; text-align:left;">
+                        <li style="margin-bottom:0.7rem;"><a href="https://www.vaticannews.va/pt.html" target="_blank" style="color:var(--primary); font-weight:500; text-decoration:none;">Vatican News</a></li>
+                        <li style="margin-bottom:0.7rem;"><a href="https://www.a12.com/" target="_blank" style="color:var(--primary); font-weight:500; text-decoration:none;">Santuário Nacional Aparecida</a></li>
+                    </ul>
+                    <ul style="list-style:none; padding:0; font-size:0.92rem; flex:1; text-align:right;">
+                        <li style="margin-bottom:0.7rem;"><a href="https://www.cancaonova.com/" target="_blank" style="color:var(--primary); font-weight:500; text-decoration:none;">Canção Nova</a></li>
+                        <li style="margin-bottom:0.7rem;"><a href="https://www.paulus.com.br/" target="_blank" style="color:var(--primary); font-weight:500; text-decoration:none;">Editora Paulus</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div style="background:var(--secondary); border-radius:var(--radius); border:1px solid var(--container-border); padding:1.5rem; box-shadow:0 2px 8px rgba(0,0,0,0.07); max-width:600px; margin-left:auto; margin-right:auto;">
+                <h2 style="color:#fff; font-size:1.05rem; margin-bottom:1rem; text-align:center;">Redes Sociais Recomendadas</h2>
+                <ul style="list-style:none; padding:0; font-size:0.92rem; columns:2; column-gap:1.2rem;">
+                    <li style="margin-bottom:0.7rem; display:flex; align-items:center; gap:0.7rem; text-align:left;">
+                        <span style="color:var(--primary); font-weight:500;">Grupo Y'shua</span>
+                        <a href="https://www.instagram.com/grupoyshua/" target="_blank" style="display:inline-flex; align-items:center; justify-content:center; text-decoration:none;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c9d1d9" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                        </a>
+                        <a href="https://www.youtube.com/@grupoyshua" target="_blank" style="display:inline-flex; align-items:center; justify-content:center; text-decoration:none;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c9d1d9" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;"><rect x="2" y="2" width="20" height="20" rx="5"/><polygon points="10 15 15 12 10 9 10 15"/></svg>
+                        </a>
+                        <a href="https://www.facebook.com/grupoyshua" target="_blank" style="display:inline-flex; align-items:center; justify-content:center; text-decoration:none;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="20" rx="5" fill="none" stroke="#c9d1d9" stroke-width="1.7"/><path d="M15.5 8.5H14C13.17 8.5 13 8.83 13 9.5V11.5H15.5L15 14H13V20H10V14H8V11.5H10V9.5C10 7.57 11.07 6.5 13 6.5H15.5V8.5Z" fill="#c9d1d9"/></svg>
+                        </a>
+                    </li>
+                    <li style="margin-bottom:0.7rem; display:flex; align-items:center; gap:0.7rem; text-align:right; justify-content:flex-end;">
+                        <span style="color:var(--primary); font-weight:500;">Grupo Y'shua</span>
+                        <a href="https://www.instagram.com/grupoyshua/" target="_blank" style="display:inline-flex; align-items:center; justify-content:center; text-decoration:none;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c9d1d9" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                        </a>
+                        <a href="https://www.youtube.com/@grupoyshua" target="_blank" style="display:inline-flex; align-items:center; justify-content:center; text-decoration:none;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c9d1d9" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;"><rect x="2" y="2" width="20" height="20" rx="5"/><polygon points="10 15 15 12 10 9 10 15"/></svg>
+                        </a>
+                        <a href="https://www.facebook.com/grupoyshua" target="_blank" style="display:inline-flex; align-items:center; justify-content:center; text-decoration:none;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="20" rx="5" fill="none" stroke="#c9d1d9" stroke-width="1.7"/><path d="M15.5 8.5H14C13.17 8.5 13 8.83 13 9.5V11.5H15.5L15 14H13V20H10V14H8V11.5H10V9.5C10 7.57 11.07 6.5 13 6.5H15.5V8.5Z" fill="#c9d1d9"/></svg>
+                        </a>
+                    </li>
+                </ul>
+                
+            </div>
+        </section>
+    </main>
+    <footer>
+        &copy; 2025 - WebApp Encontre seu Refúgio
+    </footer>
 </body>
 </html>

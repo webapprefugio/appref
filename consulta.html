@@ -1,89 +1,227 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Consulta - AppRef</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-      max-width: 900px;
-      margin: auto;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 15px;
-    }
-    th, td {
-      border: 1px solid #ccc;
-      padding: 8px;
-      text-align: left;
-      font-size: 14px;
-    }
-    th {
-      background-color: #f2f2f2;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Consulta de Cadastros | WebApp Refúgios</title>
+    <style>
+        :root {
+            --primary: #238636;
+            --secondary: #0d1117;
+            --text: #c9d1d9;
+            --radius: 12px;
+            --container-bg: #161b22;
+            --container-border: #30363d;
+            --button-bg: #238636;
+            --button-bg-hover: #2ea043;
+            --button-alt-bg: #30363d;
+            --button-alt-color: #c9d1d9;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: var(--secondary);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            background: linear-gradient(90deg, #161b22 0%, #238636 100%);
+            color: #fff;
+            padding: 1.5rem 2rem;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-bottom: 1px solid var(--container-border);
+        }
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 980px;
+            margin: 0 auto;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+        .nav-links li a {
+            color: #c9d1d9;
+            text-decoration: none;
+            font-size: 1.05rem;
+            padding: 0.4rem 1rem;
+            border-radius: 6px;
+            transition: background 0.2s, color 0.2s;
+        }
+        .nav-links li a:hover, .nav-links li a.active {
+            background: var(--button-bg);
+            color: #fff;
+        }
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+        }
+        .container {
+            background: var(--container-bg);
+            border-radius: var(--radius);
+            box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+            border: 1px solid var(--container-border);
+            max-width: 900px;
+            min-width: 320px;
+            width: 100%;
+            padding: 2rem;
+            margin: 1rem 0;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+            background: var(--secondary);
+            color: var(--text);
+        }
+        th, td {
+            padding: 0.8rem 0.5rem;
+            border-bottom: 1px solid var(--container-border);
+            text-align: left;
+        }
+        th {
+            background: var(--container-bg);
+            color: #fff;
+            font-weight: 600;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+        @media (max-width: 700px) {
+            .container {
+                padding: 1rem;
+            }
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+            th, td {
+                padding: 0.7rem 0.3rem;
+                text-align: left;
+            }
+            th {
+                background: var(--container-bg);
+            }
+            tr {
+                margin-bottom: 1.2rem;
+            }
+        }
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            font-size: 0.95rem;
+            color: #8b949e;
+        }
+    </style>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script>
+const firebaseConfig = {
+  apiKey: "AIzaSyCzg9Pr8-7UGv7f451Vx30WpzwRcsGd_qs",
+  authDomain: "appref-projeto.firebaseapp.com",
+  projectId: "appref-projeto",
+  storageBucket: "appref-projeto.appspot.com",
+  messagingSenderId: "80380853942",
+  appId: "1:80380853942:web:2320fa16fa06f2ffa77017"
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+window.addEventListener('DOMContentLoaded', function() {
+  const tabela = document.querySelector('tbody');
+  if (!tabela) return;
+  db.collection("usuarios").orderBy("criadoEm", "desc").get().then(snapshot => {
+    tabela.innerHTML = "";
+    snapshot.forEach(doc => {
+      const u = doc.data();
+      // Não exibe se algum campo estiver vazio
+      if (!u.email || !u.senha || !u.uf || !u.cidade || !u.linkPerfil) return;
+      const data = u.criadoEm?.seconds ? new Date(u.criadoEm.seconds * 1000).toLocaleString() : "";
+      const linha = `<tr>
+        <td><a href="${u.linkPerfil}" target="_blank" style="color:var(--primary); text-decoration:none; font-weight:500;">Contacte-me</a></td>
+        <td>${u.uf}</td>
+        <td>${u.cidade}</td>
+      </tr>`;
+      tabela.innerHTML += linha;
+    });
+  }).catch(err => {
+    console.error("Erro ao buscar dados:", err);
+    tabela.innerHTML = '<tr><td colspan="3">Erro ao carregar dados.</td></tr>';
+  });
+});
+    </script>
 </head>
 <body>
-  <h2>Usuários Cadastrados</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>Email</th>
-        <th>Senha</th>
-        <th>UF</th>
-        <th>Cidade</th>
-        <th>Perfil Social</th>
-        <th>Data</th>
-      </tr>
-    </thead>
-    <tbody id="tabela-usuarios">
-      <!-- Dados carregados aqui -->
-    </tbody>
-  </table>
-
-  <!-- Firebase SDK versão 8 -->
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-
-  <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyCzg9Pr8-7UGv7f451Vx30WpzwRcsGd_qs",
-      authDomain: "appref-projeto.firebaseapp.com",
-      projectId: "appref-projeto",
-      storageBucket: "appref-projeto.appspot.com",
-      messagingSenderId: "80380853942",
-      appId: "1:80380853942:web:2320fa16fa06f2ffa77017"
-    };
-
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
-
-    db.collection("usuarios").orderBy("criadoEm", "desc").get().then(snapshot => {
-      const tabela = document.getElementById("tabela-usuarios");
-      snapshot.forEach(doc => {
-        const u = doc.data();
-        const data = u.criadoEm?.seconds
-          ? new Date(u.criadoEm.seconds * 1000).toLocaleString()
-          : "";
-        const linha = `
-          <tr>
-            <td>${u.email || ""}</td>
-            <td>${u.senha || ""}</td>
-            <td>${u.uf || ""}</td>
-            <td>${u.cidade || ""}</td>
-            <td><a href="${u.linkPerfil || "#"}" target="_blank">${u.linkPerfil || ""}</a></td>
-            <td>${data}</td>
-          </tr>
-        `;
-        tabela.innerHTML += linha;
-      });
-    }).catch(err => {
-      console.error("Erro ao buscar dados:", err);
-    });
-  </script>
+    <header>
+        <nav class="navbar">
+            <div class="logo">Bem vindo!</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="cadastro.html">Cadastrar</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="sobre.html">Sobre</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <h1>Consulta de Cadastros</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Perfil Social</th>
+                        <th>UF</th>
+                        <th>Cidade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="#" style="color:var(--primary); text-decoration:none; font-weight:500;">Contacte-me</a></td>
+                        <td>SP</td>
+                        <td>São Paulo</td>
+                    </tr>
+                    <tr>
+                        <td><a href="#" style="color:var(--primary); text-decoration:none; font-weight:500;">Contacte-me</a></td>
+                        <td>RJ</td>
+                        <td>Rio de Janeiro</td>
+                    </tr>
+                    <tr>
+                        <td><a href="#" style="color:var(--primary); text-decoration:none; font-weight:500;">Contacte-me</a></td>
+                        <td>MG</td>
+                        <td>Belo Horizonte</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="color:#df5252; font-size:0.98rem; margin-top:2rem;">Esta página é restrita aos usuários logados</p>
+        </div>
+    </main>
+    <footer>
+        &copy; 2025 - WebApp Encontre seu Refúgio
+    </footer>
 </body>
 </html>

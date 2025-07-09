@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Sobre | WebApp Refúgios</title>
+    <style>
+        :root {
+            --primary: #238636;
+            --secondary: #0d1117;
+            --text: #c9d1d9;
+            --radius: 12px;
+            --container-bg: #161b22;
+            --container-border: #30363d;
+            --button-bg: #238636;
+            --button-bg-hover: #2ea043;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: var(--secondary);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            background: linear-gradient(90deg, #161b22 0%, #238636 100%);
+            color: #fff;
+            padding: 1.5rem 2rem;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-bottom: 1px solid var(--container-border);
+        }
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 980px;
+            margin: 0 auto;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+        .nav-links li a {
+            color: #c9d1d9;
+            text-decoration: none;
+            font-size: 1.05rem;
+            padding: 0.4rem 1rem;
+            border-radius: 6px;
+            transition: background 0.2s, color 0.2s;
+        }
+        .nav-links li a:hover, .nav-links li a.active {
+            background: var(--button-bg);
+            color: #fff;
+        }
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 2.5rem 0.5rem 2rem 0.5rem;
+            width: 100%;
+        }
+        .sobre-content {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 2.2rem;
+        }
+        .sobre-content h1 {
+            font-size: 2.3rem;
+            color: #fff;
+            font-weight: bold;
+            margin-bottom: 0.7rem;
+            letter-spacing: 0.5px;
+        }
+        .sobre-content h2 {
+            color: #fff;
+            font-size: 1.35rem;
+            margin-bottom: 0.5rem;
+            margin-top: 1.2rem;
+        }
+        .sobre-content p {
+            font-size: 1.13rem;
+            color: #8b949e;
+            margin-bottom: 1.1rem;
+            line-height: 1.7;
+        }
+        .sobre-content ul {
+            color: #c9d1d9;
+            margin-bottom: 1.2rem;
+            padding-left: 1.2rem;
+            font-size: 1.08rem;
+        }
+        .sobre-content ul li {
+            margin-bottom: 0.5rem;
+        }
+        .sobre-content a {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+        .sobre-content a:hover {
+            color: #2ea043;
+        }
+        @media (max-width: 900px) {
+            .sobre-content {
+                max-width: 98vw;
+                padding: 0 0.5rem;
+            }
+        }
+        @media (max-width: 600px) {
+            header {
+                padding: 1rem 0.5rem;
+                font-size: 1.1rem;
+            }
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .nav-links {
+                flex-direction: column;
+                gap: 0.5rem;
+                width: 100%;
+                align-items: flex-start;
+            }
+            .logo {
+                margin-bottom: 0.5rem;
+            }
+            .sobre-content h1 {
+                font-size: 1.5rem;
+            }
+            .sobre-content h2 {
+                font-size: 1.1rem;
+            }
+            .sobre-content p, .sobre-content ul {
+                font-size: 1rem;
+            }
+        }
+        @media (max-width: 400px) {
+            .sobre-content {
+                padding: 0 0.2rem;
+            }
+            .sobre-content h1 {
+                font-size: 1.1rem;
+            }
+        }
+        @media (max-width: 320px) {
+            body, html {
+                min-width: 320px;
+                overflow-x: auto;
+            }
+        }
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            font-size: 0.95rem;
+            color: #8b949e;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">Bem vindo!</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="cadastro.html">Cadastrar</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="sobre.html" class="active">Sobre</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="sobre-content">
+            <h1>Sobre o WebApp Refúgios</h1>
+            <p>O <strong>WebApp Refúgios</strong> é um projeto digital criado para conectar pessoas, comunidades e instituições católicas, promovendo acolhimento, partilha e evangelização através de uma plataforma moderna, acessível e segura.</p>
+            <div>
+                <h2>Missão</h2>
+                <p>Nossa missão é facilitar o encontro entre quem busca apoio, formação e espiritualidade, e quem oferece acolhimento, eventos, conteúdos e serviços cristãos, fortalecendo a comunhão e a solidariedade.</p>
+            </div>
+            <div>
+                <h2>Funcionalidades</h2>
+                <ul>
+                    <li>Cadastro de usuários e perfis sociais.</li>
+                    <li>Divulgação de eventos, grupos e iniciativas católicas.</li>
+                    <li>Galeria de vídeos, links e conteúdos recomendados.</li>
+                    <li>Contato direto com comunidades e instituições.</li>
+                    <li>Ambiente seguro, visual moderno e responsivo.</li>
+                </ul>
+            </div>
+            <div>
+                <h2>Sobre o Projeto</h2>
+                <p>O WebApp Refúgios nasceu do desejo de criar uma ponte digital entre fiéis, agentes de pastoral e comunidades, utilizando tecnologia para servir à Igreja e à sociedade. O projeto é aberto a sugestões e colaborações, buscando sempre evoluir para melhor atender às necessidades do povo de Deus.</p>
+                Para dúvidas, sugestões ou parcerias, utilize o email <span style="color: var(--primary);">encontreseurefugio@gmail.com</span>
+            </div>
+        </section>
+    </main>
+    <footer>
+        &copy; 2025 - WebApp Encontre seu Refúgio
+    </footer>
+</body>
+</html>

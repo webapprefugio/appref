@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Excluir Conta | WebApp Refúgios</title>
+    <style>
+        :root {
+            --primary: #238636;
+            --secondary: #0d1117;
+            --text: #c9d1d9;
+            --radius: 12px;
+            --container-bg: #161b22;
+            --container-border: #30363d;
+            --button-bg: #238636;
+            --button-bg-hover: #2ea043;
+            --danger: #df5252;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: var(--secondary);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            background: linear-gradient(90deg, #161b22 0%, #238636 100%);
+            color: #fff;
+            padding: 1.5rem 2rem;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-bottom: 1px solid var(--container-border);
+        }
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 980px;
+            margin: 0 auto;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+        .nav-links li a {
+            color: #c9d1d9;
+            text-decoration: none;
+            font-size: 1.05rem;
+            padding: 0.4rem 1rem;
+            border-radius: 6px;
+            transition: background 0.2s, color 0.2s;
+        }
+        .nav-links li a:hover, .nav-links li a.active {
+            background: var(--button-bg);
+            color: #fff;
+        }
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+        }
+        .container {
+            background: var(--container-bg);
+            border-radius: var(--radius);
+            box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+            border: 1px solid var(--container-border);
+            max-width: 480px;
+            min-width: 320px;
+            width: 100%;
+            padding: 2rem;
+            margin: 1rem 0;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5em;
+            color: #8b949e;
+        }
+        .danger-text {
+            color: var(--danger);
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+        button {
+            background: var(--button-bg);
+            color: #fff;
+            border: none;
+            border-radius: var(--radius);
+            padding: 0.8rem 2rem;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background: var(--button-bg-hover);
+        }
+        .danger-btn {
+            background: var(--danger);
+            color: #fff;
+        }
+        .danger-btn:hover {
+            background: #b92d2d;
+        }
+        .alt-btn {
+            background: #30363d;
+            color: #c9d1d9;
+        }
+        .alt-btn:hover {
+            background: #22262c;
+        }
+        .formulario {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .formulario input {
+            padding: 0.7rem;
+            border-radius: 8px;
+            border: 1px solid var(--container-border);
+            background: #0d1117;
+            color: var(--text);
+        }
+        .formulario input:focus {
+            border: 1.5px solid var(--primary);
+            outline: none;
+        }
+        a {
+            text-decoration: none;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            font-size: 0.95rem;
+            color: #8b949e;
+        }
+        @media (max-width: 600px) {
+            header {
+                padding: 1rem 0.5rem;
+                font-size: 1.1rem;
+            }
+            .container {
+                padding: 1rem;
+                max-width: 98vw;
+            }
+            h1 {
+                font-size: 1.4rem;
+            }
+            p {
+                font-size: 1rem;
+            }
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .nav-links {
+                flex-direction: column;
+                gap: 0.5rem;
+                width: 100%;
+                align-items: flex-start;
+            }
+            .logo {
+                margin-bottom: 0.5rem;
+            }
+        }
+        @media (max-width: 400px) {
+            .container {
+                padding: 0.5rem;
+            }
+            h1 {
+                font-size: 1.1rem;
+            }
+        }
+        @media (max-width: 320px) {
+            body, html {
+                min-width: 320px;
+                overflow-x: auto;
+            }
+            .container {
+                min-width: 320px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">Bem vindo!</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="cadastro.html">Cadastrar</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="sobre.html">Sobre</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <h1>Excluir Conta</h1>
+            <p class="danger-text">Esta ação é irreversível. Tem certeza que deseja excluir sua conta?</p>
+            <form class="formulario">
+                <input type="password" placeholder="Confirme sua senha" required>
+                <button type="submit" class="danger-btn">Excluir Conta</button>
+                <button type="button" class="alt-btn" style="margin-top:0.5rem;" onclick="window.location.href='index.html'">Cancelar</button>
+            </form>
+        </div>
+    </main>
+    <footer>
+        &copy; 2025 - WebApp Encontre seu Refúgio
+    </footer>
+</body>
+</html>
