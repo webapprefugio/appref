@@ -32,6 +32,9 @@
             text-align: center;
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
             border-bottom: 1px solid var(--container-border);
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         .navbar {
             display: flex;
@@ -171,7 +174,6 @@
                 gap: 1rem;
             }
             .nav-links {
-                flex-direction: column;
                 gap: 0.5rem;
                 width: 100%;
                 align-items: flex-start;
@@ -202,7 +204,7 @@
 <body>
     <header>
         <nav class="navbar">
-            <div class="logo">Bem vindo!</div>
+            <div class="logo"></div>
             <ul class="nav-links">
                 <li><a href="index.html">Início</a></li>
                 <li><a href="cadastro.html">Cadastrar</a></li>
