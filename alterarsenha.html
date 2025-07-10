@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Alterar Senha | WebApp Refúgios</title>
+    <link rel="stylesheet" href="style/stylecss.css">
+
+<style>
+  :root {
+    --primary: #238636;
+    --secondary: #0d1117;
+    --text: #c9d1d9;
+    --radius: 12px;
+    --container-bg: #161b22;
+    --container-border: #30363d;
+    --button-bg: #238636;
+    --button-bg-hover: #2ea043;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: var(--secondary);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+  }
+
+  .container {
+    background: var(--container-bg);
+    border-radius: var(--radius);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
+    border: 1px solid var(--container-border);
+    max-width: 480px;
+    min-width: 320px;
+    width: 100%;
+    padding: 2rem;
+    margin: 1rem 0;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    color: #fff;
+  }
+
+  p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5em;
+    color: #8b949e;
+  }
+
+  button {
+    background: var(--button-bg);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius);
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  button:hover {
+    background: var(--button-bg-hover);
+  }
+
+  .alt-btn {
+    background: #30363d;
+    color: #c9d1d9;
+  }
+
+  .alt-btn:hover {
+    background: #22262c;
+  }
+
+  .formulario {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .formulario input {
+    padding: 0.7rem;
+    border-radius: 8px;
+    border: 1px solid var(--container-border);
+    background: #0d1117;
+    color: var(--text);
+  }
+
+  .formulario input:focus {
+    border: 1.5px solid var(--primary);
+    outline: none;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  @media (max-width: 600px) {
+    .container {
+      padding: 1rem;
+      max-width: 98vw;
+    }
+
+    h1 {
+      font-size: 1.4rem;
+    }
+
+    p {
+      font-size: 1rem;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .container {
+      padding: 0.5rem;
+    }
+
+    h1 {
+      font-size: 1.1rem;
+    }
+  }
+
+  @media (max-width: 320px) {
+    body,
+    html {
+      min-width: 320px;
+      overflow-x: auto;
+    }
+
+    .container {
+      min-width: 320px;
+    }
+  }
+</style>
+
+
+
+</head>
+<body>
+    <div id="menu"></div>
+<script src="js/menu-loader.js"></script>
+
+<div id="menu"></div>
+<script>
+  fetch('menu.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('menu').innerHTML = html;
+    });
+</script>
+    <main>
+        <div class="container">
+            <h1>Alterar Senha</h1>
+            <form class="formulario">
+                <input type="password" placeholder="Senha atual" required>
+                <input type="password" placeholder="Nova senha" required>
+                <input type="password" placeholder="Confirmar nova senha" required>
+                <button type="submit">Alterar Senha</button>
+                <button type="button" class="alt-btn" style="margin-top:0.5rem;" onclick="window.location.href='index.html'">Cancelar</button>
+            </form>
+        </div>
+    </main>
+<div id="rodape"></div>
+<script>
+  fetch('rodape.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('rodape').innerHTML = html;
+    });
+</script>
+
+</body>
+</html>
