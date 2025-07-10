@@ -300,8 +300,13 @@
             </div>
          </section>
       </main>
-      <footer>
-         &copy; 2025 - WebApp Encontre seu Refúgio
-      </footer>
+<div id="rodape"></div>
+<script>
+  fetch('rodape.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('rodape').innerHTML = html;
+    });
+</script>
    </body>
 </html>
