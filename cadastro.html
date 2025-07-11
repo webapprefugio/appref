@@ -1,384 +1,553 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no"
+    />
     <title>Cadastrar | WebApp Refúgios</title>
-    <link rel="stylesheet" href="style/stylecss.css">
-  <style>
-  :root {
-    --primary: #238636;
-    --secondary: #0d1117;
-    --text: #c9d1d9;
-    --radius: 12px;
-    --container-bg: #161b22;
-    --container-border: #30363d;
-    --button-bg: #238636;
-    --button-bg-hover: #2ea043;
-  }
+    <link rel="stylesheet" href="style/stylecss.css" />
+    <style>
+      :root {
+        --primary: #238636;
+        --secondary: #0d1117;
+        --text: #c9d1d9;
+        --radius: 12px;
+        --container-bg: #161b22;
+        --container-border: #30363d;
+        --button-bg: #238636;
+        --button-bg-hover: #2ea043;
+      }
 
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
 
-  body {
-    font-family: 'Segoe UI', Arial, sans-serif;
-    background: var(--secondary);
-    color: var(--text);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
+      body {
+        font-family: "Segoe UI", Arial, sans-serif;
+        background: var(--secondary);
+        color: var(--text);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
 
-  main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem 1rem;
-  }
+      main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem 1rem;
+      }
 
-  .container {
-    background: var(--container-bg);
-    border-radius: var(--radius);
-    box-shadow: 0 4px 24px rgba(0,0,0,0.07);
-    border: 1px solid var(--container-border);
-    max-width: 480px;
-    min-width: 320px;
-    width: 100%;
-    padding: 2rem;
-    margin: 1rem 0;
-    text-align: center;
-  }
+      .container {
+        background: var(--container-bg);
+        border-radius: var(--radius);
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
+        border: 1px solid var(--container-border);
+        max-width: 480px;
+        min-width: 320px;
+        width: 100%;
+        padding: 2rem;
+        margin: 1rem 0;
+        text-align: center;
+      }
 
-  h1 {
-    font-size: 2.2rem;
-    margin-bottom: 1rem;
-    color: #fff;
-  }
+      h1 {
+        font-size: 2.2rem;
+        margin-bottom: 1rem;
+        color: #fff;
+      }
 
-  p {
-    font-size: 1.1rem;
-    margin-bottom: 1.5em;
-    color: #8b949e;
-  }
+      p {
+        font-size: 1.1rem;
+        margin-bottom: 1.5em;
+        color: #8b949e;
+      }
 
-  button {
-    background: var(--button-bg);
-    color: #fff;
-    border: none;
-    border-radius: var(--radius);
-    padding: 0.8rem 2rem;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background 0.2s;
-  }
+      button {
+        background: var(--button-bg);
+        color: #fff;
+        border: none;
+        border-radius: var(--radius);
+        padding: 0.8rem 2rem;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
 
-  button:hover {
-    background: var(--button-bg-hover);
-  }
+      button:hover {
+        background: var(--button-bg-hover);
+      }
 
-  .alt-btn {
-    background: #30363d;
-    color: #c9d1d9;
-  }
+      .alt-btn {
+        background: #30363d;
+        color: #c9d1d9;
+      }
 
-  .alt-btn:hover {
-    background: #22262c;
-  }
+      .alt-btn:hover {
+        background: #22262c;
+      }
 
-  .formulario {
-    margin-top: 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
+      .formulario {
+        margin-top: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
 
-  .formulario input,
-  .formulario select {
-    padding: 0.7rem;
-    border-radius: 8px;
-    border: 1px solid var(--container-border);
-    background: #0d1117;
-    color: var(--text);
-  }
+      .formulario input,
+      .formulario select {
+        padding: 0.7rem;
+        border-radius: 8px;
+        border: 1px solid var(--container-border);
+        background: #0d1117;
+        color: var(--text);
+      }
 
-  .formulario input:focus,
-  .formulario select:focus {
-    border: 1.5px solid var(--primary);
-    outline: none;
-  }
+      .formulario input:focus,
+      .formulario select:focus {
+        border: 1.5px solid var(--primary);
+        outline: none;
+      }
 
-  .formulario select {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    cursor: pointer;
-  }
+      .formulario select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        cursor: pointer;
+      }
 
-  .formulario select option {
-    color: #f9f3f3;
-    background: #0d1117;
-  }
+      .formulario select option {
+        color: #f9f3f3;
+        background: #0d1117;
+      }
 
-  a {
-    text-decoration: none;
-  }
+      a {
+        text-decoration: none;
+      }
 
-  #campo-cidades {
-    width: 100%;
-    background: #0d1117;
-    border: 1px solid var(--container-border);
-    border-radius: 8px;
-    padding: 0.5em 0.7em;
-    margin-bottom: 0.2em;
-    min-height: 2.5em;
-    max-height: 8.5em;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 0.2em;
-  }
+      #campo-cidades {
+        width: 100%;
+        background: #0d1117;
+        border: 1px solid var(--container-border);
+        border-radius: 8px;
+        padding: 0.5em 0.7em;
+        margin-bottom: 0.2em;
+        min-height: 2.5em;
+        max-height: 8.5em;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 0.2em;
+      }
 
-  @media (max-width: 600px) {
-    .container {
-      padding: 1rem;
-      max-width: 98vw;
-    }
+      @media (max-width: 600px) {
+        .container {
+          padding: 1rem;
+          max-width: 98vw;
+        }
 
-    h1 {
-      font-size: 1.4rem;
-    }
+        h1 {
+          font-size: 1.4rem;
+        }
 
-    p {
-      font-size: 1rem;
-    }
-  }
+        p {
+          font-size: 1rem;
+        }
+      }
 
-  @media (max-width: 400px) {
-    .container {
-      padding: 0.5rem;
-    }
+      @media (max-width: 400px) {
+        .container {
+          padding: 0.5rem;
+        }
 
-    h1 {
-      font-size: 1.1rem;
-    }
-  }
+        h1 {
+          font-size: 1.1rem;
+        }
+      }
 
-  @media (max-width: 320px) {
-    body,
-    html {
-      min-width: 320px;
-      overflow-x: auto;
-    }
+      @media (max-width: 320px) {
+        body,
+        html {
+          min-width: 320px;
+          overflow-x: auto;
+        }
 
-    .container {
-      min-width: 320px;
-    }
-  }
-</style>
+        .container {
+          min-width: 320px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="menu"></div>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        fetch("menu.html")
+          .then((res) => res.text())
+          .then((html) => {
+            document.getElementById("menu").innerHTML = html;
 
-</head>
-<body>
-<div id="menu"></div>
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    fetch('menu.html')
-      .then(res => res.text())
-      .then(html => {
-        document.getElementById('menu').innerHTML = html;
-
-        const currentPage = location.pathname.split("/").pop();
-        document.querySelectorAll('.nav-links a').forEach(link => {
-          if (link.getAttribute("href") === currentPage) {
-            link.classList.add("active");
-          }
-        });
-      })
-      .catch(err => console.error("Erro ao carregar menu:", err));
-  });
-</script>
+            const currentPage = location.pathname.split("/").pop();
+            document.querySelectorAll(".nav-links a").forEach((link) => {
+              if (link.getAttribute("href") === currentPage) {
+                link.classList.add("active");
+              }
+            });
+          })
+          .catch((err) => console.error("Erro ao carregar menu:", err));
+      });
+    </script>
 
     <main>
-        <div class="container">
-            <h1>Cadastre-se</h1>
-            <form class="formulario">
-                <input type="text" placeholder="Nome de usuário" required id="txtNome">
-                <input type="email" placeholder="E-mail" required id="txtEmail">
-                <input type="password" placeholder="Senha" required id="txtSenha">
-                <select id="lstUf" required style="color:#75797e;">
-                    <option value="" disabled selected>Selecione um estado</option>
-                </select>
-                <div id="campo-cidades" style="width:100%; background:#0d1117; border:1px solid var(--container-border); border-radius:8px; padding:0.5em 0.7em; margin-bottom:0.2em; min-height:2.5em; max-height:8.5em; overflow-y:auto; display:flex; flex-direction:column; gap:0.2em;">
-                  <span id="msg-cidade-placeholder" style="color:#75797e; font-size:0.90rem; text-align:left; display:block;  padding:0; margin:0;">Selecione uma cidade</span>
-                </div>
-                <div id="msg-cidade-info" style="display:none; color:var(--primary); font-size:1.05rem; font-weight:600; margin-bottom:0.5em; text-align:left;">Selecione no máximo 3 cidades</div>
-                <input type="text" placeholder="Perfil Social (ex: @usuario)" required id="txtPerfilSocial">
-                <div><input type="checkbox" id="chkTermos" required> Concordo com os <a href="termos.html" style="color:var(--primary);">termos de uso e política de privacidade</a></div>
-                <div id="mensagem" style="min-height:1.5em; color:#df5252; font-size:1.05rem; margin-bottom:0.5em;"></div>
-                <button type="submit">Cadastrar</button>
-                <button type="button" class="alt-btn" style="margin-top:0.5rem;" onclick="window.location.href='index.html'">Cancelar</button>
-                <p style="margin-top:1.2rem; color:#8b949e; font-size:1rem;">Já possui uma conta? <a href="login.html" style="color:var(--primary); ">Entrar</a></p>
-            </form>
-        </div>
+      <div class="container">
+        <h1>Cadastre-se</h1>
+        <form class="formulario">
+          <label
+            for="lstpessoal"
+            style="margin-top: 0.5em; color: #8b949e; font-size: 0.95rem"
+            >Dados Gerais</label
+          >
+          <input
+            type="text"
+            placeholder="Nome de usuário"
+            required
+            id="txtNome"
+          />
+          <input type="email" placeholder="E-mail" required id="txtEmail" />
+          <input type="password" placeholder="Senha" required id="txtSenha" />
+
+          <label
+            for="lstPergunta"
+            style="margin-top: 0.5em; color: #8b949e; font-size: 0.95rem"
+            >Pergunta de segurança</label
+          >
+          <select
+            id="lstPergunta"
+            required
+            style="
+              height: 2.5rem;
+              width: 100%;
+              color: #75797e;
+              background: #0d1117;
+              border: 1px solid var(--container-border);
+              border-radius: 8px;
+              padding: 0 0.7em;
+              margin-bottom: 0.5em;
+            "
+          >
+            <option value="" disabled selected>Selecione uma pergunta</option>
+            <option value="animal">Qual o nome do seu primeiro animal de estimação?</option>
+            <option value="escola">Qual o nome do meio do seu melhor amigo(a)?</option>
+            <option value="cidade">Qual é sua comida favorita?</option>
+            <option value="apelido">Qual era seu apelido de infância?</option>
+            <option value="filme">Qual é seu filme favorito?</option>
+            <option value="filme">Qual é seu time de coração?</option>
+          </select>
+
+          <input
+            type="text"
+            id="txtRespostaSeguranca"
+            placeholder="Resposta à pergunta de segurança"
+            required
+            style="
+              height: 2.5rem;
+              width: 100%;
+              color: #75797e;
+              background: #0d1117;
+              border: 1px solid var(--container-border);
+              border-radius: 8px;
+              padding: 0 0.7em;
+              margin-bottom: 0.5em;
+            "
+          />
+          <label
+            for="lstlocal"
+            style="margin-top: 0.5em; color: #8b949e; font-size: 0.95rem"
+            >Locais dos Refúgios</label
+          >
+          <select id="lstUf" required style="color: #75797e">
+            <option value="" disabled selected>Selecione um estado</option>
+          </select>
+          <div
+            id="campo-cidades"
+            style="
+              width: 100%;
+              background: #0d1117;
+              border: 1px solid var(--container-border);
+              border-radius: 8px;
+              padding: 0.5em 0.7em;
+              margin-bottom: 0.2em;
+              min-height: 2.5em;
+              max-height: 8.5em;
+              overflow-y: auto;
+              display: flex;
+              flex-direction: column;
+              gap: 0.2em;
+            "
+          >
+            <span
+              id="msg-cidade-placeholder"
+              style="
+                color: #75797e;
+                font-size: 0.9rem;
+                text-align: left;
+                display: block;
+                padding: 0;
+                margin: 0;
+              "
+              >Selecione uma cidade</span
+            >
+          </div>
+          <div
+            id="msg-cidade-info"
+            style="
+              display: none;
+              color: var(--primary);
+              font: size 0.75rem;
+              font-weight: 600;
+              margin-bottom: 0.5em;
+              text-align: left;
+            "
+          >
+            Selecione no máximo 3 cidades
+          </div>
+          <input
+            type="text"
+            placeholder="Perfil Social (ex: @usuario)"
+            required
+            id="txtPerfilSocial"
+          />
+          <div>
+            <input type="checkbox" id="chkTermos" required /> Concordo com os
+            <a href="termos.html" style="color: var(--primary)"
+              >termos de uso e política de privacidade</a
+            >
+          </div>
+          <div
+            id="mensagem"
+            style="
+              min-height: 1.5em;
+              color: #df5252;
+              font-size: 1.05rem;
+              margin-bottom: 0.5em;
+            "
+          ></div>
+          <button type="submit">Cadastrar</button>
+          <button
+            type="button"
+            class="alt-btn"
+            style="margin-top: 0.5rem"
+            onclick="window.location.href='index.html'"
+          >
+            Cancelar
+          </button>
+          <p style="margin-top: 1.2rem; color: #8b949e; font-size: 1rem">
+            Já possui uma conta?
+            <a href="login.html" style="color: var(--primary)">Entrar</a>
+          </p>
+        </form>
+      </div>
     </main>
-<div id="rodape"></div>
-<script>
-  fetch('rodape.html')
-    .then(res => res.text())
-    .then(html => {
-      document.getElementById('rodape').innerHTML = html;
-    });
-</script>
+
+    <!-- ✅ Script para transformar a resposta -->
+    <script>
+      document
+        .querySelector(".formulario")
+        .addEventListener("submit", function (e) {
+          const respostaCampo = document.getElementById("txtRespostaSeguranca");
+          respostaCampo.value = respostaCampo.value
+            .toLowerCase()
+            .replace(/\s+/g, "");
+        });
+    </script>
+
+    <div id="rodape"></div>
+    <script>
+      fetch("rodape.html")
+        .then((res) => res.text())
+        .then((html) => {
+          document.getElementById("rodape").innerHTML = html;
+        });
+    </script>
 
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
     <script>
-const firebaseConfig = {
-  apiKey: "AIzaSyCzg9Pr8-7UGv7f451Vx30WpzwRcsGd_qs",
-  authDomain: "appref-projeto.firebaseapp.com",
-  projectId: "appref-projeto",
-  storageBucket: "appref-projeto.appspot.com",
-  messagingSenderId: "80380853942",
-  appId: "1:80380853942:web:2320fa16fa06f2ffa77017"
-};
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
+      const firebaseConfig = {
+        apiKey: "AIzaSyCzg9Pr8-7UGv7f451Vx30WpzwRcsGd_qs",
+        authDomain: "appref-projeto.firebaseapp.com",
+        projectId: "appref-projeto",
+        storageBucket: "appref-projeto.appspot.com",
+        messagingSenderId: "80380853942",
+        appId: "1:80380853942:web:2320fa16fa06f2ffa77017",
+      };
+      firebase.initializeApp(firebaseConfig);
+      const db = firebase.firestore();
 
-const lstUf = document.getElementById("lstUf");
-const lstCidade = document.getElementById("lstCidade");
-let cidadesPorUF = {};
+      const lstUf = document.getElementById("lstUf");
+      const lstCidade = document.getElementById("lstCidade");
+      let cidadesPorUF = {};
 
-Promise.all([
-  fetch("json/ufs.json").then(r => r.json()),
-  fetch("json/cidades.json").then(r => r.json())
-]).then(([estados, cidades]) => {
-  const stateIdToAbbr = {};
-  estados.sort((a, b) => a.name.localeCompare(b.name, 'pt-BR')).forEach(estado => {
-    stateIdToAbbr[estado.id] = estado.abbr;
-    const opt = document.createElement("option");
-    opt.value = estado.abbr;
-    opt.textContent = estado.name;
-    lstUf.appendChild(opt);
-  });
-  cidades.forEach(cidade => {
-    const uf = stateIdToAbbr[cidade.state_id];
-    if (!uf) return;
-    if (!cidadesPorUF[uf]) cidadesPorUF[uf] = [];
-    cidadesPorUF[uf].push(cidade.name);
-  });
-  Object.keys(cidadesPorUF).forEach(uf => {
-    cidadesPorUF[uf].sort((a, b) => a.localeCompare(b, 'pt-BR'));
-  });
-}).catch(erro => {
-  console.error("Erro ao carregar estados/cidades:", erro);
-});
+      Promise.all([
+        fetch("json/ufs.json").then((r) => r.json()),
+        fetch("json/cidades.json").then((r) => r.json()),
+      ])
+        .then(([estados, cidades]) => {
+          const stateIdToAbbr = {};
+          estados
+            .sort((a, b) => a.name.localeCompare(b.name, "pt-BR"))
+            .forEach((estado) => {
+              stateIdToAbbr[estado.id] = estado.abbr;
+              const opt = document.createElement("option");
+              opt.value = estado.abbr;
+              opt.textContent = estado.name;
+              lstUf.appendChild(opt);
+            });
+          cidades.forEach((cidade) => {
+            const uf = stateIdToAbbr[cidade.state_id];
+            if (!uf) return;
+            if (!cidadesPorUF[uf]) cidadesPorUF[uf] = [];
+            cidadesPorUF[uf].push(cidade.name);
+          });
+          Object.keys(cidadesPorUF).forEach((uf) => {
+            cidadesPorUF[uf].sort((a, b) => a.localeCompare(b, "pt-BR"));
+          });
+        })
+        .catch((erro) => {
+          console.error("Erro ao carregar estados/cidades:", erro);
+        });
 
-lstUf.addEventListener("change", () => {
-  const uf = lstUf.value;
-  const campoCidades = document.getElementById("campo-cidades");
-  const msgInfo = document.getElementById("msg-cidade-info");
-  campoCidades.innerHTML = '';
-  if (!uf) {
-    campoCidades.innerHTML = '<span id="msg-cidade-placeholder" style="color:#8b949e; font-size:1rem;">Selecione uma cidade</span>';
-    msgInfo.style.display = 'none';
-    return;
-  }
-  const cidades = cidadesPorUF[uf];
-  if (cidades && Array.isArray(cidades)) {
-    cidades.slice(0, 1000).forEach(cidade => {
-      const id = `cidade_${uf}_${cidade.replace(/\s+/g, '_')}`;
-      const label = document.createElement('label');
-      label.style.display = 'flex';
-      label.style.alignItems = 'center';
-      label.style.gap = '0.5em';
-      label.style.fontSize = '1rem';
-      label.innerHTML = `<input type='checkbox' name='cidades' value='${cidade}' style='accent-color:var(--primary); width:1.1em; height:1.1em;'> <span>${cidade}</span>`;
-      campoCidades.appendChild(label);
-    });
-    msgInfo.style.display = 'block';
-  } else {
-    campoCidades.innerHTML = '<span style="color:#8b949e;">Nenhuma cidade encontrada</span>';
-    msgInfo.style.display = 'none';
-  }
-  // Limite de 3 cidades
-  campoCidades.querySelectorAll("input[type='checkbox']").forEach(cb => {
-    cb.addEventListener('change', function() {
-      const selecionados = campoCidades.querySelectorAll("input[type='checkbox']:checked");
-      if (selecionados.length > 3) {
-        this.checked = false;
-        mensagem.textContent = "Selecione no máximo 3 cidades.";
-        mensagem.style.color = '#df5252';
-        setTimeout(()=>{mensagem.textContent='';}, 2000);
-      }
-    });
-  });
-});
-
-const form = document.querySelector('.formulario');
-const mensagem = document.getElementById("mensagem");
-form.addEventListener('submit', async function(e) {
-  e.preventDefault();
-  mensagem.style.color = '#df5252';
-  mensagem.textContent = '';
-  const nome = document.getElementById("txtNome").value.trim();
-  const email = document.getElementById("txtEmail").value.trim();
-  const senha = document.getElementById("txtSenha").value.trim();
-  const uf = lstUf.value;
-  // Pega todas as cidades marcadas
-  const cidadesSelecionadas = Array.from(document.querySelectorAll("input[name='cidades']:checked")).map(opt => opt.value).filter(v => v);
-  const perfil = document.getElementById("txtPerfilSocial").value.trim();
-  if (!nome || !email || !senha || !uf || cidadesSelecionadas.length === 0 || !perfil) {
-    mensagem.textContent = "Preencha todos os campos.";
-    return;
-  }
-  try {
-    // Cria usuário no Auth (apenas se não existir)
-    let userCredential;
-    try {
-      userCredential = await firebase.auth().createUserWithEmailAndPassword(email, senha);
-    } catch (erro) {
-      if (erro.code === 'auth/email-already-in-use') {
-        userCredential = await firebase.auth().signInWithEmailAndPassword(email, senha);
-      } else {
-        throw erro;
-      }
-    }
-    // Salva um registro para cada cidade
-    const batch = db.batch();
-    cidadesSelecionadas.forEach(cidade => {
-      const ref = db.collection("usuarios").doc();
-      batch.set(ref, {
-        nome,
-        email,
-        uf,
-        cidade,
-        linkPerfil: perfil,
-        criadoEm: new Date()
+      lstUf.addEventListener("change", () => {
+        const uf = lstUf.value;
+        const campoCidades = document.getElementById("campo-cidades");
+        const msgInfo = document.getElementById("msg-cidade-info");
+        campoCidades.innerHTML = "";
+        if (!uf) {
+          campoCidades.innerHTML =
+            '<span id="msg-cidade-placeholder" style="color:#8b949e; font-size:1rem;">Selecione uma cidade</span>';
+          msgInfo.style.display = "none";
+          return;
+        }
+        const cidades = cidadesPorUF[uf];
+        if (cidades && Array.isArray(cidades)) {
+          cidades.slice(0, 1000).forEach((cidade) => {
+            const id = `cidade_${uf}_${cidade.replace(/\s+/g, "_")}`;
+            const label = document.createElement("label");
+            label.style.display = "flex";
+            label.style.alignItems = "center";
+            label.style.gap = "0.5em";
+            label.style.fontSize = "1rem";
+            label.innerHTML = `<input type='checkbox' name='cidades' value='${cidade}' style='accent-color:var(--primary); width:1.1em; height:1.1em;'> <span>${cidade}</span>`;
+            campoCidades.appendChild(label);
+          });
+          msgInfo.style.display = "block";
+        } else {
+          campoCidades.innerHTML =
+            '<span style="color:#8b949e;">Nenhuma cidade encontrada</span>';
+          msgInfo.style.display = "none";
+        }
+        // Limite de 3 cidades
+        campoCidades
+          .querySelectorAll("input[type='checkbox']")
+          .forEach((cb) => {
+            cb.addEventListener("change", function () {
+              const selecionados = campoCidades.querySelectorAll(
+                "input[type='checkbox']:checked"
+              );
+              if (selecionados.length > 3) {
+                this.checked = false;
+                mensagem.textContent = "Selecione no máximo 3 cidades.";
+                mensagem.style.color = "#df5252";
+                setTimeout(() => {
+                  mensagem.textContent = "";
+                }, 2000);
+              }
+            });
+          });
       });
-    });
-    await batch.commit();
-    mensagem.style.color = '#238636';
-    mensagem.textContent = "Cadastro realizado com sucesso!";
-    form.reset();
-    document.getElementById("campo-cidades").innerHTML = '';
-  } catch (erro) {
-    if (erro.code === 'auth/invalid-email') {
-      mensagem.textContent = "E-mail inválido.";
-    } else if (erro.code === 'auth/weak-password') {
-      mensagem.textContent = "A senha deve ter pelo menos 6 caracteres.";
-    } else if (erro.message) {
-      mensagem.textContent = erro.message;
-    } else {
-      mensagem.textContent = "Erro ao cadastrar.";
-    }
-    console.error("Erro:", erro);
-  }
-});
-</script>
-</body>
+
+      const form = document.querySelector(".formulario");
+      const mensagem = document.getElementById("mensagem");
+      form.addEventListener("submit", async function (e) {
+        e.preventDefault();
+        mensagem.style.color = "#df5252";
+        mensagem.textContent = "";
+        const nome = document.getElementById("txtNome").value.trim();
+        const email = document.getElementById("txtEmail").value.trim();
+        const senha = document.getElementById("txtSenha").value.trim();
+        const uf = lstUf.value;
+        // Pega todas as cidades marcadas
+        const cidadesSelecionadas = Array.from(
+          document.querySelectorAll("input[name='cidades']:checked")
+        )
+          .map((opt) => opt.value)
+          .filter((v) => v);
+        const perfil = document.getElementById("txtPerfilSocial").value.trim();
+        if (
+          !nome ||
+          !email ||
+          !senha ||
+          !uf ||
+          cidadesSelecionadas.length === 0 ||
+          !perfil
+        ) {
+          mensagem.textContent = "Preencha todos os campos.";
+          return;
+        }
+        try {
+          // Cria usuário no Auth (apenas se não existir)
+          let userCredential;
+          try {
+            userCredential = await firebase
+              .auth()
+              .createUserWithEmailAndPassword(email, senha);
+          } catch (erro) {
+            if (erro.code === "auth/email-already-in-use") {
+              userCredential = await firebase
+                .auth()
+                .signInWithEmailAndPassword(email, senha);
+            } else {
+              throw erro;
+            }
+          }
+          // Salva um registro para cada cidade
+          const batch = db.batch();
+          cidadesSelecionadas.forEach((cidade) => {
+            const ref = db.collection("usuarios").doc();
+            batch.set(ref, {
+              nome,
+              email,
+              uf,
+              cidade,
+              linkPerfil: perfil,
+              criadoEm: new Date(),
+            });
+          });
+          await batch.commit();
+          mensagem.style.color = "#238636";
+          mensagem.textContent = "Cadastro realizado com sucesso!";
+          form.reset();
+          document.getElementById("campo-cidades").innerHTML = "";
+        } catch (erro) {
+          if (erro.code === "auth/invalid-email") {
+            mensagem.textContent = "E-mail inválido.";
+          } else if (erro.code === "auth/weak-password") {
+            mensagem.textContent = "A senha deve ter pelo menos 6 caracteres.";
+          } else if (erro.message) {
+            mensagem.textContent = erro.message;
+          } else {
+            mensagem.textContent = "Erro ao cadastrar.";
+          }
+          console.error("Erro:", erro);
+        }
+      });
+    </script>
+  </body>
 </html>
