@@ -89,24 +89,28 @@
          background: #22262c;
          }
          .formulario {
-         margin-top: 2rem;
-         display: flex;
-         flex-direction: column;
-         gap: 1rem;
-         }
-         .formulario input,
-         .formulario select {
-         padding: 0.7rem;
-         border-radius: 8px;
-         border: 1px solid var(--container-border);
-         background: #0d1117;
-         color: var(--text);
-         }
-         Cadastraisormulario input:focus,
-         .formulario select:focus {
-         border: 1.5px solid var(--primary);
-         outline: none;
-         }
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.formulario input,
+.formulario select {
+  padding: 0.7rem;
+  border-radius: 8px;
+  border: 1px solid var(--container-border);
+  background: #0d1117;
+  color: var(--text);
+  transition: border 0.2s;
+}
+
+.formulario input:focus,
+.formulario select:focus {
+  border: 1.5px solid var(--primary);
+  outline: none;
+}
+
          .formulario select {
          -webkit-appearance: none;
          -moz-appearance: none;
@@ -114,7 +118,7 @@
          cursor: pointer;
          }
          .formulario select option {
-         color: #f3f9f6;
+         color: #f9f3f3;
          background: #0d1117;
          }
          a {
@@ -256,7 +260,7 @@
                   id="txtPerfilSocial"
                   />
                <div>
-                  <input type="checkbox" id="chkTermos" required />Concordo com os<a href="termos.html" style="color: var(--primary)">termos de uso e política de privacidade</a>
+                  <input type="checkbox" id="chkTermos" required /> <a href="termos.html" style="color: var(--primary)"> Concordo com os termos de uso e política de privacidade</a>
                </div>
                <div
                   id="mensagem"Cadastrais
