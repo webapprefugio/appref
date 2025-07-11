@@ -197,8 +197,16 @@
                   for="lstpessoal"
                   style="margin-top: 0.5em; color: #8b949e; font-size: 0.95rem"
                   >Dados Cadastrais</label>
+                                                <input
+                  type="text"
+                  placeholder="Link do seu Perfil Social"
+                  required
+                  id="txtPerfilSocial"
+                  />
                <input type="text" placeholder="Nome de usuário" required id="txtNome" />
                <input type="email" placeholder="E-mail" required id="txtEmail" />
+
+
                <input type="password" placeholder="Senha" required id="txtSenha" />
                <label
                   for="perguntaSeguranca"
@@ -254,14 +262,10 @@
                   text-align: left;
                   "
                   >Selecione no máximo 3 cidades</div>
-               <input
-                  type="text"
-                  placeholder="Perfil Social (ex: @usuario)"
-                  required
-                  id="txtPerfilSocial"
-                  />
+
+                  
                <div>
-                  <input type="checkbox" id="chkTermos" required /> <a href="termos.html" style="color: var(--primary)"> Concordo com os termos de uso e política de privacidade</a>
+                  <input type="checkbox" id="chkTermos" required /> <a href="termos.html" style="color: #df5252"> Concordo com os termos de uso e política de privacidade</a>
                </div>
                <div
                   id="mensagem"Cadastrais
@@ -478,7 +482,7 @@
              });
              await batch.commit();
              mensagem.style.color = "#238636";
-             mensagem.textContent = "Cadastro realizado com sucesso!";
+             mensagem.textContent = "Cadastro realizado com sucesso! Você já pode entrar.";
              form.reset();
              document.getElementById("campo-cidades").innerHTML = "";
            } catch (erro) {
