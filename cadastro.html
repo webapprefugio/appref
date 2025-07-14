@@ -181,7 +181,7 @@
                document.getElementById("menu").innerHTML = html;
                const currentPage = location.pathname.split("/").pop();
                document.querySelectorAll(".nav-links a").forEach((link) => {
-         Cadastrais      if (link.getAttribute("href") === currentPage) {
+               if (link.getAttribute("href") === currentPage) {
                    link.classList.add("active");
                  }
                });
@@ -196,8 +196,11 @@
                <label
                   for="lstpessoal"
                   style="margin-top: 0.5em; color: #8b949e; font-size: 0.95rem"
+
                   ></label>
-                                                <input
+
+                
+                  <input
                   type="text"
                   placeholder="Link do seu Perfil Social"
                   required
