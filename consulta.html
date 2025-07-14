@@ -130,24 +130,38 @@ window.addEventListener('DOMContentLoaded', function() {
   if (!tabela) return;
   db.collection("usuarios").orderBy("criadoEm", "desc").get().then(snapshot => {
     tabela.innerHTML = "";
-    snapshot.forEach(doc => {
+
+    // Embaralha os documentos aleatoriamente
+    const docsEmbaralhados = snapshot.docs.sort(() => Math.random() - 0.5);
+
+    // Agrupa por UF
+    const grupos = {};
+    docsEmbaralhados.forEach(doc => {
       const u = doc.data();
-      // Não exibe se algum campo estiver vazio
       if (!u.email || !u.senha || !u.uf || !u.cidade || !u.linkPerfil) return;
-      const data = u.criadoEm?.seconds ? new Date(u.criadoEm.seconds * 1000).toLocaleString() : "";
-      const linha = `<tr>
-        <td><a href="${u.linkPerfil}" target="_blank" style="color:var(--primary); text-decoration:none; font-weight:500;">Contacte-me</a></td>
-        <td>${u.uf}</td>
-        <td>${u.cidade}</td>
-      </tr>`;
-      tabela.innerHTML += linha;
+      if (!grupos[u.uf]) grupos[u.uf] = [];
+      grupos[u.uf].push(u);
     });
+
+    // Renderiza os grupos por UF
+    for (const uf in grupos) {
+      // Linha de título do grupo
+      tabela.innerHTML += `<tr><td colspan="3" style="font-weight:bold; color:#58a6ff; padding-top:1.2rem;">UF: ${uf}</td></tr>`;
+      grupos[uf].forEach(u => {
+        tabela.innerHTML += `<tr>
+          <td><a href="${u.linkPerfil}" target="_blank" style="color:var(--primary); text-decoration:none; font-weight:500;">Contacte-me</a></td>
+          <td>${u.uf}</td>
+          <td>${u.cidade}</td>
+        </tr>`;
+      });
+    }
   }).catch(err => {
     console.error("Erro ao buscar dados:", err);
     tabela.innerHTML = '<tr><td colspan="3">Erro ao carregar dados.</td></tr>';
   });
 });
-    </script>
+
+</script>
 
 
 </head>
