@@ -209,7 +209,7 @@
 
             const descricao = elementoCentral.getAttribute("data-titulo") || "";
             cards.forEach(c => c.style.outline = "none");  // limpa moldura anterior
-elementoCentral.style.outline = "3px solid var(--primary)";  // aplica moldura verde
+elementoCentral.style.boxShadow = "0 0 0 3px var(--primary)";
 document.getElementById("descricaoCentral").textContent = descricao;
 
           }
@@ -231,8 +231,40 @@ document.getElementById("descricaoCentral").textContent = descricao;
         </script>
       </section>
 
-      <!-- Canais e sites recomendados abaixo (sem alterações) -->
-      <!-- ... (mantenha a seção restante como está no seu HTML) -->
+ </section>
+         <section style="width:100%; max-width:1100px; margin:0 auto 2.5rem auto; display:block;">
+            <div style="background:var(--secondary); border-radius:var(--radius); border:1px solid var(--container-border); padding:1.5rem; box-shadow:0 2px 8px rgba(0,0,0,0.07); margin-bottom:2rem; max-width:600px; margin-left:auto; margin-right:auto;">
+               <h2 style="color:#fff; font-size:1.05rem; margin-bottom:1rem; text-align:center;">Canais Recomendados</h2>
+               <div style="text-align:center; font-size:0.92rem;">
+                  <a href="https://www.youtube.com/@grupoyshua" target="_blank" style="color:var(--primary); font-weight:500; text-decoration:none;">Grupo Y'shua</a>
+                  <span style="color:var(--text); margin:0 0.5rem;">-</span>
+                  <a href="https://www.instagram.com/lucasgelasio/" target="_blank" style="color:var(--primary); font-weight:500; text-decoration:none;">Lucas Gelasio</a>
+                  <span style="color:var(--text); margin:0 0.5rem;">-</span>
+                  <a href="https://www.youtube.com/@SemillasdeFe" target="_blank" style="color:var(--primary); font-weight:500; text-decoration:none;">Cemillas de Fe</a>
+                  <span style="color:var(--text); margin:0 0.5rem;">-</span>
+                  <a href="https://www.youtube.com/@RevelacionesMarianasLM" target="_blank" style="color:var(--primary); font-weight:500; text-decoration:none;">Revelaciones Marianas (Luz de Maria de Bonilla)</a>
+                  <span style="color:var(--text); margin:0 0.5rem;">-</span>                  
+                  <a href="https://www.youtube.com/@OCruxAveMedia" target="_blank" style="color:var(--primary); font-weight:500; text-decoration:none;">O Crux Ave (Xavier Ayral)</a>
+                  <span style="color:var(--text); margin:0 0.5rem;">-</span>                  
+                  <a href="https://www.youtube.com/@AleMachadoOfficial" target="_blank" style="color:var(--primary); font-weight:500; text-decoration:none;">Ale Machado Official</a>
+                  <span style="color:var(--text); margin:0 0.5rem;">                     
+               </div>
+            </div>
+         </section>
+         <section style="width:100%; max-width:1100px; margin:0 auto 2.5rem auto; display:block;">
+            <div style="background:var(--secondary); border-radius:var(--radius); border:1px solid var(--container-border); padding:1.5rem; box-shadow:0 2px 8px rgba(0,0,0,0.07); margin-bottom:2rem; max-width:600px; margin-left:auto; margin-right:auto;">
+               <h2 style="color:#fff; font-size:1.05rem; margin-bottom:1rem; text-align:center;">Sites Recomendados</h2>
+               <div style="text-align:center; font-size:0.92rem;">
+                  <a href="https://www.vaticannews.va/pt.html" target="_blank" style="color:var(--primary); font-weight:500; text-decoration:none;">Vatican News</a>
+                  <span style="color:var(--text); margin:0 0.5rem;">-</span>
+                  <a href="https://www.a12.com/" target="_blank" style="color:var(--primary); font-weight:500; text-decoration:none;">Santuário Nacional Aparecida</a>
+                  <span style="color:var(--text); margin:0 0.5rem;">-</span>
+                  <a href="https://www.cancaonova.com/" target="_blank" style="color:var(--primary); font-weight:500; text-decoration:none;">Canção Nova</a>
+                  <span style="color:var(--text); margin:0 0.5rem;">
+               </div>
+            </div>
+         </section>
+
 
     </main>
 
