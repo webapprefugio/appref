@@ -170,7 +170,7 @@
 </script>
     <main>
         <div class="container">
-            <h1>Alterar Senha</h1>
+            <h1>Alterar Senha 2</h1>
 <form class="formulario" id="formAlterarSenha">
   <input type="email" placeholder="Email" id="email" required>
   
@@ -272,17 +272,19 @@
     }
 
     // Resposta correta, envia o link de redefinição de senha
-    auth.sendPasswordResetEmail(email)
-      .then(() => {
-        mensagem.style.color = "#238636";
-        mensagem.innerHTML = `✅ Link de redefinição enviado para o seu e-mail.<br>
-        Por favor, verifique também sua caixa de spam (lixo eletrônico).`;
+auth.sendPasswordResetEmail(email)
+  .then(() => {
+    mensagem.style.color = "#238636";
+    mensagem.innerHTML = `✅ Link de redefinição enviado para o seu e-mail.<br>
+    Por favor, verifique também sua caixa de spam (lixo eletrônico).`;
 
-        document.getElementById("email").style.display = "none";
-        document.getElementById("perguntaContainer").style.display = "none";
+    document.getElementById("email").style.display = "none";
+    document.getElementById("perguntaContainer").style.display = "none";
+    document.querySelector("#formAlterarSenha button[type=submit]").disabled = true;
 
-        mostrarBotaoLogin();
-      })
+    mostrarBotaoLogin();
+  })
+
       .catch((error) => {
         console.error(error);
         mensagem.textContent = "Erro ao enviar o e-mail de redefinição.";
