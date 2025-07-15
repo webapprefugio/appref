@@ -267,10 +267,20 @@ snapshot.forEach(doc => {
 });
 
 // Embaralhar registros aleatoriamente (Fisher-Yates)
-for (let i = registros.length - 1; i > 0; i--) {
-  const j = Math.floor(Math.random() * (i + 1));
-  [registros[i], registros[j]] = [registros[j], registros[i]];
-}
+// Coletar os dados relevantes
+const registros = [];
+
+snapshot.forEach(doc => {
+  const u = doc.data();
+  if (!u.email || !u.uf || !u.cidade || !u.linkPerfil || !u.nome) return;
+
+  const cidadeIgual = cidadesUsuario.includes(u.cidade.trim().toLowerCase());
+  const mesmoUsuario = u.email === emailUsuario;
+
+  if (cidadeIgual || mesmoUsuario) {
+    registros.push(u);
+  }
+});
 
 // Agrupar por UF
 const agrupadoPorUF = {};
@@ -280,7 +290,16 @@ registros.forEach(u => {
   agrupadoPorUF[uf].push(u);
 });
 
-// Exibir em ordem alfabética por UF
+// Embaralhar os registros dentro de cada UF
+for (const uf in agrupadoPorUF) {
+  const grupo = agrupadoPorUF[uf];
+  for (let i = grupo.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [grupo[i], grupo[j]] = [grupo[j], grupo[i]];
+  }
+}
+
+// Exibir os dados por UF (ordem alfabética), cidades embaralhadas
 const ufsOrdenadas = Object.keys(agrupadoPorUF).sort();
 
 ufsOrdenadas.forEach(uf => {
@@ -290,19 +309,8 @@ ufsOrdenadas.forEach(uf => {
       Estado: ${uf}
     </td>
   </tr>`;
-  tabela.innerHTML += separador;
+  tabel
 
-  agrupadoPorUF[uf].forEach(u => {
-    const nomeCurto = u.nome.trim().split(/\s+/).slice(0,2).join(' ');
-    const linha = `<tr style="border-top:1px solid #2d333b;">
-      <td><a href="${u.linkPerfil}" target="_blank" style="color:var(--primary); text-decoration:none; font-weight:500;">Contacte-me</a></td>
-      <td>${nomeCurto}</td>
-      <td>${u.uf}</td>
-      <td>${u.cidade}</td>
-    </tr>`;
-    tabela.innerHTML += linha;
-  });
-});
 
       }).catch(() => {
         tabela.innerHTML = '<tr><td colspan="4">Erro ao carregar dados.</td></tr>';
