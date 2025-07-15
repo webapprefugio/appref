@@ -284,9 +284,9 @@ registros.forEach(u => {
 const ufsOrdenadas = Object.keys(agrupadoPorUF).sort();
 
 ufsOrdenadas.forEach(uf => {
-  // Linha de separação com UF
+  // Linha de separação com o nome do UF
   const separador = `<tr>
-    <td colspan="4" style="padding:10px 8px; background:#21262d; color:#58a6ff; font-weight:bold; font-size:1.05rem;">
+    <td colspan="4" style="padding:10px 8px; background:#1c2128; color:#58a6ff; font-weight:bold; font-size:1.05rem; border-top:2px solid #30363d;">
       Estado: ${uf}
     </td>
   </tr>`;
@@ -294,7 +294,7 @@ ufsOrdenadas.forEach(uf => {
 
   agrupadoPorUF[uf].forEach(u => {
     const nomeCurto = u.nome.trim().split(/\s+/).slice(0,2).join(' ');
-    const linha = `<tr>
+    const linha = `<tr style="border-top:1px solid #2d333b;">
       <td><a href="${u.linkPerfil}" target="_blank" style="color:var(--primary); text-decoration:none; font-weight:500;">Contacte-me</a></td>
       <td>${nomeCurto}</td>
       <td>${u.uf}</td>
