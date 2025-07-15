@@ -131,13 +131,18 @@
   text-align: center;
   margin-top: 1.2rem;
   padding: 0.5rem 1rem;
-  border: 2px dashed var(--primary);
   border-radius: 8px;
   background-color: rgba(35, 134, 54, 0.05);
   box-shadow: 0 0 8px rgba(35, 134, 54, 0.25);
   transition: all 0.3s ease;
   user-select: none;
 }
+.moldura-verde {
+  box-shadow: 2px 2px 2px 3px var(--primary) !important;
+  border-radius: 8px; /* Para arredondar os cantos igual à imagem */
+  transition: box-shadow 0.3s ease;
+}
+
 
     </style>
   </head>
@@ -213,20 +218,21 @@ function atualizarDescricaoCentral() {
   let elementoCentral = cards[0];
   let distanciaMinima = Infinity;
 
-  cards.forEach(card => {
-    // Limpa a moldura de todos
-    card.style.boxShadow = "none";
+cards.forEach(card => {
+  // Remove a classe de moldura de todos
+  card.classList.remove('moldura-verde');
 
-    const centroCard = card.offsetLeft + card.offsetWidth / 2;
-    const distancia = Math.abs(centroCard - centroGaleria);
-    if (distancia < distanciaMinima) {
-      distanciaMinima = distancia;
-      elementoCentral = card;
-    }
-  });
+  const centroCard = card.offsetLeft + card.offsetWidth / 2;
+  const distancia = Math.abs(centroCard - centroGaleria);
+  if (distancia < distanciaMinima) {
+    distanciaMinima = distancia;
+    elementoCentral = card;
+  }
+});
 
-  // Aplica a moldura verde no vídeo central
-  elementoCentral.style.boxShadow = "0 0 0 3px var(--primary)";
+// Adiciona a classe de moldura só no vídeo central
+elementoCentral.classList.add('moldura-verde');
+
 
   // Atualiza a descrição abaixo
   const descricao = elementoCentral.getAttribute("data-titulo") || "";
