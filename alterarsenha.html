@@ -174,10 +174,11 @@
 <form class="formulario" id="formAlterarSenha">
   <input type="email" placeholder="Email" id="email" required>
   
-  <div id="perguntaContainer" style="display:none;">
-    <label id="perguntaSeguranca" style="color:#8b949e; font-size:0.95rem;"></label>
-    <input type="text" id="respostaUsuario" placeholder="Digite sua resposta" />
-  </div>
+<div id="perguntaContainer" style="display:none; text-align:left;">
+  <label id="perguntaSeguranca" style="color:#df5252; font-weight: bold; font-size:1rem; margin-bottom:0.3em; display:block;"></label>
+  <input type="text" id="respostaUsuario" placeholder="Digite sua resposta" />
+</div>
+
 
 
 
@@ -274,18 +275,39 @@
     auth.sendPasswordResetEmail(email)
       .then(() => {
         mensagem.style.color = "#238636";
-        mensagem.textContent = "✅ Link de redefinição enviado para o seu e-mail.";
+        mensagem.innerHTML = `✅ Link de redefinição enviado para o seu e-mail.<br>
+        Por favor, verifique também sua caixa de spam (lixo eletrônico).`;
+
+        document.getElementById("email").style.display = "none";
+        document.getElementById("perguntaContainer").style.display = "none";
+
+        mostrarBotaoLogin();
       })
       .catch((error) => {
         console.error(error);
         mensagem.textContent = "Erro ao enviar o e-mail de redefinição.";
       });
-
   } catch (erro) {
     console.error(erro);
     mensagem.textContent = "Erro ao verificar dados.";
   }
-});
+});  // <---- Fechamento do event listener aqui
+
+function mostrarBotaoLogin() {
+  const container = document.querySelector(".container");
+  if(document.getElementById("btnLogin")) return;
+
+  const btn = document.createElement("button");
+  btn.id = "btnLogin";
+  btn.textContent = "Ir para Login";
+  btn.style.marginTop = "1rem";
+  btn.className = "alt-btn";
+  btn.onclick = () => window.location.href = "login.html";
+
+  container.appendChild(btn);
+}
+
+
 
 </script>
 
