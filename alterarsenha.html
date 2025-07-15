@@ -180,8 +180,8 @@
   </div>
 
   <div id="novaSenhaContainer" style="display:none;">
-    <input type="password" id="novaSenha" placeholder="Nova senha" required>
-    <input type="password" id="confirmarSenha" placeholder="Confirmar nova senha" required>
+    <input type="password" id="novaSenha" placeholder="Nova senha" >
+    <input type="password" id="confirmarSenha" placeholder="Confirmar nova senha" >
   </div>
 
   <div id="mensagem" style="color:#df5252; min-height:1.3em;"></div>
@@ -283,15 +283,16 @@
         return;
       }
 
-      if (!novaSenha || !confirmarSenha) {
-        mensagem.textContent = "Preencha os campos de nova senha.";
-        return;
-      }
+if (!novaSenha || !confirmarSenha) {
+  mensagem.textContent = "Preencha os campos de nova senha.";
+  return;
+}
 
-      if (novaSenha !== confirmarSenha) {
-        mensagem.textContent = "As senhas não coincidem.";
-        return;
-      }
+if (novaSenha !== confirmarSenha) {
+  mensagem.textContent = "As senhas não coincidem.";
+  return;
+}
+
 
       const userCredential = await auth.signInWithEmailAndPassword(email, novaSenha).catch(() => null);
       if (userCredential) {
