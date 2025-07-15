@@ -170,14 +170,19 @@
 </script>
     <main>
         <div class="container">
-            <h1>Alterar Senha atual</h1>
+            <h1>Alterar Senha</h1>
 <form class="formulario" id="formAlterarSenha">
   <input type="email" placeholder="Email" id="email" required>
   
-<div id="perguntaContainer" style="display:none; text-align:left;">
-  <label id="perguntaSeguranca" style="color:#df5252; font-weight: bold; font-size:1rem; margin-bottom:0.3em; display:block;"></label>
-  <input type="text" id="respostaUsuario" placeholder="Digite sua resposta" />
+<div id="perguntaContainer" style="display:none;">
+  <div style="display: flex; flex-direction: column; align-items: center;">
+    <label id="perguntaSeguranca" 
+           style="color:#df5252; font-weight: bold; font-size:1rem; margin-bottom:0.3em;">
+    </label>
+    <input type="text" id="respostaUsuario" placeholder="Digite sua resposta" style="width: 100%;" />
+  </div>
 </div>
+
 
 
 
@@ -280,10 +285,14 @@ auth.sendPasswordResetEmail(email)
 
     document.getElementById("email").style.display = "none";
     document.getElementById("perguntaContainer").style.display = "none";
-    document.querySelector("#formAlterarSenha button[type=submit]").disabled = true;
+
+    // Ocultar botões
+    document.querySelector("#formAlterarSenha button[type=submit]").style.display = "none";
+    document.querySelector("#formAlterarSenha button.alt-btn").style.display = "none";
 
     mostrarBotaoLogin();
   })
+
 
       .catch((error) => {
         console.error(error);
