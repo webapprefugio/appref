@@ -126,7 +126,7 @@
       }
       .descricao-video {
   color: var(--primary);
-  font-size: 1.3rem;
+  font-size: 1.0rem;
   font-weight: 700;
   text-align: center;
   margin-top: 1.2rem;
@@ -218,23 +218,31 @@ function atualizarDescricaoCentral() {
   let elementoCentral = cards[0];
   let distanciaMinima = Infinity;
 
-cards.forEach(card => {
-  // Remove a classe de moldura de todos
-  card.classList.remove('moldura-verde');
-
-  const centroCard = card.offsetLeft + card.offsetWidth / 2;
-  const distancia = Math.abs(centroCard - centroGaleria);
-  if (distancia < distanciaMinima) {
-    distanciaMinima = distancia;
-    elementoCentral = card;
-  }
-});
+  cards.forEach(card => {
+    card.classList.remove('moldura-verde');
+    const centroCard = card.offsetLeft + card.offsetWidth / 2;
+    const distancia = Math.abs(centroCard - centroGaleria);
+    if (distancia < distanciaMinima) {
+      distanciaMinima = distancia;
+      elementoCentral = card;
+    }
+  });
 
 // Adiciona a classe de moldura só no vídeo central
 elementoCentral.classList.add('moldura-verde');
 
 
-  // Atualiza a descrição abaixo
+ elementoCentral.classList.add('moldura-verde');
+
+  // CENTRALIZAR O VÍDEO NO CONTÊINER
+  // Pega a posição central do elemento em relação ao container
+  const centroDoCard = elementoCentral.offsetLeft + elementoCentral.offsetWidth / 2;
+  // Calcula o scrollLeft para centralizar o card
+  const novoScrollLeft = centroDoCard - gallery.offsetWidth / 2;
+  // Ajusta o scroll com suavidade
+  gallery.scrollTo({ left: novoScrollLeft, behavior: 'smooth' });
+
+  // Atualiza a descrição
   const descricao = elementoCentral.getAttribute("data-titulo") || "";
   document.getElementById("descricaoCentral").textContent = descricao;
 }
