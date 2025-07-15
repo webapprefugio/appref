@@ -245,52 +245,68 @@ window.addEventListener('DOMContentLoaded', function() {
       // AQUI SERÁ ONDE VAMOS USAR A CIDADE DO LOCALSTORAGE NA PÁGINA DE CONSULTA
       // Esta consulta abaixo permanece a mesma no LOGIN.HTML, pois aqui só exibimos
       // a lista geral, sem filtro específico de cidade na página de login.
-db.collection("usuarios").get().then(snapshot => {
-  tabela.innerHTML = "";
+      db.collection("usuarios").orderBy("criadoEm", "desc").get().then(snapshot => {
+        tabela.innerHTML = "";
+        snapshot.forEach(doc => {
+          const u = doc.data();
+          if (!u.email || !u.uf || !u.cidade || !u.linkPerfil || !u.nome) return;
+          const nomeCurto = u.nome.trim().split(/\s+/).slice(0,2).join(' ');
+          const linha = `<tr>
+            <td><a href="${u.linkPerfil}" target="_blank" style="color:var(--primary); text-decoration:none; font-weight:500;">Contacte-me</a></td>
+            <td>${nomeCurto}</td>
+            <td>${u.uf}</td>
+            <td>${u.cidade}</td>
+          </tr>`;
+          tabela.innerHTML += linha;
+        });
+      }).catch(() => {
+        tabela.innerHTML = '<tr><td colspan="4">Erro ao carregar dados.</td></tr>';
+      });
 
-  const cidadesUsuario = [];
-  let emailUsuario = auth.currentUser.email;
-
-  // Primeiro, coleta as cidades do usuário logado
-  snapshot.forEach(doc => {
-    const u = doc.data();
-    if (u.email === emailUsuario && u.cidade) {
-      cidadesUsuario.push(u.cidade.trim().toLowerCase());
+      document.getElementById('btnLogout').onclick = function() {
+        firebase.auth().signOut().then(() => {
+          // --- NOVA LINHA: Limpa a cidade do localStorage ao sair ---
+          localStorage.removeItem('userCity');
+          // --- FIM DA NOVA LINHA ---
+          window.location.reload();
+        });
+      };
     }
+  }
+
+  loginForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const email = loginForm.querySelector('input[type="email"]').value.trim();
+    const senha = loginForm.querySelector('input[type="password"]').value.trim();
+    if (!email || !senha) {
+      showLoginMessage('Preencha todos os campos.', false);
+      return;
+    }
+    auth.signInWithEmailAndPassword(email, senha)
+      .then(() => {
+        showLoginMessage('', true);
+        loginForm.style.display = 'none';
+        areaConsulta.style.display = 'block';
+        carregarConsulta(); // Chama carregarConsulta para exibir os dados e obter a cidade
+      })
+      .catch(() => {
+        showLoginMessage('E-mail ou senha inválidos.', false);
+      });
   });
 
-  // Depois, exibe somente registros relevantes
-  snapshot.forEach(doc => {
-    const u = doc.data();
-    if (!u.email || !u.uf || !u.cidade || !u.linkPerfil || !u.nome) return;
-
-    const cidadeIgual = cidadesUsuario.includes(u.cidade.trim().toLowerCase());
-    const mesmoUsuario = u.email === emailUsuario;
-
-    if (cidadeIgual || mesmoUsuario) {
-      const nomeCurto = u.nome.trim().split(/\s+/).slice(0, 2).join(' ');
-      const linha = `<tr>
-        <td><a href="${u.linkPerfil}" target="_blank" style="color:var(--primary); text-decoration:none; font-weight:500;">Contacte-me</a></td>
-        <td>${nomeCurto}</td>
-        <td>${u.uf}</td>
-        <td>${u.cidade}</td>
-      </tr>`;
-      tabela.innerHTML += linha;
+  auth.onAuthStateChanged(user => {
+    if (user) {
+      loginForm.style.display = 'none';
+      areaConsulta.style.display = 'block';
+      carregarConsulta(); // Chama carregarConsulta para exibir os dados e obter a cidade
+    } else {
+      loginForm.style.display = 'flex';
+      areaConsulta.style.display = 'none';
+      // Garante que a cidade seja removida se o usuário não estiver logado
+      localStorage.removeItem('userCity'); 
     }
   });
-}).catch(() => {
-  tabela.innerHTML = '<tr><td colspan="4">Erro ao carregar dados.</td></tr>';
 });
-
-document.getElementById('btnLogout').onclick = function() {
-  firebase.auth().signOut().then(() => {
-    // --- NOVA LINHA: Limpa a cidade do localStorage ao sair ---
-    localStorage.removeItem('userCity');
-    // --- FIM DA NOVA LINHA ---
-    window.location.reload();
-  });
-};
-
     </script>
 
 </head>
