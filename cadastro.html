@@ -313,10 +313,9 @@
          }
          document.addEventListener("DOMContentLoaded", () => {
            const campoResposta = document.getElementById("txtRespostaSeguranca");
-           campoResposta.addEventListener("input", (e) => {
-             const limpo = limparRespostaSeguranca(e.target.value);
-             e.target.value = limpo;
-           });
+// Remova qualquer listener que altere o valor do campo ao digitar
+// A normalização será feita apenas antes de salvar no banco
+
          });
       </script>
       <div id="rodape"></div>
@@ -430,7 +429,8 @@
            const email = document.getElementById("txtEmail").value.trim();
            const senha = document.getElementById("txtSenha").value.trim();
            const pergunta = document.getElementById("txtPerguntaSeguranca").value;
-           const resposta = document.getElementById("txtRespostaSeguranca").value;
+           const resposta = limparRespostaSeguranca(document.getElementById("txtRespostaSeguranca").value);
+
            const uf = lstUf.value;
            // Pega todas as cidades marcadas
            const cidadesSelecionadas = Array.from(
