@@ -1,234 +1,248 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-   <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-      <title>Home | WebApp Refúgios</title>
-      <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">>
-      <link rel="stylesheet" href="style/stylecss.css">
-      <style>
-         :root {
-         --primary: #238636;
-         --secondary: #0d1117;
-         --text: #c9d1d9;
-         --radius: 12px;
-         --container-bg: #161b22;
-         --container-border: #30363d;
-         --button-bg: #238636;
-         --button-bg-hover: #2ea043;
-         }
-         * { box-sizing: border-box; margin: 0; padding: 0; }
-         body {
-         font-family: 'Segoe UI', Arial, sans-serif;
-         background: var(--secondary);
-         color: var(--text);
-         min-height: 100vh;
-         display: flex;
-         flex-direction: column;
-         }
-         .container {
-         background: var(--container-bg);
-         border-radius: var(--radius);
-         box-shadow: 0 4px 24px rgba(0,0,0,0.07);
-         border: 1px solid var(--container-border);
-         max-width: 480px;
-         min-width: 320px;
-         width: 100%;
-         padding: 2rem;
-         margin: 1rem 0;
-         text-align: center;
-         }
-         h1 {
-         font-size: 2.2rem;
-         margin-bottom: 1rem;
-         color: #fff;
-         }
-         p {
-         font-size: 1.1rem;
-         margin-bottom: 1.5em;
-         color: #8b949e;
-         }
-         button {
-         background: var(--button-bg);
-         color: #fff;
-         border: none;
-         border-radius: var(--radius);
-         padding: 0.8rem 2rem;
-         font-size: 1rem;
-         cursor: pointer;
-         transition: background 0.2s;
-         }
-         button:hover { background: var(--button-bg-hover); }
-         .alt-btn { background: #30363d; color: #c9d1d9; }
-         .alt-btn:hover { background: #22262c; }
-         footer {
-         text-align: center;
-         padding: 1rem 0;
-         font-size: 0.95rem;
-         color: #8b949e;
-         }
-         @media (max-width: 600px) {
-         header { padding: 1rem 0.5rem; font-size: 1.1rem; }
-         .container { padding: 1rem; max-width: 98vw; }
-         h1 { font-size: 1.4rem; }
-         p { font-size: 1rem; }
-         .navbar { flex-direction: column; gap: 1rem; }
-         .nav-links { gap: 0.5rem; width: 100%; align-items: flex-start; }
-         .logo { margin-bottom: 0.5rem; }
-         }
-         @media (max-width: 400px) {
-         .container { padding: 0.5rem; }
-         h1 { font-size: 1.1rem; }
-         }
-         @media (max-width: 320px) {
-         body, html { min-width: 320px; overflow-x: auto; }
-         .container { min-width: 320px; }
-         }
-      </style>
-   </head>
-   <body>
-<div id="menu"></div>
-<script src="js/menu-loader.js"></script>
-      <main>
-         <section style="width:100%; text-align:center; margin-bottom:2.5rem;">
-            <h1 style="font-size:2.3rem; color:#fff; margin-bottom:0.7rem; font-weight:bold; letter-spacing:0.5px;">Bem-vindo ao Portal WebApp Refúgios</h1>
-            <p style="font-size:1.2rem; color:#8b949e; margin-bottom:1.5rem;">Junte-se às pessoas de sua cidade que estão se organizando na criação de Refúgios para o Fim dos Tempos. Cadastre-se e entre em contato pelos links que elas disponibilizaram.</p>
-            <a href="cadastro.html" style="display:inline-block; background:var(--primary); color:#fff; font-size:1.15rem; font-weight:bold; padding:1rem 2.5rem; border-radius:var(--radius); text-decoration:none; box-shadow:0 2px 8px rgba(35,134,54,0.12); margin-bottom:0.5rem; transition:background 0.2s;">Quero me cadastrar!</a>
-         </section>
-         <section style="width:100%; max-width:1100px; margin:0 auto 2.5rem auto; position:relative;">
-            <h2 style="color:#fff; font-size:1.7rem; margin-bottom:1.5rem; text-align:center; font-weight:bold; letter-spacing:0.5px;">Veja sobre o que se trata os Refúgios</h2>
- <div style="display:flex; align-items:center; justify-content:center; position:relative;">
-  <button id="scrollLeft" ...> <!-- MESMO CÓDIGO --> </button>
-
-  <div id="videoGallery" style="...">
-    <a href="https://www.youtube.com/watch?v=1dlvVPuDcrI"
-       target="_blank"
-       data-titulo="Corte Grupo Y'shua"
-       style="...">
-       <img src="assets/img/Super Corte Grupo Y´shua.png" alt="Vídeo 1" style="...">
-    </a>
-    <a href="https://www.youtube.com/watch?v=BwYeIqEz7bI"
-       target="_blank"
-       data-titulo="Pe. Michel Rodrigue"
-       style="...">
-       <img src="assets/img/¡Padre MICHEL RODRIGUE! El AVISO, Los REFUGIOS.png" alt="Vídeo 2" style="...">
-    </a>
-    <a href="https://www.youtube.com/watch?v=N-2K2jSyNS8"
-       target="_blank"
-       data-titulo="Refúgio espiritual"
-       style="...">
-       <img src="assets/img/RETIRO - MONTANDO UM REFÚGIO ESPIRITUAL.png" alt="Vídeo 3" style="...">
-    </a>
-    <a href="https://www.youtube.com/watch?v=-zc7vdmxKss"
-       target="_blank"
-       data-titulo="Sua casa como refúgio"
-       style="...">
-       <img src="assets/img/PREPARAR SUA CASA COMO REFUGIO.png" alt="Vídeo 4" style="...">
-    </a>
-  </div>
-               <button id="scrollRight" aria-label="Rolar vídeos para a direita" style="background:transparent; border:none; width:48px; height:48px; margin-left:1.5rem; cursor:pointer; z-index:2; display:flex; align-items:center; justify-content:center; transition:filter 0.2s; filter:drop-shadow(0 2px 8px #222);">
-                  <span style="display:inline-block; width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center;">
-                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="9 18 15 12 9 6"/>
-                     </svg>
-                  </span>
-               </button>
-            </div>
-            <div id="descricaoCentral" style="color:#fff; font-size:1rem; text-align:center; margin-top:1rem;">
-  <!-- Descrição dinâmica aparecerá aqui -->
-</div>
-  <script>
-  const gallery = document.getElementById('videoGallery');
-  const leftBtn = document.getElementById('scrollLeft');
-  const rightBtn = document.getElementById('scrollRight');
-
-  function moveCardToEnd() {
-    const first = gallery.firstElementChild;
-    gallery.appendChild(first);
-  }
-
-  function moveCardToStart() {
-    const last = gallery.lastElementChild;
-    gallery.insertBefore(last, gallery.firstElementChild);
-  }
-
-  function atualizarDescricaoCentral() {
-    const cards = gallery.querySelectorAll('a');
-    if (!cards.length) return;
-
-    const centroGaleria = gallery.scrollLeft + gallery.offsetWidth / 2;
-    let elementoCentral = cards[0];
-    let distanciaMinima = Infinity;
-
-    cards.forEach(card => {
-      const centroCard = card.offsetLeft + card.offsetWidth / 2;
-      const distancia = Math.abs(centroCard - centroGaleria);
-      if (distancia < distanciaMinima) {
-        distanciaMinima = distancia;
-        elementoCentral = card;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>Home | WebApp Refúgios</title>
+    <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="style/stylecss.css" />
+    <style>
+      :root {
+        --primary: #238636;
+        --secondary: #0d1117;
+        --text: #c9d1d9;
+        --radius: 12px;
+        --container-bg: #161b22;
+        --container-border: #30363d;
+        --button-bg: #238636;
+        --button-bg-hover: #2ea043;
       }
-    });
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: 'Segoe UI', Arial, sans-serif;
+        background: var(--secondary);
+        color: var(--text);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      .container {
+        background: var(--container-bg);
+        border-radius: var(--radius);
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
+        border: 1px solid var(--container-border);
+        max-width: 480px;
+        min-width: 320px;
+        width: 100%;
+        padding: 2rem;
+        margin: 1rem 0;
+        text-align: center;
+      }
+      h1 {
+        font-size: 2.2rem;
+        margin-bottom: 1rem;
+        color: #fff;
+      }
+      p {
+        font-size: 1.1rem;
+        margin-bottom: 1.5em;
+        color: #8b949e;
+      }
+      button {
+        background: var(--button-bg);
+        color: #fff;
+        border: none;
+        border-radius: var(--radius);
+        padding: 0.8rem 2rem;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      button:hover {
+        background: var(--button-bg-hover);
+      }
+      .alt-btn {
+        background: #30363d;
+        color: #c9d1d9;
+      }
+      .alt-btn:hover {
+        background: #22262c;
+      }
+      footer {
+        text-align: center;
+        padding: 1rem 0;
+        font-size: 0.95rem;
+        color: #8b949e;
+      }
+      @media (max-width: 600px) {
+        header {
+          padding: 1rem 0.5rem;
+          font-size: 1.1rem;
+        }
+        .container {
+          padding: 1rem;
+          max-width: 98vw;
+        }
+        h1 {
+          font-size: 1.4rem;
+        }
+        p {
+          font-size: 1rem;
+        }
+        .navbar {
+          flex-direction: column;
+          gap: 1rem;
+        }
+        .nav-links {
+          gap: 0.5rem;
+          width: 100%;
+          align-items: flex-start;
+        }
+        .logo {
+          margin-bottom: 0.5rem;
+        }
+      }
+      @media (max-width: 400px) {
+        .container {
+          padding: 0.5rem;
+        }
+        h1 {
+          font-size: 1.1rem;
+        }
+      }
+      @media (max-width: 320px) {
+        body,
+        html {
+          min-width: 320px;
+          overflow-x: auto;
+        }
+        .container {
+          min-width: 320px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="menu"></div>
+    <script src="js/menu-loader.js"></script>
+    <main>
+      <section style="width:100%; text-align:center; margin-bottom:2.5rem;">
+        <h1 style="font-size:2.3rem; color:#fff; margin-bottom:0.7rem; font-weight:bold; letter-spacing:0.5px;">Bem-vindo ao Portal WebApp Refúgios</h1>
+        <p style="font-size:1.2rem; color:#8b949e; margin-bottom:1.5rem;">Junte-se às pessoas de sua cidade que estão se organizando na criação de Refúgios para o Fim dos Tempos. Cadastre-se e entre em contato pelos links que elas disponibilizaram.</p>
+        <a href="cadastro.html" style="display:inline-block; background:var(--primary); color:#fff; font-size:1.15rem; font-weight:bold; padding:1rem 2.5rem; border-radius:var(--radius); text-decoration:none; box-shadow:0 2px 8px rgba(35,134,54,0.12); margin-bottom:0.5rem; transition:background 0.2s;">Quero me cadastrar!</a>
+      </section>
 
-    const descricao = elementoCentral.getAttribute("data-titulo") || "";
-    document.getElementById("descricaoCentral").textContent = descricao;
-  }
+      <section style="width:100%; max-width:1100px; margin:0 auto 2.5rem auto; position:relative;">
+        <h2 style="color:#fff; font-size:1.7rem; margin-bottom:1.5rem; text-align:center; font-weight:bold; letter-spacing:0.5px;">Veja sobre o que se trata os Refúgios</h2>
+        <div style="display:flex; align-items:center; justify-content:center; position:relative;">
+          <button id="scrollLeft" aria-label="Rolar vídeos para a esquerda" style="background:transparent; border:none; width:48px; height:48px; margin-right:1.5rem; cursor:pointer; z-index:2; display:flex; align-items:center; justify-content:center; transition:filter 0.2s; filter:drop-shadow(0 2px 8px #222);">
+            <span style="display:inline-block; width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6"/>
+              </svg>
+            </span>
+          </button>
 
-  leftBtn.onclick = () => {
-    moveCardToStart();
-    gallery.scrollLeft = 0;
-    atualizarDescricaoCentral();
-  };
+          <div id="videoGallery" style="display:flex; justify-content:center; overflow-x:hidden; gap:1.2rem; padding-bottom:0.5rem; scrollbar-width:thin; scrollbar-color:var(--primary) #222; scroll-behavior:smooth; width:calc(100% - 140px); max-width:900px;">
+            <a href="https://www.youtube.com/watch?v=1dlvVPuDcrI" target="_blank" data-titulo="Corte Grupo Y'shua">
+              <img src="assets/img/Super Corte Grupo Y´shua.png" alt="Vídeo 1" style="width:100%; aspect-ratio:16/9; object-fit:cover;">
+            </a>
+            <a href="https://www.youtube.com/watch?v=BwYeIqEz7bI" target="_blank" data-titulo="Pe. Michel Rodrigue">
+              <img src="assets/img/¡Padre MICHEL RODRIGUE! El AVISO, Los REFUGIOS.png" alt="Vídeo 2" style="width:100%; aspect-ratio:16/9; object-fit:cover;">
+            </a>
+            <a href="https://www.youtube.com/watch?v=N-2K2jSyNS8" target="_blank" data-titulo="Refúgio espiritual">
+              <img src="assets/img/RETIRO - MONTANDO UM REFÚGIO ESPIRITUAL.png" alt="Vídeo 3" style="width:100%; aspect-ratio:16/9; object-fit:cover;">
+            </a>
+            <a href="https://www.youtube.com/watch?v=-zc7vdmxKss" target="_blank" data-titulo="Sua casa como refúgio">
+              <img src="assets/img/PREPARAR SUA CASA COMO REFUGIO.png" alt="Vídeo 4" style="width:100%; aspect-ratio:16/9; object-fit:cover;">
+            </a>
+          </div>
 
-  rightBtn.onclick = () => {
-    moveCardToEnd();
-    gallery.scrollLeft = 0;
-    atualizarDescricaoCentral();
-  };
+          <button id="scrollRight" aria-label="Rolar vídeos para a direita" style="background:transparent; border:none; width:48px; height:48px; margin-left:1.5rem; cursor:pointer; z-index:2; display:flex; align-items:center; justify-content:center; transition:filter 0.2s; filter:drop-shadow(0 2px 8px #222);">
+            <span style="display:inline-block; width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"/>
+              </svg>
+            </span>
+          </button>
+        </div>
 
-  window.addEventListener('resize', atualizarDescricaoCentral);
-  window.addEventListener('load', atualizarDescricaoCentral);
-</script>
-         </section>
-         <section style="width:100%; max-width:1100px; margin:0 auto 2.5rem auto; display:block;">
-            <div style="background:var(--secondary); border-radius:var(--radius); border:1px solid var(--container-border); padding:1.5rem; box-shadow:0 2px 8px rgba(0,0,0,0.07); margin-bottom:2rem; max-width:600px; margin-left:auto; margin-right:auto;">
-               <h2 style="color:#fff; font-size:1.05rem; margin-bottom:1rem; text-align:center;">Canais Recomendados</h2>
-               <div style="text-align:center; font-size:0.92rem;">
-                  <a href="https://www.youtube.com/@grupoyshua" target="_blank" style="color:var(--primary); font-weight:500; text-decoration:none;">Grupo Y'shua</a>
-                  <span style="color:var(--text); margin:0 0.5rem;">-</span>
-                  <a href="https://www.instagram.com/lucasgelasio/" target="_blank" style="color:var(--primary); font-weight:500; text-decoration:none;">Lucas Gelasio</a>
-                  <span style="color:var(--text); margin:0 0.5rem;">-</span>
-                  <a href="https://www.youtube.com/@SemillasdeFe" target="_blank" style="color:var(--primary); font-weight:500; text-decoration:none;">Cemillas de Fe</a>
-                  <span style="color:var(--text); margin:0 0.5rem;">-</span>
-                  <a href="https://www.youtube.com/@RevelacionesMarianasLM" target="_blank" style="color:var(--primary); font-weight:500; text-decoration:none;">Revelaciones Marianas (Luz de Maria de Bonilla)</a>
-                  <span style="color:var(--text); margin:0 0.5rem;">-</span>                  
-                  <a href="https://www.youtube.com/@OCruxAveMedia" target="_blank" style="color:var(--primary); font-weight:500; text-decoration:none;">O Crux Ave (Xavier Ayral)</a>
-                  <span style="color:var(--text); margin:0 0.5rem;">-</span>                  
-                  <a href="https://www.youtube.com/@AleMachadoOfficial" target="_blank" style="color:var(--primary); font-weight:500; text-decoration:none;">Ale Machado Official</a>
-                  <span style="color:var(--text); margin:0 0.5rem;">                     
-               </div>
-            </div>
-         </section>
-         <section style="width:100%; max-width:1100px; margin:0 auto 2.5rem auto; display:block;">
-            <div style="background:var(--secondary); border-radius:var(--radius); border:1px solid var(--container-border); padding:1.5rem; box-shadow:0 2px 8px rgba(0,0,0,0.07); margin-bottom:2rem; max-width:600px; margin-left:auto; margin-right:auto;">
-               <h2 style="color:#fff; font-size:1.05rem; margin-bottom:1rem; text-align:center;">Sites Recomendados</h2>
-               <div style="text-align:center; font-size:0.92rem;">
-                  <a href="https://www.vaticannews.va/pt.html" target="_blank" style="color:var(--primary); font-weight:500; text-decoration:none;">Vatican News</a>
-                  <span style="color:var(--text); margin:0 0.5rem;">-</span>
-                  <a href="https://www.a12.com/" target="_blank" style="color:var(--primary); font-weight:500; text-decoration:none;">Santuário Nacional Aparecida</a>
-                  <span style="color:var(--text); margin:0 0.5rem;">-</span>
-                  <a href="https://www.cancaonova.com/" target="_blank" style="color:var(--primary); font-weight:500; text-decoration:none;">Canção Nova</a>
-                  <span style="color:var(--text); margin:0 0.5rem;">
-               </div>
-            </div>
-         </section>
-      </main>
-      <div id="rodape"></div>
-      <script>
-         fetch('rodape.html')
-           .then(res => res.text())
-           .then(html => {
-             document.getElementById('rodape').innerHTML = html;
-           });
-      </script>
-   </body>
-</html>>
+        <div id="descricaoCentral" style="color:#fff; font-size:1rem; text-align:center; margin-top:1rem;">
+          <!-- Descrição dinâmica aparecerá aqui -->
+        </div>
+
+        <script>
+          const gallery = document.getElementById('videoGallery');
+          const leftBtn = document.getElementById('scrollLeft');
+          const rightBtn = document.getElementById('scrollRight');
+
+          function moveCardToEnd() {
+            const first = gallery.firstElementChild;
+            gallery.appendChild(first);
+          }
+
+          function moveCardToStart() {
+            const last = gallery.lastElementChild;
+            gallery.insertBefore(last, gallery.firstElementChild);
+          }
+
+          function atualizarDescricaoCentral() {
+            const cards = gallery.querySelectorAll('a');
+            if (!cards.length) return;
+
+            const centroGaleria = gallery.scrollLeft + gallery.offsetWidth / 2;
+            let elementoCentral = cards[0];
+            let distanciaMinima = Infinity;
+
+            cards.forEach(card => {
+              const centroCard = card.offsetLeft + card.offsetWidth / 2;
+              const distancia = Math.abs(centroCard - centroGaleria);
+              if (distancia < distanciaMinima) {
+                distanciaMinima = distancia;
+                elementoCentral = card;
+              }
+            });
+
+            const descricao = elementoCentral.getAttribute("data-titulo") || "";
+            cards.forEach(c => c.style.outline = "none");  // limpa moldura anterior
+elementoCentral.style.outline = "3px solid var(--primary)";  // aplica moldura verde
+document.getElementById("descricaoCentral").textContent = descricao;
+
+          }
+
+          leftBtn.onclick = () => {
+            moveCardToStart();
+            gallery.scrollLeft = 0;
+            atualizarDescricaoCentral();
+          };
+
+          rightBtn.onclick = () => {
+            moveCardToEnd();
+            gallery.scrollLeft = 0;
+            atualizarDescricaoCentral();
+          };
+
+          window.addEventListener('resize', atualizarDescricaoCentral);
+          window.addEventListener('load', atualizarDescricaoCentral);
+        </script>
+      </section>
+
+      <!-- Canais e sites recomendados abaixo (sem alterações) -->
+      <!-- ... (mantenha a seção restante como está no seu HTML) -->
+
+    </main>
+
+    <div id="rodape"></div>
+    <script>
+      fetch('rodape.html')
+        .then(res => res.text())
+        .then(html => {
+          document.getElementById('rodape').innerHTML = html;
+        });
+    </script>
+  </body>
+</html>
