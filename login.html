@@ -251,24 +251,51 @@ window.addEventListener('DOMContentLoaded', function() {
           }
         });
 
-        snapshot.forEach(doc => {
-          const u = doc.data();
-          if (!u.email || !u.uf || !u.cidade || !u.linkPerfil || !u.nome) return;
+// Coletar os dados relevantes
+const registros = [];
 
-          const cidadeIgual = cidadesUsuario.includes(u.cidade.trim().toLowerCase());
-          const mesmoUsuario = u.email === emailUsuario;
+snapshot.forEach(doc => {
+  const u = doc.data();
+  if (!u.email || !u.uf || !u.cidade || !u.linkPerfil || !u.nome) return;
 
-          if (cidadeIgual || mesmoUsuario) {
-            const nomeCurto = u.nome.trim().split(/\s+/).slice(0,2).join(' ');
-            const linha = `<tr>
-              <td><a href="${u.linkPerfil}" target="_blank" style="color:var(--primary); text-decoration:none; font-weight:500;">Contacte-me</a></td>
-              <td>${nomeCurto}</td>
-              <td>${u.uf}</td>
-              <td>${u.cidade}</td>
-            </tr>`;
-            tabela.innerHTML += linha;
-          }
-        });
+  const cidadeIgual = cidadesUsuario.includes(u.cidade.trim().toLowerCase());
+  const mesmoUsuario = u.email === emailUsuario;
+
+  if (cidadeIgual || mesmoUsuario) {
+    registros.push(u);
+  }
+});
+
+// Embaralhar registros aleatoriamente (Fisher-Yates)
+for (let i = registros.length - 1; i > 0; i--) {
+  const j = Math.floor(Math.random() * (i + 1));
+  [registros[i], registros[j]] = [registros[j], registros[i]];
+}
+
+// Agrupar por UF
+const agrupadoPorUF = {};
+registros.forEach(u => {
+  const uf = u.uf.toUpperCase();
+  if (!agrupadoPorUF[uf]) agrupadoPorUF[uf] = [];
+  agrupadoPorUF[uf].push(u);
+});
+
+// Exibir em ordem alfabética por UF
+const ufsOrdenadas = Object.keys(agrupadoPorUF).sort();
+
+ufsOrdenadas.forEach(uf => {
+  agrupadoPorUF[uf].forEach(u => {
+    const nomeCurto = u.nome.trim().split(/\s+/).slice(0,2).join(' ');
+    const linha = `<tr>
+      <td><a href="${u.linkPerfil}" target="_blank" style="color:var(--primary); text-decoration:none; font-weight:500;">Contacte-me</a></td>
+      <td>${nomeCurto}</td>
+      <td>${u.uf}</td>
+      <td>${u.cidade}</td>
+    </tr>`;
+    tabela.innerHTML += linha;
+  });
+});
+
       }).catch(() => {
         tabela.innerHTML = '<tr><td colspan="4">Erro ao carregar dados.</td></tr>';
       });
