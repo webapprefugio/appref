@@ -178,7 +178,6 @@ window.addEventListener('DOMContentLoaded', function() {
     areaConsulta.style.display = 'none';
     container.appendChild(areaConsulta);
   }
-  // Esconde área de consulta por padrão
   areaConsulta.style.display = 'none';
   loginForm.style.display = 'flex';
 
@@ -197,24 +196,20 @@ window.addEventListener('DOMContentLoaded', function() {
   function carregarConsulta() {
     const user = auth.currentUser;
     if (user) {
-      // Buscar o documento do usuário para obter o nome e a cidade
       db.collection("usuarios").where("email", "==", user.email).limit(1).get().then(snapshot => {
         let nome = '';
-        let cidadeUsuario = ''; // Variável para armazenar a cidade
+        let cidadeUsuario = '';
         if (!snapshot.empty) {
-            const userData = snapshot.docs[0].data();
-            nome = userData.nome || '';
-            cidadeUsuario = userData.cidade || ''; // Obtenha a cidade do usuário logado
-            
-            // --- NOVA LINHA: Salva a cidade no localStorage ---
-            localStorage.setItem('userCity', cidadeUsuario); 
-            // --- FIM DA NOVA LINHA ---
+          const userData = snapshot.docs[0].data();
+          nome = userData.nome || '';
+          cidadeUsuario = userData.cidade || '';
+          localStorage.setItem('userCity', cidadeUsuario); 
         }
         const saudacao = nome ? `<div style=\"color:#fff; font-size:1.25rem; font-weight:500; margin-bottom:1.2rem; text-align:center;\">Paz e Bem, <span style=\"color:var(--primary); font-weight:bold; font-size:1.35rem; letter-spacing:0.5px;\">${nome}</span>!</div>` : '';
         renderConsulta(saudacao, nome);
       }).catch(error => {
         console.error("Erro ao buscar dados do usuário:", error);
-        renderConsulta('', ''); // Renderiza sem saudação em caso de erro
+        renderConsulta('', '');
       });
     } else {
       renderConsulta('', '');
@@ -242,22 +237,37 @@ window.addEventListener('DOMContentLoaded', function() {
         </table>
         </div>`;
       const tabela = document.getElementById('tabela-usuarios');
-      // AQUI SERÁ ONDE VAMOS USAR A CIDADE DO LOCALSTORAGE NA PÁGINA DE CONSULTA
-      // Esta consulta abaixo permanece a mesma no LOGIN.HTML, pois aqui só exibimos
-      // a lista geral, sem filtro específico de cidade na página de login.
-      db.collection("usuarios").orderBy("criadoEm", "desc").get().then(snapshot => {
+
+      db.collection("usuarios").get().then(snapshot => {
         tabela.innerHTML = "";
+
+        const cidadesUsuario = [];
+        let emailUsuario = auth.currentUser.email;
+
+        snapshot.forEach(doc => {
+          const u = doc.data();
+          if (u.email === emailUsuario && u.cidade) {
+            cidadesUsuario.push(u.cidade.trim().toLowerCase());
+          }
+        });
+
         snapshot.forEach(doc => {
           const u = doc.data();
           if (!u.email || !u.uf || !u.cidade || !u.linkPerfil || !u.nome) return;
-          const nomeCurto = u.nome.trim().split(/\s+/).slice(0,2).join(' ');
-          const linha = `<tr>
-            <td><a href="${u.linkPerfil}" target="_blank" style="color:var(--primary); text-decoration:none; font-weight:500;">Contacte-me</a></td>
-            <td>${nomeCurto}</td>
-            <td>${u.uf}</td>
-            <td>${u.cidade}</td>
-          </tr>`;
-          tabela.innerHTML += linha;
+
+          const cidadeIgual = cidadesUsuario.includes(u.cidade.trim().toLowerCase());
+          const mesmoUsuario = u.email === emailUsuario;
+
+          if (cidadeIgual || mesmoUsuario) {
+            const nomeCurto = u.nome.trim().split(/\s+/).slice(0,2).join(' ');
+            const linha = `<tr>
+              <td><a href="${u.linkPerfil}" target="_blank" style="color:var(--primary); text-decoration:none; font-weight:500;">Contacte-me</a></td>
+              <td>${nomeCurto}</td>
+              <td>${u.uf}</td>
+              <td>${u.cidade}</td>
+            </tr>`;
+            tabela.innerHTML += linha;
+          }
         });
       }).catch(() => {
         tabela.innerHTML = '<tr><td colspan="4">Erro ao carregar dados.</td></tr>';
@@ -265,9 +275,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
       document.getElementById('btnLogout').onclick = function() {
         firebase.auth().signOut().then(() => {
-          // --- NOVA LINHA: Limpa a cidade do localStorage ao sair ---
           localStorage.removeItem('userCity');
-          // --- FIM DA NOVA LINHA ---
           window.location.reload();
         });
       };
@@ -287,7 +295,7 @@ window.addEventListener('DOMContentLoaded', function() {
         showLoginMessage('', true);
         loginForm.style.display = 'none';
         areaConsulta.style.display = 'block';
-        carregarConsulta(); // Chama carregarConsulta para exibir os dados e obter a cidade
+        carregarConsulta();
       })
       .catch(() => {
         showLoginMessage('E-mail ou senha inválidos.', false);
@@ -298,15 +306,15 @@ window.addEventListener('DOMContentLoaded', function() {
     if (user) {
       loginForm.style.display = 'none';
       areaConsulta.style.display = 'block';
-      carregarConsulta(); // Chama carregarConsulta para exibir os dados e obter a cidade
+      carregarConsulta();
     } else {
       loginForm.style.display = 'flex';
       areaConsulta.style.display = 'none';
-      // Garante que a cidade seja removida se o usuário não estiver logado
       localStorage.removeItem('userCity'); 
     }
   });
 });
+
     </script>
 
 </head>
