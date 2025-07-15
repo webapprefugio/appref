@@ -179,10 +179,11 @@
     <input type="text" id="respostaUsuario" placeholder="Digite sua resposta" />
   </div>
 
-  <div id="novaSenhaContainer" style="display:none;">
-    <input type="password" id="novaSenha" placeholder="Nova senha" >
-    <input type="password" id="confirmarSenha" placeholder="Confirmar nova senha" >
-  </div>
+<div id="novaSenhaContainer" style="display:none;">
+  <input type="password" id="novaSenha" placeholder="Nova senha">
+  <input type="password" id="confirmarSenha" placeholder="Confirmar nova senha">
+</div>
+
 
   <div id="mensagem" style="color:#df5252; min-height:1.3em;"></div>
 
@@ -276,17 +277,19 @@
       }
 
       // Mostra campos de nova senha se ainda não estiverem visíveis
-      if (document.getElementById("novaSenhaContainer").style.display === "none") {
-        document.getElementById("novaSenhaContainer").style.display = "block";
-        mensagem.style.color = "#238636";
-        mensagem.textContent = "✅ Resposta correta. Agora insira a nova senha.";
-        return;
-      }
+if (document.getElementById("novaSenhaContainer").style.display === "none") {
+  document.getElementById("novaSenhaContainer").style.display = "block";
+  mensagem.style.color = "#238636";
+  mensagem.textContent = "✅ Resposta correta. Agora insira a nova senha.";
+  return; // <<< Impede o submit agora. Só avança na próxima vez.
+}
 
+// Validação manual dos campos de senha
 if (!novaSenha || !confirmarSenha) {
   mensagem.textContent = "Preencha os campos de nova senha.";
   return;
 }
+
 
 if (novaSenha !== confirmarSenha) {
   mensagem.textContent = "As senhas não coincidem.";
