@@ -6,304 +6,288 @@
     <title>Home | WebApp Refúgios</title>
     <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="style/stylecss.css" />
-    <style>
-      :root {
-        --primary: #238636;
-        --secondary: #0d1117;
-        --text: #c9d1d9;
-        --radius: 12px;
-        --container-bg: #161b22;
-        --container-border: #30363d;
-        --button-bg: #238636;
-        --button-bg-hover: #2ea043;
-      }
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
-      body {
-        font-family: 'Segoe UI', Arial, sans-serif;
-        background: var(--secondary);
-        color: var(--text);
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-      }
-      .container {
-        background: var(--container-bg);
-        border-radius: var(--radius);
-        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
-        border: 1px solid var(--container-border);
-        max-width: 480px;
-        min-width: 320px;
-        width: 100%;
-        padding: 2rem;
-        margin: 1rem 0;
-        text-align: center;
-      }
-      h1 {
-        font-size: 2.2rem;
-        margin-bottom: 1rem;
-        color: #fff;
-      }
-      p {
-        font-size: 1.1rem;
-        margin-bottom: 1.5em;
-        color: #8b949e;
-      }
-      button {
-        background: var(--button-bg);
-        color: #fff;
-        border: none;
-        border-radius: var(--radius);
-        padding: 0.8rem 2rem;
-        font-size: 1rem;
-        cursor: pointer;
-        transition: background 0.2s;
-      }
-      button:hover {
-        background: var(--button-bg-hover);
-      }
-      .alt-btn {
-        background: #30363d;
-        color: #c9d1d9;
-      }
-      .alt-btn:hover {
-        background: #22262c;
-      }
-      footer {
-        text-align: center;
-        padding: 1rem 0;
-        font-size: 0.95rem;
-        color: #8b949e;
-      }
-      @media (max-width: 600px) {
-        header {
-          padding: 1rem 0.5rem;
-          font-size: 1.1rem;
-        }
-        .container {
-          padding: 1rem;
-          max-width: 98vw;
-        }
-        h1 {
-          font-size: 1.4rem;
-        }
-        p {
-          font-size: 1rem;
-        }
-        .navbar {
-          flex-direction: column;
-          gap: 1rem;
-        }
-        .nav-links {
-          gap: 0.5rem;
-          width: 100%;
-          align-items: flex-start;
-        }
-        .logo {
-          margin-bottom: 0.5rem;
-        }
-      }
-      @media (max-width: 400px) {
-        .container {
-          padding: 0.5rem;
-        }
-        h1 {
-          font-size: 1.1rem;
-        }
-      }
-      @media (max-width: 600px) {
-  #videoGallery a {
-    width: 100% !important;
+<style>
+  :root {
+    --primary: #238636;
+    --secondary: #0d1117;
+    --text: #c9d1d9;
+    --radius: 12px;
+    --container-bg: #161b22;
+    --container-border: #30363d;
+    --button-bg: #238636;
+    --button-bg-hover: #2ea043;
   }
-}
-      @media (max-width: 320px) {
-        body,
-        html {
-          min-width: 320px;
-          overflow-x: auto;
-        }
-        .container {
-          min-width: 320px;
-        }
-      }
-      .descricao-video {
-  color: var(--primary);
-  font-size: 1.0rem;
-  font-weight: 700;
-  text-align: center;
-  margin-top: 1.2rem;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  background-color: rgba(35, 134, 54, 0.05);
-  box-shadow: 0 0 8px rgba(35, 134, 54, 0.25);
-  transition: all 0.3s ease;
-  user-select: none;
-}
-.moldura-verde {
-  box-shadow: 2px 2px 2px 3px var(--primary) !important;
-  border-radius: 8px; /* Para arredondar os cantos igual à imagem */
-  transition: box-shadow 0.3s ease;
-}
-#videoGallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 1.2rem;
-  padding-bottom: 0.5rem;
-  scroll-behavior: smooth;
-  width: 100%;
-  max-width: 100%;
-}
 
-#videoGallery a {
-  display: block;
-  width: 100%;
-  max-width: 200px;
-}
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
 
-#videoGallery img {
-  width: 100%;
-  aspect-ratio: 16/4.5;
-  object-fit: cover;
-}
+  body, html {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: var(--secondary);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+  }
 
-@media (max-width: 600px) {
+  .container {
+    background: var(--container-bg);
+    border-radius: var(--radius);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
+    border: 1px solid var(--container-border);
+    max-width: 480px;
+    min-width: 320px;
+    width: 100%;
+    padding: 2rem;
+    margin: 1rem 0;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    color: #fff;
+  }
+
+  p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5em;
+    color: #8b949e;
+  }
+
+  button {
+    background: var(--button-bg);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius);
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  button:hover {
+    background: var(--button-bg-hover);
+  }
+
+  .alt-btn {
+    background: #30363d;
+    color: #c9d1d9;
+  }
+
+  .alt-btn:hover {
+    background: #22262c;
+  }
+
+  footer {
+    text-align: center;
+    padding: 1rem 0;
+    font-size: 0.95rem;
+    color: #8b949e;
+  }
+
+  .descricao-video {
+    color: var(--primary);
+    font-size: 1rem;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 1.2rem;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    background-color: rgba(35, 134, 54, 0.05);
+    box-shadow: 0 0 8px rgba(35, 134, 54, 0.25);
+    transition: all 0.3s ease;
+    user-select: none;
+  }
+
+  .moldura-verde {
+    box-shadow: 2px 2px 2px 3px var(--primary) !important;
+    border-radius: 8px;
+    transition: box-shadow 0.3s ease;
+  }
+
+  /* Galeria horizontal responsiva */
   #videoGallery {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  #videoGallery a {
-    width: 100% !important;
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    gap: 1rem;
+    padding: 0.5rem 0;
+    width: 100%;
     max-width: 100%;
   }
-}
+
+  #videoGallery a {
+    flex: 0 0 auto;
+    width: 23%; /* 4 vídeos cabem na tela */
+    min-width: 140px;
+    max-width: 200px;
+    display: block;
+  }
+
+  #videoGallery img {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  /* Botões laterais responsivos */
+  @media (max-width: 600px) {
+    h1 {
+      font-size: 1.4rem;
+    }
+
+    .container {
+      padding: 1rem;
+      max-width: 98vw;
+    }
+
+    p {
+      font-size: 1rem;
+    }
+
+    #videoGallery a {
+      width: 23vw; /* Garante 4 vídeos na tela */
+    }
+  }
+
+  @media (max-width: 400px) {
+    .container {
+      padding: 0.5rem;
+    }
+
+    h1 {
+      font-size: 1.1rem;
+    }
+
+    #videoGallery a {
+      width: 24vw;
+    }
+  }
+
+  @media (max-width: 320px) {
+    body, html {
+      min-width: 320px;
+      overflow-x: auto;
+    }
+
+    .container {
+      min-width: 320px;
+    }
+
+    #videoGallery a {
+      width: 100px;
+    }
+  }
+</style>
 
 
-
-    </style>
   </head>
   <body>
   <div id="menu"></div>
   <script src="js/menu-loader.js"></script>
   <main>
     <section style="width: 100%; margin: 0 auto 2.5rem auto; position: relative;">
-  <h2 style="color: #fff; font-size: 1.7rem; margin-bottom: 1.5rem; text-align: center; font-weight: bold; letter-spacing: 0.5px;">
-    Veja sobre o que se trata os Refúgios
-  </h2>
+ <h2 style="color: #fff; font-size: 1.7rem; margin-bottom: 1.5rem; text-align: center; font-weight: bold; letter-spacing: 0.5px;">
+  Veja sobre o que se trata os Refúgios
+</h2>
 
-  <div style="max-width: 90%; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 1.2rem;">
-    <button id="scrollLeft" aria-label="Rolar vídeos para a esquerda" style="background: transparent; border: none; width: 48px; height: 48px; cursor: pointer; z-index: 2; display: flex; align-items: center; justify-content: center; transition: filter 0.2s; filter: drop-shadow(0 2px 8px #222);">
-      <span style="width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="15 18 9 12 15 6"/>
-        </svg>
-      </span>
-    </button>
+<div id="videoGalleryWrapper" style="display: flex; align-items: center; justify-content: center; gap: 0.6rem; max-width: 100%; overflow: hidden; padding: 0 0.5rem;">
+  <button id="scrollLeft" aria-label="Rolar vídeos para a esquerda" style="background: transparent; border: none; width: 40px; height: 40px; cursor: pointer; z-index: 2; display: flex; align-items: center; justify-content: center; filter: drop-shadow(0 2px 8px #222);">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="15 18 9 12 15 6" />
+    </svg>
+  </button>
 
-    <div id="videoGallery" style="
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.2rem;
-      padding-bottom: 0.5rem;
-      scroll-behavior: smooth;
-      width: 100%;
-    ">
-      <a href="https://www.youtube.com/watch?v=1dlvVPuDcrI" target="_blank" data-titulo="Corte Grupo Y'shua">
-        <img src="assets/img/Super Corte Grupo Y´shua.png" alt="Vídeo 1" style="width: 100%; aspect-ratio: 16/4.5; object-fit: cover;">
-      </a>
-      <a href="https://www.youtube.com/watch?v=BwYeIqEz7bI" target="_blank" data-titulo="Pe. Michel Rodrigue">
-        <img src="assets/img/¡Padre MICHEL RODRIGUE! El AVISO, Los REFUGIOS.png" alt="Vídeo 2" style="width: 100%; aspect-ratio: 16/4.5; object-fit: cover;">
-      </a>
-      <a href="https://www.youtube.com/watch?v=N-2K2jSyNS8" target="_blank" data-titulo="Refúgio espiritual">
-        <img src="assets/img/RETIRO - MONTANDO UM REFÚGIO ESPIRITUAL.png" alt="Vídeo 3" style="width: 100%; aspect-ratio: 16/4.5; object-fit: cover;">
-      </a>
-      <a href="https://www.youtube.com/watch?v=-zc7vdmxKss" target="_blank" data-titulo="Sua casa como refúgio">
-        <img src="assets/img/PREPARAR SUA CASA COMO REFUGIO.png" alt="Vídeo 4" style="width: 100%; aspect-ratio: 16/4.5; object-fit: cover;">
-      </a>
-    </div>
-
-    <button id="scrollRight" aria-label="Rolar vídeos para a direita" style="background: transparent; border: none; width: 48px; height: 48px; cursor: pointer; z-index: 2; display: flex; align-items: center; justify-content: center; transition: filter 0.2s; filter: drop-shadow(0 2px 8px #222);">
-      <span style="width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="9 18 15 12 9 6"/>
-        </svg>
-      </span>
-    </button>
-  </div>
-
-  <div id="descricaoCentral" class="descricao-video">
-
-      <script>
- const gallery = document.getElementById('videoGallery');
-const leftBtn = document.getElementById('scrollLeft');
-const rightBtn = document.getElementById('scrollRight');
-
-function moveCardToEnd() {
-  const first = gallery.firstElementChild;
-  gallery.appendChild(first);
-}
-
-function moveCardToStart() {
-  const last = gallery.lastElementChild;
-  gallery.insertBefore(last, gallery.firstElementChild);
-}
-
-function atualizarDescricaoCentral() {
-  const cards = gallery.querySelectorAll('a');
-  if (!cards.length) return;
-
-  const centroGaleria = gallery.scrollLeft + gallery.offsetWidth / 2;
-  let elementoCentral = cards[0];
-  let distanciaMinima = Infinity;
-
-  cards.forEach(card => {
-    card.classList.remove('moldura-verde');
-    const centroCard = card.offsetLeft + card.offsetWidth / 2;
-    const distancia = Math.abs(centroCard - centroGaleria);
-    if (distancia < distanciaMinima) {
-      distanciaMinima = distancia;
-      elementoCentral = card;
-    }
-  });
-
-// Adiciona a classe de moldura só no vídeo central
-elementoCentral.classList.add('moldura-verde');
+<div id="videoGallery">
+  <a href="https://www.youtube.com/watch?v=1dlvVPuDcrI" target="_blank" data-titulo="Corte Grupo Y'shua" aria-label="Assistir vídeo Corte Grupo Y'shua">
+    <img src="assets/img/Super Corte Grupo Y´shua.png" alt="Miniatura do vídeo Corte Grupo Y'shua">
+  </a>
+  <a href="https://www.youtube.com/watch?v=BwYeIqEz7bI" target="_blank" data-titulo="Pe. Michel Rodrigue" aria-label="Assistir vídeo Pe. Michel Rodrigue">
+    <img src="assets/img/¡Padre MICHEL RODRIGUE! El AVISO, Los REFUGIOS.png" alt="Miniatura do vídeo Pe. Michel Rodrigue">
+  </a>
+  <a href="https://www.youtube.com/watch?v=N-2K2jSyNS8" target="_blank" data-titulo="Refúgio espiritual" aria-label="Assistir vídeo Refúgio espiritual">
+    <img src="assets/img/RETIRO - MONTANDO UM REFÚGIO ESPIRITUAL.png" alt="Miniatura do vídeo Refúgio espiritual">
+  </a>
+  <a href="https://www.youtube.com/watch?v=-zc7vdmxKss" target="_blank" data-titulo="Sua casa como refúgio" aria-label="Assistir vídeo Sua casa como refúgio">
+    <img src="assets/img/PREPARAR SUA CASA COMO REFUGIO.png" alt="Miniatura do vídeo Sua casa como refúgio">
+  </a>
+</div>
 
 
- elementoCentral.classList.add('moldura-verde');
+  <button id="scrollRight" aria-label="Rolar vídeos para a direita" style="background: transparent; border: none; width: 40px; height: 40px; cursor: pointer; z-index: 2; display: flex; align-items: center; justify-content: center; filter: drop-shadow(0 2px 8px #222);">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="9 18 15 12 9 6" />
+    </svg>
+  </button>
+</div>
 
-  // CENTRALIZAR O VÍDEO NO CONTÊINER
-  // Pega a posição central do elemento em relação ao container
-  const centroDoCard = elementoCentral.offsetLeft + elementoCentral.offsetWidth / 2;
-  // Calcula o scrollLeft para centralizar o card
-  const novoScrollLeft = centroDoCard - gallery.offsetWidth / 2;
-  // Ajusta o scroll com suavidade
-  gallery.scrollTo({ left: novoScrollLeft, behavior: 'smooth' });
+<div id="descricaoCentral" class="descricao-video"></div>
 
-  // Atualiza a descrição
-  const descricao = elementoCentral.getAttribute("data-titulo") || "";
-  document.getElementById("descricaoCentral").textContent = descricao;
-}
 
+<script>
+  const gallery = document.getElementById('videoGallery');
+  const leftBtn = document.getElementById('scrollLeft');
+  const rightBtn = document.getElementById('scrollRight');
+
+  function moveCardToEnd() {
+    const first = gallery.firstElementChild;
+    gallery.appendChild(first);
+    atualizarDescricaoCentral();
+  }
+
+  function moveCardToStart() {
+    const last = gallery.lastElementChild;
+    gallery.insertBefore(last, gallery.firstElementChild);
+    atualizarDescricaoCentral();
+  }
+
+  function atualizarDescricaoCentral() {
+    const cards = gallery.querySelectorAll('a');
+    if (!cards.length) return;
+
+    const centroGaleria = gallery.scrollLeft + gallery.offsetWidth / 2;
+    let elementoCentral = cards[0];
+    let distanciaMinima = Infinity;
+
+    cards.forEach(card => {
+      card.classList.remove('moldura-verde');
+      const centroCard = card.offsetLeft + card.offsetWidth / 2;
+      const distancia = Math.abs(centroCard - centroGaleria);
+      if (distancia < distanciaMinima) {
+        distanciaMinima = distancia;
+        elementoCentral = card;
+      }
+    });
+
+    elementoCentral.classList.add('moldura-verde');
+
+    // Atualiza a descrição
+    const descricao = elementoCentral.getAttribute("data-titulo") || "";
+    document.getElementById("descricaoCentral").textContent = descricao;
+  }
+
+  // Navegação por clique
 leftBtn.onclick = () => {
-  moveCardToStart();
-  gallery.scrollLeft = 0;
-  atualizarDescricaoCentral();
+  gallery.scrollBy({ left: -gallery.offsetWidth / 2, behavior: 'smooth' });
+  setTimeout(atualizarDescricaoCentral, 400); // aguarda rolagem
 };
 
 rightBtn.onclick = () => {
-  moveCardToEnd();
-  gallery.scrollLeft = 0;
-  atualizarDescricaoCentral();
+  gallery.scrollBy({ left: gallery.offsetWidth / 2, behavior: 'smooth' });
+  setTimeout(atualizarDescricaoCentral, 400);
 };
 
-window.addEventListener('resize', atualizarDescricaoCentral);
-window.addEventListener('load', atualizarDescricaoCentral);
+  // Atualiza moldura e título ao carregar ou redimensionar
+  window.addEventListener('resize', atualizarDescricaoCentral);
+  window.addEventListener('load', atualizarDescricaoCentral);
+</script>
 
-        </script>
-      </section>
 
 
       <section style="width:100%; max-width:1100px; margin:0 auto 2.5rem auto; display:block;">
