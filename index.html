@@ -147,6 +147,31 @@
   border-radius: 8px; /* Para arredondar os cantos igual à imagem */
   transition: box-shadow 0.3s ease;
 }
+#videoGallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.2rem;
+  padding-bottom: 0.5rem;
+  scroll-behavior: smooth;
+  width: 100%;
+  max-width: 100%;
+}
+
+#videoGallery a {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+}
+
+@media (max-width: 600px) {
+  #videoGallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  #videoGallery a {
+    width: 100% !important;
+  }
+}
 
 
     </style>
@@ -172,36 +197,49 @@
             </span>
           </button>
 
-          <section style="width:80%; max-width:1100px; margin:0 auto 2.5rem auto;">
+<section style="width: 100%; max-width: 1100px; margin: 0 auto 2.5rem auto; position: relative;">
+  <h2 style="color: #fff; font-size: 1.7rem; margin-bottom: 1.5rem; text-align: center; font-weight: bold; letter-spacing: 0.5px;">
+    Veja sobre o que se trata os Refúgios
+  </h2>
 
-<div id="videoGallery" style="
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.2rem;
-  padding-bottom: 0.5rem;
-  scrollbar-width: thin;
-  scrollbar-color: var(--primary) #222;
-  scroll-behavior: smooth;
-  width: 100%;
-  max-width: 100%;
-">
+  <div style="display: flex; align-items: center; justify-content: center;">
+    <button id="scrollLeft" aria-label="Rolar vídeos para a esquerda" style="background: transparent; border: none; width: 48px; height: 48px; margin-right: 1rem; cursor: pointer;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+    </button>
 
+    <div id="videoGallery" style="
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.2rem;
+      padding-bottom: 0.5rem;
+      scroll-behavior: smooth;
+      width: 100%;
+    ">
+      <!-- Vídeos -->
+      <a href="https://www.youtube.com/watch?v=1dlvVPuDcrI" target="_blank" data-titulo="Corte Grupo Y'shua">
+        <img src="assets/img/Super Corte Grupo Y´shua.png" alt="Vídeo 1" style="width: 100%; aspect-ratio: 16/9; object-fit: cover;">
+      </a>
+      <a href="https://www.youtube.com/watch?v=BwYeIqEz7bI" target="_blank" data-titulo="Pe. Michel Rodrigue">
+        <img src="assets/img/¡Padre MICHEL RODRIGUE! El AVISO, Los REFUGIOS.png" alt="Vídeo 2" style="width: 100%; aspect-ratio: 16/9; object-fit: cover;">
+      </a>
+      <a href="https://www.youtube.com/watch?v=N-2K2jSyNS8" target="_blank" data-titulo="Refúgio espiritual">
+        <img src="assets/img/RETIRO - MONTANDO UM REFÚGIO ESPIRITUAL.png" alt="Vídeo 3" style="width: 100%; aspect-ratio: 16/9; object-fit: cover;">
+      </a>
+      <a href="https://www.youtube.com/watch?v=-zc7vdmxKss" target="_blank" data-titulo="Sua casa como refúgio">
+        <img src="assets/img/PREPARAR SUA CASA COMO REFUGIO.png" alt="Vídeo 4" style="width: 100%; aspect-ratio: 16/9; object-fit: cover;">
+      </a>
+    </div>
 
-  <a href="https://www.youtube.com/watch?v=1dlvVPuDcrI" target="_blank" data-titulo="Corte Grupo Y'shua" style="width:30%;">
-    <img src="assets/img/Super Corte Grupo Y´shua.png" alt="Vídeo 1" style="width:80%; aspect-ratio:16/9; object-fit:cover;">
-  </a>
-  <a href="https://www.youtube.com/watch?v=BwYeIqEz7bI" target="_blank" data-titulo="Pe. Michel Rodrigue" style="width:30%">
-    <img src="assets/img/¡Padre MICHEL RODRIGUE! El AVISO, Los REFUGIOS.png" alt="Vídeo 2" style="width:80%; aspect-ratio:16/9; object-fit:cover;">
-  </a>
-  <a href="https://www.youtube.com/watch?v=N-2K2jSyNS8" target="_blank" data-titulo="Refúgio espiritual" style="width:30%;">
-    <img src="assets/img/RETIRO - MONTANDO UM REFÚGIO ESPIRITUAL.png" alt="Vídeo 3" style="width:80%; aspect-ratio:16/9; object-fit:cover;">
-  </a>
-  <a href="https://www.youtube.com/watch?v=-zc7vdmxKss" target="_blank" data-titulo="Sua casa como refúgio" style="width:30%;">
-    <img src="assets/img/PREPARAR SUA CASA COMO REFUGIO.png" alt="Vídeo 4" style="width:80; aspect-ratio:16/9; object-fit:cover;">
-  </a>
-</div>
-  <!-- Botões e galeria aqui -->
+    <button id="scrollRight" aria-label="Rolar vídeos para a direita" style="background: transparent; border: none; width: 48px; height: 48px; margin-left: 1rem; cursor: pointer;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="9 18 15 12 9 6"/>
+      </svg>
+    </button>
+  </div>
 </section>
+
 
           <button id="scrollRight" aria-label="Rolar vídeos para a direita" style="background:transparent; border:none; width:48px; height:48px; margin-left:1.5rem; cursor:pointer; z-index:2; display:flex; align-items:center; justify-content:center; transition:filter 0.2s; filter:drop-shadow(0 2px 8px #222);">
             <span style="display:inline-block; width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center;">
