@@ -3,194 +3,162 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-    <title>Galeria de Vídeos | WebApp Refúgio/title>
+    <title>Galeria de Vídeos | WebApp Refúgio</title>
     <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="style/stylecss.css" />
-<style>
-    :root {
-      --primary: #238636;
-      --secondary: #0d1117;
-      --text: #c9d1d9;
-      --radius: 12px;
-      --container-bg: #161b22;
-      --container-border: #30363d;
-      --button-bg: #238636;
-      --button-bg-hover: #2ea043;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body, html {
-      font-family: 'Segoe UI', Arial, sans-serif;
-      background: var(--secondary);
-      color: var(--text);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 2rem 1rem;
-      overflow-x: hidden;
-    }
-
-    main {
-      max-width: 900px;
-      width: 100%;
-    }
-
-    h1, h2 {
-      color: #fff;
-      text-align: center;
-      margin-bottom: 1.5rem;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-    }
-
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-    }
-
-    h2 {
-      font-size: 1.8rem;
-    }
-
-    /* Container para os vídeos em grid */
-    #videoGallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.2rem;
-      width: 100%;
-      margin-top: 1rem;
-    }
-
-    #videoGallery a {
-      display: block;
-      border-radius: var(--radius);
-      box-shadow: 0 4px 12px rgba(35, 134, 54, 0.3);
-      overflow: hidden;
-      background: var(--container-bg);
-      transition: box-shadow 0.3s ease, transform 0.3s ease;
-      cursor: pointer;
-      text-decoration: none;
-    }
-
-    #videoGallery a:hover {
-      box-shadow: 0 8px 20px rgba(35, 134, 54, 0.6);
-      transform: translateY(-5px);
-    }
-
-    #videoGallery img {
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      object-fit: cover;
-      display: block;
-      border-radius: var(--radius);
-      user-select: none;
-      pointer-events: none;
-      transition: transform 0.3s ease;
-    }
-
-    #videoGallery a:hover img {
-      transform: scale(1.05);
-    }
-
-    .descricao-video {
-      margin-top: 1rem;
-      text-align: center;
-      font-weight: 700;
-      font-size: 1.1rem;
-      color: var(--primary);
-      user-select: none;
-      letter-spacing: 0.03em;
-    }
-
-    footer {
-      margin-top: 3rem;
-      text-align: center;
-      color: #8b949e;
-      font-size: 0.9rem;
-    }
-
-    /* Link alternativo - voltar */
-    .alt-btn {
-      display: inline-block;
-      margin: 2rem auto 0 auto;
-      background: #30363d;
-      color: #c9d1d9;
-      border-radius: var(--radius);
-      padding: 0.8rem 2rem;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background 0.2s;
-      text-decoration: none;
-      text-align: center;
-    }
-
-    .alt-btn:hover {
-      background: #22262c;
-    }
-
-    @media (max-width: 400px) {
-      body, html {
-        padding: 1rem 0.5rem;
+    <style>
+      :root {
+        --primary: #238636;
+        --secondary: #0d1117;
+        --text: #c9d1d9;
+        --radius: 12px;
+        --container-bg: #161b22;
+        --container-border: #30363d;
+        --button-bg: #238636;
+        --button-bg-hover: #2ea043;
       }
-    }
-  </style>
-</head>
-<body>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body, html {
+        font-family: 'Segoe UI', Arial, sans-serif;
+        background: var(--secondary);
+        color: var(--text);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem 1rem;
+        overflow-x: hidden;
+      }
+      main {
+        max-width: 900px;
+        width: 100%;
+      }
+      h1, h2 {
+        color: #fff;
+        text-align: center;
+        margin-bottom: 1.5rem;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+      }
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+      }
+      h2 {
+        font-size: 1.8rem;
+      }
+      #videoGallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1.2rem;
+        width: 100%;
+        margin-top: 1rem;
+      }
+      #videoGallery a {
+        display: block;
+        border-radius: var(--radius);
+        box-shadow: 0 4px 12px rgba(35, 134, 54, 0.3);
+        overflow: hidden;
+        background: var(--container-bg);
+        transition: box-shadow 0.3s ease, transform 0.3s ease;
+        cursor: pointer;
+        text-decoration: none;
+      }
+      #videoGallery a:hover {
+        box-shadow: 0 8px 20px rgba(35, 134, 54, 0.6);
+        transform: translateY(-5px);
+      }
+      #videoGallery img {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+        display: block;
+        border-radius: var(--radius);
+        user-select: none;
+        pointer-events: none;
+        transition: transform 0.3s ease;
+      }
+      #videoGallery a:hover img {
+        transform: scale(1.05);
+      }
+      .descricao-video {
+        margin-top: 1rem;
+        text-align: center;
+        font-weight: 700;
+        font-size: 1.1rem;
+        color: var(--primary);
+        user-select: none;
+        letter-spacing: 0.03em;
+      }
+      footer {
+        margin-top: 3rem;
+        text-align: center;
+        color: #8b949e;
+        font-size: 0.9rem;
+      }
+      .alt-btn {
+        display: inline-block;
+        margin: 2rem auto 0 auto;
+        background: #30363d;
+        color: #c9d1d9;
+        border-radius: var(--radius);
+        padding: 0.8rem 2rem;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.2s;
+        text-decoration: none;
+        text-align: center;
+      }
+      .alt-btn:hover {
+        background: #22262c;
+      }
+      @media (max-width: 400px) {
+        body, html {
+          padding: 1rem 0.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="menu"></div>
+    <script src="js/menu-loader.js"></script>
 
-  <div id="menu"></div>
-  <script src="js/menu-loader.js"></script>
+    <main>
+      <h1>WebApp Refúgios</h1>
+      <h2>Galeria de Vídeos</h2>
 
-  <main>
-    <h1>WebApp Refúgios</h1>
-    <h2>Galeria de Vídeos</h2>
+      <div id="videoGallery">
+        <a href="https://www.youtube.com/watch?v=1dlvVPuDcrI" target="_blank" aria-label="Assistir vídeo Corte Grupo Y'shua" title="Corte Grupo Y'shua">
+          <img src="assets/img/Super Corte Grupo Y´shua.png" alt="Miniatura do vídeo Corte Grupo Y'shua" loading="lazy" />
+        </a>
+        <a href="https://www.youtube.com/watch?v=BwYeIqEz7bI" target="_blank" aria-label="Assistir vídeo Pe. Michel Rodrigue" title="Pe. Michel Rodrigue">
+          <img src="assets/img/¡Padre MICHEL RODRIGUE! El AVISO, Los REFUGIOS.png" alt="Miniatura do vídeo Pe. Michel Rodrigue" loading="lazy" />
+        </a>
+        <a href="https://www.youtube.com/watch?v=N-2K2jSyNS8" target="_blank" aria-label="Assistir vídeo Refúgio espiritual" title="Refúgio espiritual">
+          <img src="assets/img/RETIRO - MONTANDO UM REFÚGIO ESPIRITUAL.png" alt="Miniatura do vídeo Refúgio espiritual" loading="lazy" />
+        </a>
+        <a href="https://www.youtube.com/watch?v=-zc7vdmxKss" target="_blank" aria-label="Assistir vídeo Sua casa como refúgio" title="Sua casa como refúgio">
+          <img src="assets/img/PREPARAR SUA CASA COMO REFUGIO.png" alt="Miniatura do vídeo Sua casa como refúgio" loading="lazy" />
+        </a>
+        <a href="https://www.youtube.com/watch?v=us1qNeQplBA" target="_blank" aria-label="Assistir vídeo Oração para consagrar a casa como refúgio" title="Oração para consagrar a casa como refúgio">
+          <img src="assets/img/Oração para consagrar a casa como refúgio.png" alt="Miniatura do vídeo Oração para consagrar a casa como refúgio" loading="lazy" />
+        </a>
+      </div>
 
-    <div id="videoGallery">
-      <a href="https://www.youtube.com/watch?v=1dlvVPuDcrI" target="_blank" aria-label="Assistir vídeo Corte Grupo Y'shua" title="Corte Grupo Y'shua">
-        <img src="assets/img/Super Corte Grupo Y´shua.png" alt="Miniatura do vídeo Corte Grupo Y'shua" loading="lazy" />
-      </a>
-      <a href="https://www.youtube.com/watch?v=BwYeIqEz7bI" target="_blank" aria-label="Assistir vídeo Pe. Michel Rodrigue" title="Pe. Michel Rodrigue">
-        <img src="assets/img/¡Padre MICHEL RODRIGUE! El AVISO, Los REFUGIOS.png" alt="Miniatura do vídeo Pe. Michel Rodrigue" loading="lazy" />
-      </a>
-      <a href="https://www.youtube.com/watch?v=N-2K2jSyNS8" target="_blank" aria-label="Assistir vídeo Refúgio espiritual" title="Refúgio espiritual">
-        <img src="assets/img/RETIRO - MONTANDO UM REFÚGIO ESPIRITUAL.png" alt="Miniatura do vídeo Refúgio espiritual" loading="lazy" />
-      </a>
-      <a href="https://www.youtube.com/watch?v=-zc7vdmxKss" target="_blank" aria-label="Assistir vídeo Sua casa como refúgio" title="Sua casa como refúgio">
-        <img src="assets/img/PREPARAR SUA CASA COMO REFUGIO.png" alt="Miniatura do vídeo Sua casa como refúgio" loading="lazy" />
-      </a>
-      <a href="https://www.youtube.com/watch?v=us1qNeQplBA" target="_blank" aria-label="Assistir vídeo Oração para consagrar a casa como refúgio" title="Oração para consagrar a casa como refúgio">
-        <img src="assets/img/Oração para consagrar a casa como refúgio.png" alt="Miniatura do vídeo Oração para consagrar a casa como refúgio" loading="lazy" />
-      </a>
-    </div>
-
-    <a href="index.html" class="alt-btn" aria-label="Voltar para página inicial">Voltar para a Home</a>
-  </main>
-
-  <div id="rodape"></div>
-  <script>
-    fetch('rodape.html')
-      .then(res => res.text())
-      .then(html => {
-        document.getElementById('rodape').innerHTML = html;
-      });
-  </script>
-
-
-
+      <a href="index.html" class="alt-btn" aria-label="Voltar para página inicial">Voltar para a Home</a>
     </main>
 
-  <div id="rodape"></div>
-  <script>
-    fetch('rodape.html')
-      .then(res => res.text())
-      .then(html => {
-        document.getElementById('rodape').innerHTML = html;
-      });
-  </script>
+    <div id="rodape"></div>
+    <script>
+      fetch('rodape.html')
+        .then(res => res.text())
+        .then(html => {
+          document.getElementById('rodape').innerHTML = html;
+        });
+    </script>
   </body>
 </html>
