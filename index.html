@@ -6,407 +6,242 @@
     <title>Home | WebApp Refúgios</title>
     <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="style/stylecss.css" />
-<style>
-  :root {
-    --primary: #238636;
-    --secondary: #0d1117;
-    --text: #c9d1d9;
-    --radius: 12px;
-    --container-bg: #161b22;
-    --container-border: #30363d;
-    --button-bg: #238636;
-    --button-bg-hover: #2ea043;
-  }
+    <style>
+      /* Somente estilos exclusivos do home (galeria, moldura verde e scroll) */
 
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
+      /* Moldura verde no item central da galeria */
+      .moldura-verde {
+        box-shadow: 2px 2px 2px 3px var(--primary) !important;
+        border-radius: 8px;
+        transition: box-shadow 0.3s ease;
+      }
 
-  body, html {
-    font-family: 'Segoe UI', Arial, sans-serif;
-    background: var(--secondary);
-    color: var(--text);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    
-  }
+      /* Galeria horizontal responsiva */
+      #videoGallery {
+        display: flex;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        gap: 1rem;
+        padding: 0.5rem 0;
+        width: 100%;
+        max-width: 100%;
+      }
 
+      #videoGallery a {
+        flex: 0 0 auto;
+        width: 23%; /* 4 vídeos cabem na tela */
+        min-width: 140px;
+        max-width: 200px;
+        display: block;
+        border-radius: 8px;
+        overflow: hidden;
+      }
 
-  .container {
-    background: var(--container-bg);
-    border-radius: var(--radius);
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
-    border: 1px solid var(--container-border);
-    max-width: 480px;
-    min-width: 320px;
-    width: 100%;
-    padding: 2rem;
-    margin: 1rem 0;
-    text-align: center;
-  }
+      #videoGallery img {
+        width: 100%;
+        aspect-ratio: 16/9;
+        object-fit: cover;
+        border-radius: 8px;
+        transition: transform 0.3s ease;
+      }
 
-  h1 {
-    font-size: 2.2rem;
-    margin-bottom: 1rem;
-    color: #fff;
-  }
+      #videoGallery a:hover img {
+        transform: scale(1.03);
+      }
 
-  p {
-    font-size: 1.1rem;
-    margin-bottom: 1.5em;
-    color: #8b949e;
-  }
+      /* Botões laterais responsivos */
+      .scroll-button {
+        background: transparent;
+        border: none;
+        font-size: 2rem;
+        color: var(--primary);
+        cursor: pointer;
+        padding: 0.2rem 0.7rem;
+        transition: color 0.2s ease;
+        box-shadow: none !important;
+        outline: none;
+      }
 
-  button {
-    background: var(--button-bg);
-    color: #fff;
-    border: none;
-    border-radius: var(--radius);
-    padding: 0.8rem 2rem;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background 0.2s;
-  }
+      /* Responsividade */
+      @media (max-width: 500px) {
+        #videoGallery a {
+          width: 23vw; /* 4 vídeos na tela */
+        }
+      }
 
-  button:hover {
-    background: var(--button-bg-hover);
-  }
+      @media (max-width: 400px) {
+        #videoGallery a {
+          width: 24vw;
+        }
+      }
 
-  .alt-btn {
-    background: #30363d;
-    color: #c9d1d9;
-  }
-
-  .alt-btn:hover {
-    background: #22262c;
-  }
-
-  footer {
-    text-align: center;
-    padding: 1rem 0;
-    font-size: 0.95rem;
-    color: #8b949e;
-  }
-
-  .descricao-video {
-    color: var(--primary);
-    font-size: 1rem;
-    font-weight: 700;
-    text-align: center;
-    margin-top: 1.2rem;
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    background-color: rgba(35, 134, 54, 0.05);
-    box-shadow: 0 0 8px rgba(35, 134, 54, 0.25);
-    transition: all 0.3s ease;
-    user-select: none;
-  }
-
-  .moldura-verde {
-    box-shadow: 2px 2px 2px 3px var(--primary) !important;
-    border-radius: 8px;
-    transition: box-shadow 0.3s ease;
-  }
-
-  /* Galeria horizontal responsiva */
-  #videoGallery {
-    display: flex;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    gap: 1rem;
-    padding: 0.5rem 0;
-    width: 100%;
-    max-width: 100%;
-  }
-
-  #videoGallery a {
-    flex: 0 0 auto;
-    width: 23%; /* 4 vídeos cabem na tela */
-    min-width: 140px;
-    max-width: 200px;
-    display: block;
-  }
-
-  #videoGallery img {
-    width: 100%;
-    aspect-ratio: 16/9;
-    object-fit: cover;
-    border-radius: 8px;
-  }
-
-  /* Botões laterais responsivos */
-  @media (max-width: 500px) {
-    h1 {
-      font-size: 1.3rem;
-    }
-
-    .container {
-      padding: 1rem;
-      max-width: 98vw;
-    }
-
-    p {
-      font-size: 1rem;
-    }
-
-    #videoGallery a {
-      width: 23vw; /* Garante 4 vídeos na tela */
-    }
-  }
-
-  @media (max-width: 400px) {
-    .container {
-      padding: 0.5rem;
-    }
-
-    h1 {
-      font-size: 1.1rem;
-    }
-
-    #videoGallery a {
-      width: 24vw;
-    }
-  }
-
-  @media (max-width: 320px) {
-    body, html {
-      min-width: 320px;
-      overflow-x: auto;
-    }
-
-    .container {
-      min-width: 320px;
-    }
-
-    #videoGallery a {
-      width: 100px;
-    }
-  }
-.scroll-button {
-  background: transparent;
-  border: none;
-  font-size: 2rem;
-  color: var(--primary);
-  cursor: pointer;
-  padding: 0.2rem 0.7rem;
-  transition: color 0.2s ease;
-
-  /* Garantir sem sombra ou borda */
-  box-shadow: none !important;
-  outline: none;
-}
-
-#videoGallery img {
-  transition: transform 0.3s ease;
-}
-
-#videoGallery a:hover img {
-  transform: scale(1.03);
-}
-
-
-
-</style>
-
-
+      @media (max-width: 320px) {
+        #videoGallery a {
+          width: 100px;
+        }
+      }
+    </style>
   </head>
   <body>
-  <div id="menu"></div>
-  <script src="js/menu-loader.js"></script>
-  <main>
-          <section style="width:100%; text-align:center; margin-bottom:2.5rem;">
-            <h1 style="font-size:2.3rem; color:#fff; margin-bottom:0.7rem; font-weight:bold; letter-spacing:0.5px;">Bem-vindo ao Portal WebApp Refúgios</h1>
-            <p style="font-size:1.2rem; color:#8b949e; margin-bottom:1.5rem;">Junte-se às pessoas de sua cidade que estão se organizando na criação de Refúgios para o Fim dos Tempos. Cadastre-se e entre em contato pelos links que elas disponibilizaram.</p>
-            <a href="cadastro.html" style="display:inline-block; background:var(--primary); color:#fff; font-size:1.15rem; font-weight:bold; padding:1rem 2.5rem; border-radius:var(--radius); text-decoration:none; box-shadow:0 2px 8px rgba(35,134,54,0.12); margin-bottom:0.5rem; transition:background 0.2s;">Quero me cadastrar!</a>
-         </section>
-    <section style="width: 80%; margin: 0 auto 2.5rem auto; position: relative;">
- <h2 style="color: #fff; font-size: 1.7rem; margin-bottom: 1.5rem; text-align: center; font-weight: bold; letter-spacing: 0.5px;">
-  Veja sobre o que se trata os Refúgios
-</h2>
+    <div id="menu"></div>
+    <script src="js/menu-loader.js"></script>
 
-<div id="videoGalleryWrapper" style="display: flex; align-items: center; justify-content: center; gap: 0.6rem; max-width: 100%; overflow: hidden; padding: 0 0.5rem;">
-<button id="scrollLeft" class="scroll-button" aria-label="Rolar vídeos para a esquerda">
-  ❮
-</button>
+    <main>
+      <section class="container" style="margin-top:1rem; text-align:center;">
+        <h1>Bem-vindo ao Portal WebApp Refúgios</h1>
+        <p>
+          Junte-se às pessoas de sua cidade que estão se organizando na criação de Refúgios para o Fim dos Tempos. Cadastre-se e entre em contato pelos links que elas disponibilizaram.
+        </p>
+        <a href="cadastro.html" class="button" style="margin-top: 0.5rem; display:inline-block;">
+          Quero me cadastrar!
+        </a>
+      </section>
 
+      <section class="container" style="max-width: 80%; margin: 2rem auto;">
+        <h2 style="margin-bottom: 1.5rem;">Veja sobre o que se trata os Refúgios</h2>
 
-<div id="videoGallery">
-  <a href="https://www.youtube.com/watch?v=1dlvVPuDcrI" target="_blank" data-titulo="Corte Grupo Y'shua" aria-label="Assistir vídeo Corte Grupo Y'shua">
-    <img src="assets/img/Super Corte Grupo Y´shua.png" alt="Miniatura do vídeo Corte Grupo Y'shua" loading="lazy">
-  </a>
-  <a href="https://www.youtube.com/watch?v=BwYeIqEz7bI" target="_blank" data-titulo="Pe. Michel Rodrigue" aria-label="Assistir vídeo Pe. Michel Rodrigue">
-    <img src="assets/img/¡Padre MICHEL RODRIGUE! El AVISO, Los REFUGIOS.png" alt="Miniatura do vídeo Pe. Michel Rodrigue" loading="lazy">
-  </a>
-  <a href="https://www.youtube.com/watch?v=N-2K2jSyNS8" target="_blank" data-titulo="Refúgio espiritual" aria-label="Assistir vídeo Refúgio espiritual">
-    <img src="assets/img/RETIRO - MONTANDO UM REFÚGIO ESPIRITUAL.png" alt="Miniatura do vídeo Refúgio espiritual" loading="lazy">
-  </a>
-  <a href="https://www.youtube.com/watch?v=-zc7vdmxKss" target="_blank" data-titulo="Sua casa como refúgio" aria-label="Assistir vídeo Sua casa como refúgio">
-    <img src="assets/img/PREPARAR SUA CASA COMO REFUGIO.png" alt="Miniatura do vídeo Sua casa como refúgio" loading="lazy">
-  </a>
-  <a href="https://www.youtube.com/watch?v=us1qNeQplBA" target="_blank" data-titulo="Oração para consagrar a casa como refúgio" aria-label="Assistir vídeo Sua casa como refúgio">
-    <img src="assets/img/Oração para consagrar a casa como refúgio.png" alt="Miniatura do vídeo Sua casa como refúgio" loading="lazy">
-  </a>
-</div>
+        <div id="videoGalleryWrapper" style="display: flex; align-items: center; justify-content: center; gap: 0.6rem; overflow: hidden; padding: 0 0.5rem;">
+          <button id="scrollLeft" class="scroll-button" aria-label="Rolar vídeos para a esquerda">❮</button>
 
+          <div id="videoGallery" aria-label="Galeria de vídeos sobre Refúgios">
+            <a href="https://www.youtube.com/watch?v=1dlvVPuDcrI" target="_blank" data-titulo="Corte Grupo Y'shua" aria-label="Assistir vídeo Corte Grupo Y'shua">
+              <img src="assets/img/Super Corte Grupo Y´shua.png" alt="Miniatura do vídeo Corte Grupo Y'shua" loading="lazy" />
+            </a>
+            <a href="https://www.youtube.com/watch?v=BwYeIqEz7bI" target="_blank" data-titulo="Pe. Michel Rodrigue" aria-label="Assistir vídeo Pe. Michel Rodrigue">
+              <img src="assets/img/¡Padre MICHEL RODRIGUE! El AVISO, Los REFUGIOS.png" alt="Miniatura do vídeo Pe. Michel Rodrigue" loading="lazy" />
+            </a>
+            <a href="https://www.youtube.com/watch?v=N-2K2jSyNS8" target="_blank" data-titulo="Refúgio espiritual" aria-label="Assistir vídeo Refúgio espiritual">
+              <img src="assets/img/RETIRO - MONTANDO UM REFÚGIO ESPIRITUAL.png" alt="Miniatura do vídeo Refúgio espiritual" loading="lazy" />
+            </a>
+            <a href="https://www.youtube.com/watch?v=-zc7vdmxKss" target="_blank" data-titulo="Sua casa como refúgio" aria-label="Assistir vídeo Sua casa como refúgio">
+              <img src="assets/img/PREPARAR SUA CASA COMO REFUGIO.png" alt="Miniatura do vídeo Sua casa como refúgio" loading="lazy" />
+            </a>
+            <a href="https://www.youtube.com/watch?v=us1qNeQplBA" target="_blank" data-titulo="Oração para consagrar a casa como refúgio" aria-label="Assistir vídeo Sua casa como refúgio">
+              <img src="assets/img/Oração para consagrar a casa como refúgio.png" alt="Miniatura do vídeo Sua casa como refúgio" loading="lazy" />
+            </a>
+          </div>
 
+          <button id="scrollRight" class="scroll-button" aria-label="Rolar vídeos para a direita">❯</button>
+        </div>
 
+        <div id="descricaoCentral" class="descricao-video" style="margin-top: 1.5rem; margin-bottom: 1.5rem;"></div>
 
-<button id="scrollRight" class="scroll-button" aria-label="Rolar vídeos para a direita">
-  ❯
-</button>
+        <div style="text-align:center;">
+          <a href="galeriavideos.html" class="button" style="background: var(--primary); color: #fff; font-weight: 700; padding: 1rem 2.5rem; border-radius: var(--radius); text-decoration: none; box-shadow: 0 2px 8px rgba(35,134,54,0.12); transition: background 0.2s;">
+            Ir para Galeria
+          </a>
+        </div>
+      </section>
 
-</div>
+      <section class="container" style="max-width: 600px; margin: 2rem auto;">
+        <h2 style="text-align:center; margin-bottom: 1rem;">Canais Recomendados</h2>
+        <div style="text-align:center; font-size: 0.92rem;">
+          <a href="https://www.youtube.com/@grupoyshua" target="_blank" class="link-primary">Grupo Y'shua</a>
+          <span class="separator">-</span>
+          <a href="https://www.instagram.com/lucasgelasio/" target="_blank" class="link-primary">Lucas Gelasio</a>
+          <span class="separator">-</span>
+          <a href="https://www.youtube.com/@SemillasdeFe" target="_blank" class="link-primary">Cemillas de Fe</a>
+          <span class="separator">-</span>
+          <a href="https://www.youtube.com/@RevelacionesMarianasLM" target="_blank" class="link-primary">Revelaciones Marianas (Luz de Maria de Bonilla)</a>
+          <span class="separator">-</span>
+          <a href="https://www.youtube.com/@OCruxAveMedia" target="_blank" class="link-primary">O Crux Ave (Xavier Ayral)</a>
+          <span class="separator">-</span>
+          <a href="https://www.youtube.com/@AleMachadoOfficial" target="_blank" class="link-primary">Ale Machado Official</a>
+        </div>
+      </section>
 
-<div id="descricaoCentral" class="descricao-video" style="margin-bottom: 1.5rem;"></div>
-
-<div style="text-align:center; margin-bottom:1.5rem;">
-  <a href="galeriavideos.html" style="display:inline-block; background:var(--primary); color:#fff; font-size:1.15rem; font-weight:bold; padding:1rem 2.5rem; border-radius:var(--radius); text-decoration:none; box-shadow:0 2px 8px rgba(35,134,54,0.12); transition:background 0.2s;">
-    Ir para Galeria
-  </a>
-</div>
-
-
-
-
-<script>
-  const gallery = document.getElementById('videoGallery');
-  const leftBtn = document.getElementById('scrollLeft');
-  const rightBtn = document.getElementById('scrollRight');
-
-  function moveCardToEnd() {
-    const first = gallery.firstElementChild;
-    gallery.appendChild(first);
-    atualizarDescricaoCentral();
-  }
-
-  function moveCardToStart() {
-    const last = gallery.lastElementChild;
-    gallery.insertBefore(last, gallery.firstElementChild);
-    atualizarDescricaoCentral();
-  }
-
-  function atualizarDescricaoCentral() {
-    const cards = gallery.querySelectorAll('a');
-    if (!cards.length) return;
-
-    const centroGaleria = gallery.scrollLeft + gallery.offsetWidth / 2;
-    let elementoCentral = cards[0];
-    let distanciaMinima = Infinity;
-
-    cards.forEach(card => {
-      card.classList.remove('moldura-verde');
-      const centroCard = card.offsetLeft + card.offsetWidth / 2;
-      const distancia = Math.abs(centroCard - centroGaleria);
-      if (distancia < distanciaMinima) {
-        distanciaMinima = distancia;
-        elementoCentral = card;
-      }
-    });
-
-    elementoCentral.classList.add('moldura-verde');
-
-    // Atualiza a descrição
-    const descricao = elementoCentral.getAttribute("data-titulo") || "";
-    document.getElementById("descricaoCentral").textContent = descricao;
-  }
-
-  // Navegação por clique (rolagem infinita)
-  leftBtn.onclick = () => {
-    const last = gallery.lastElementChild;
-    gallery.insertBefore(last, gallery.firstElementChild);
-    gallery.scrollLeft += last.offsetWidth + 16; // compensar scroll
-    atualizarDescricaoCentral();
-  };
-
-  rightBtn.onclick = () => {
-    const first = gallery.firstElementChild;
-    gallery.appendChild(first);
-    gallery.scrollLeft -= first.offsetWidth + 16; // compensar scroll
-    atualizarDescricaoCentral();
-  };
-
-  // ROLAGEM INFINITA NO SCROLL MANUAL (TOUCH / MOUSE DRAG)
-  gallery.addEventListener('scroll', () => {
-    const scrollLeft = gallery.scrollLeft;
-    const scrollWidth = gallery.scrollWidth;
-    const clientWidth = gallery.clientWidth;
-    const gap = 16; // gap entre cards (ajuste se for diferente)
-
-    // Próximo do início da rolagem? Move último para começo
-    if (scrollLeft <= 0) {
-      const last = gallery.lastElementChild;
-      const lastWidth = last.offsetWidth + gap;
-      gallery.insertBefore(last, gallery.firstElementChild);
-      gallery.scrollLeft += lastWidth;
-      atualizarDescricaoCentral();
-    }
-
-    // Próximo do fim da rolagem? Move primeiro para fim
-    if (scrollLeft + clientWidth >= scrollWidth - 1) {
-      const first = gallery.firstElementChild;
-      const firstWidth = first.offsetWidth + gap;
-      gallery.appendChild(first);
-      gallery.scrollLeft -= firstWidth;
-      atualizarDescricaoCentral();
-    }
-  });
-
-  // Atualiza moldura e título ao carregar ou redimensionar
-  window.addEventListener('resize', atualizarDescricaoCentral);
-  window.addEventListener('load', atualizarDescricaoCentral);
-</script>
-
-
-
-
-      <section style="width:100%; max-width:1100px; margin:0 auto 2.5rem auto; display:block;">
-  <div style="background:var(--secondary); border-radius:var(--radius); border:1px solid var(--container-border); padding:1.5rem; box-shadow:0 2px 8px rgba(0,0,0,0.07); margin-bottom:2rem; max-width:600px; margin-left:auto; margin-right:auto;">
-    <h2 style="color:#fff; font-size:1.05rem; margin-bottom:1rem; text-align:center;">Canais Recomendados</h2>
-    <div style="text-align:center; font-size:0.92rem;">
-      <a href="https://www.youtube.com/@grupoyshua" target="_blank" style="color:var(--primary); font-weight:500; text-decoration:none;">Grupo Y'shua</a>
-      <span style="color:var(--text); margin:0 0.5rem;">-</span>
-      <a href="https://www.instagram.com/lucasgelasio/" target="_blank" style="color:var(--primary); font-weight:500; text-decoration:none;">Lucas Gelasio</a>
-      <span style="color:var(--text); margin:0 0.5rem;">-</span>
-      <a href="https://www.youtube.com/@SemillasdeFe" target="_blank" style="color:var(--primary); font-weight:500; text-decoration:none;">Cemillas de Fe</a>
-      <span style="color:var(--text); margin:0 0.5rem;">-</span>
-      <a href="https://www.youtube.com/@RevelacionesMarianasLM" target="_blank" style="color:var(--primary); font-weight:500; text-decoration:none;">Revelaciones Marianas (Luz de Maria de Bonilla)</a>
-      <span style="color:var(--text); margin:0 0.5rem;">-</span>                  
-      <a href="https://www.youtube.com/@OCruxAveMedia" target="_blank" style="color:var(--primary); font-weight:500; text-decoration:none;">O Crux Ave (Xavier Ayral)</a>
-      <span style="color:var(--text); margin:0 0.5rem;">-</span>                  
-      <a href="https://www.youtube.com/@AleMachadoOfficial" target="_blank" style="color:var(--primary); font-weight:500; text-decoration:none;">Ale Machado Official</a>
-      <span style="color:var(--text); margin:0 0.5rem;">-</span>                     
-    </div>
-  </div>
-</section>
-
-<section style="width:100%; max-width:1100px; margin:0 auto 2.5rem auto; display:block;">
-  <div style="background:var(--secondary); border-radius:var(--radius); border:1px solid var(--container-border); padding:1.5rem; box-shadow:0 2px 8px rgba(0,0,0,0.07); margin-bottom:2rem; max-width:600px; margin-left:auto; margin-right:auto;">
-    <h2 style="color:#fff; font-size:1.05rem; margin-bottom:1rem; text-align:center;">Sites Recomendados</h2>
-    <div style="text-align:center; font-size:0.92rem;">
-      <a href="https://www.vaticannews.va/pt.html" target="_blank" style="color:var(--primary); font-weight:500; text-decoration:none;">Vatican News</a>
-      <span style="color:var(--text); margin:0 0.5rem;">-</span>
-      <a href="https://www.a12.com/" target="_blank" style="color:var(--primary); font-weight:500; text-decoration:none;">Santuário Nacional Aparecida</a>
-      <span style="color:var(--text); margin:0 0.5rem;">-</span>
-      <a href="https://www.cancaonova.com/" target="_blank" style="color:var(--primary); font-weight:500; text-decoration:none;">Canção Nova</a>
-      <span style="color:var(--text); margin:0 0.5rem;">-</span>
-    </div>
-  </div>
-</section>
-
-
-
+      <section class="container" style="max-width: 600px; margin: 2rem auto;">
+        <h2 style="text-align:center; margin-bottom: 1rem;">Sites Recomendados</h2>
+        <div style="text-align:center; font-size: 0.92rem;">
+          <a href="https://www.vaticannews.va/pt.html" target="_blank" class="link-primary">Vatican News</a>
+          <span class="separator">-</span>
+          <a href="https://www.a12.com/" target="_blank" class="link-primary">Santuário Nacional Aparecida</a>
+          <span class="separator">-</span>
+          <a href="https://www.cancaonova.com/" target="_blank" class="link-primary">Canção Nova</a>
+        </div>
+      </section>
     </main>
 
-  <div id="rodape"></div>
-  <script>
-    fetch('rodape.html')
-      .then(res => res.text())
-      .then(html => {
-        document.getElementById('rodape').innerHTML = html;
+    <div id="rodape"></div>
+    <script>
+      fetch('rodape.html')
+        .then(res => res.text())
+        .then(html => {
+          document.getElementById('rodape').innerHTML = html;
+        });
+    </script>
+
+    <script>
+      const gallery = document.getElementById('videoGallery');
+      const leftBtn = document.getElementById('scrollLeft');
+      const rightBtn = document.getElementById('scrollRight');
+
+      function atualizarDescricaoCentral() {
+        const cards = gallery.querySelectorAll('a');
+        if (!cards.length) return;
+
+        const centroGaleria = gallery.scrollLeft + gallery.offsetWidth / 2;
+        let elementoCentral = cards[0];
+        let distanciaMinima = Infinity;
+
+        cards.forEach(card => {
+          card.classList.remove('moldura-verde');
+          const centroCard = card.offsetLeft + card.offsetWidth / 2;
+          const distancia = Math.abs(centroCard - centroGaleria);
+          if (distancia < distanciaMinima) {
+            distanciaMinima = distancia;
+            elementoCentral = card;
+          }
+        });
+
+        elementoCentral.classList.add('moldura-verde');
+
+        // Atualiza a descrição
+        const descricao = elementoCentral.getAttribute("data-titulo") || "";
+        document.getElementById("descricaoCentral").textContent = descricao;
+      }
+
+      // Navegação por clique (rolagem infinita)
+      leftBtn.onclick = () => {
+        const last = gallery.lastElementChild;
+        gallery.insertBefore(last, gallery.firstElementChild);
+        gallery.scrollLeft += last.offsetWidth + 16;
+        atualizarDescricaoCentral();
+      };
+
+      rightBtn.onclick = () => {
+        const first = gallery.firstElementChild;
+        gallery.appendChild(first);
+        gallery.scrollLeft -= first.offsetWidth + 16;
+        atualizarDescricaoCentral();
+      };
+
+      // ROLAGEM INFINITA NO SCROLL MANUAL (TOUCH / MOUSE DRAG)
+      gallery.addEventListener('scroll', () => {
+        const scrollLeft = gallery.scrollLeft;
+        const scrollWidth = gallery.scrollWidth;
+        const clientWidth = gallery.clientWidth;
+        const gap = 16;
+
+        if (scrollLeft <= 0) {
+          const last = gallery.lastElementChild;
+          const lastWidth = last.offsetWidth + gap;
+          gallery.insertBefore(last, gallery.firstElementChild);
+          gallery.scrollLeft += lastWidth;
+          atualizarDescricaoCentral();
+        }
+
+        if (scrollLeft + clientWidth >= scrollWidth - 1) {
+          const first = gallery.firstElementChild;
+          const firstWidth = first.offsetWidth + gap;
+          gallery.appendChild(first);
+          gallery.scrollLeft -= firstWidth;
+          atualizarDescricaoCentral();
+        }
       });
-  </script>
+
+      window.addEventListener('resize', atualizarDescricaoCentral);
+      window.addEventListener('load', atualizarDescricaoCentral);
+    </script>
   </body>
 </html>
