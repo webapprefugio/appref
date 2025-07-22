@@ -192,10 +192,10 @@
   cursor: pointer;
   padding: 0.2rem 0.7rem;
   transition: color 0.2s ease;
-}
 
-.scroll-button:hover {
-  color: var(--button-bg-hover);
+  /* Garantir sem sombra ou borda */
+  box-shadow: none !important;
+  outline: none;
 }
 
 #videoGallery img {
@@ -260,7 +260,8 @@
 </div>
 
 <div id="descricaoCentral" class="descricao-video"></div>
-<a href="galeriavideos.html" class="alt-btn" style="margin-top: 1rem;">Ir para a Galeria de Vídeos</a>
+<a href="galeriavideos.html" style="display:inline-block; background:var(--primary); color:#fff; font-size:1.15rem; font-weight:bold; padding:1rem 2.5rem; border-radius:var(--radius); text-decoration:none; box-shadow:0 2px 8px rgba(35,134,54,0.12); margin-bottom:0.5rem; transition:background 0.2s;">Ir para Galeria</a>
+
 
 
 <script>
@@ -316,15 +317,9 @@ leftBtn.onclick = () => {
 
 rightBtn.onclick = () => {
   const first = gallery.firstElementChild;
-  const width = first.offsetWidth + 16; // inclui gap
-
-  gallery.scrollBy({ left: width, behavior: 'smooth' });
-
-  setTimeout(() => {
-    gallery.appendChild(first);
-    gallery.scrollLeft -= width;
-    atualizarDescricaoCentral();
-  }, 300); // ajustar conforme duração do scroll smooth
+  gallery.appendChild(first);
+  gallery.scrollLeft -= first.offsetWidth + 16; // compensa o scroll
+  atualizarDescricaoCentral();
 };
 
 
