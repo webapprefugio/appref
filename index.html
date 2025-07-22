@@ -1,3 +1,31 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cadastro - AppRef</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      max-width: 400px;
+      margin: auto;
+    }
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Cadastro de Usuário</h2>
+  <input type="text" id="nome" placeholder="Nome completo" />
+  <input type="email" id="email" placeholder="Email" />
+  <button onclick="salvarUsuario()">Cadastrar</button>
+  <p id="mensagem"></p>
+=======
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -17,7 +45,52 @@
     --button-bg: #238636;
     --button-bg-hover: #2ea043;
   }
+>>>>>>> ed7fab1514f537d9ed265c633ef1325b8423b7f4
 
+<<<<<<< HEAD
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js"></script>
+
+  <script>
+    // 🔐 Cole aqui seu firebaseConfig
+    const firebaseConfig = {
+      apiKey: "SUA_API_KEY_AQUI",
+      authDomain: "appref-projeto.firebaseapp.com",
+      projectId: "appref-projeto",
+      storageBucket: "appref-projeto.appspot.com",
+      messagingSenderId: "SEU_ID",
+      appId: "SUA_APP_ID"
+    };
+
+    // Inicializa Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    // Função de cadastro
+    async function salvarUsuario() {
+      const nome = document.getElementById("nome").value.trim();
+      const email = document.getElementById("email").value.trim();
+
+      if (!nome || !email) {
+        document.getElementById("mensagem").textContent = "Preencha todos os campos!";
+        return;
+      }
+
+      try {
+        await db.collection("usuarios").add({ nome, email, criadoEm: new Date() });
+        document.getElementById("mensagem").textContent = "Cadastro realizado com sucesso!";
+        document.getElementById("nome").value = "";
+        document.getElementById("email").value = "";
+      } catch (erro) {
+        console.error("Erro ao salvar:", erro);
+        document.getElementById("mensagem").textContent = "Erro ao cadastrar.";
+      }
+    }
+  </script>
+</body>
+</html>
+=======
   * {
     box-sizing: border-box;
     margin: 0;
@@ -192,6 +265,11 @@
   <div id="menu"></div>
   <script src="js/menu-loader.js"></script>
   <main>
+          <section style="width:100%; text-align:center; margin-bottom:2.5rem;">
+            <h1 style="font-size:2.3rem; color:#fff; margin-bottom:0.7rem; font-weight:bold; letter-spacing:0.5px;">Bem-vindo ao Portal WebApp Refúgios</h1>
+            <p style="font-size:1.2rem; color:#8b949e; margin-bottom:1.5rem;">Junte-se às pessoas de sua cidade que estão se organizando na criação de Refúgios para o Fim dos Tempos. Cadastre-se e entre em contato pelos links que elas disponibilizaram.</p>
+            <a href="cadastro.html" style="display:inline-block; background:var(--primary); color:#fff; font-size:1.15rem; font-weight:bold; padding:1rem 2.5rem; border-radius:var(--radius); text-decoration:none; box-shadow:0 2px 8px rgba(35,134,54,0.12); margin-bottom:0.5rem; transition:background 0.2s;">Quero me cadastrar!</a>
+         </section>
     <section style="width: 100%; margin: 0 auto 2.5rem auto; position: relative;">
  <h2 style="color: #fff; font-size: 1.7rem; margin-bottom: 1.5rem; text-align: center; font-weight: bold; letter-spacing: 0.5px;">
   Veja sobre o que se trata os Refúgios
@@ -216,6 +294,9 @@
   </a>
   <a href="https://www.youtube.com/watch?v=-zc7vdmxKss" target="_blank" data-titulo="Sua casa como refúgio" aria-label="Assistir vídeo Sua casa como refúgio">
     <img src="assets/img/PREPARAR SUA CASA COMO REFUGIO.png" alt="Miniatura do vídeo Sua casa como refúgio">
+  </a>
+    <a href="https://www.youtube.com/watch?v=us1qNeQplBA" target="_blank" data-titulo="Oração para consagrar a casa como refúgio" aria-label="Assistir vídeo Sua casa como refúgio">
+    <img src="assets/img/Oração para consagrar a casa como refúgio.png" alt="Miniatura do vídeo Sua casa como refúgio">
   </a>
 </div>
 
@@ -338,3 +419,4 @@ rightBtn.onclick = () => {
   </script>
   </body>
 </html>
+>>>>>>> ed7fab1514f537d9ed265c633ef1325b8423b7f4
