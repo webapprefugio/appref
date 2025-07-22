@@ -7,28 +7,22 @@
   <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon" />
   <link rel="stylesheet" href="style/stylecss.css" />
   <style>
-    /* Variáveis e reset */
     :root {
       --primary: #238636;
       --secondary: #0d1117;
       --text: #c9d1d9;
-      --radius: 12px;
-      --container-bg: #161b22;
-      --container-border: #30363d;
-      --button-bg: #238636;
-      --button-bg-hover: #2ea043;
     }
 
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
 
     body {
-      font-family: 'Segoe UI', Arial, sans-serif;
       background: var(--secondary);
       color: var(--text);
+      font-family: 'Segoe UI', Arial, sans-serif;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -36,114 +30,48 @@
 
     main {
       flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
       padding: 2rem 1rem;
-      max-width: 900px;
+      width: 100%;
+      max-width: 1600px;
       margin: 0 auto;
-      width: 100%;
     }
 
-    .container {
-      background: var(--container-bg);
-      border-radius: var(--radius);
-      border: 1px solid var(--container-border);
-      box-shadow: 0 4px 24px rgba(0,0,0,0.07);
-      padding: 2rem;
-      width: 100%;
-      max-width: 900px;
-    }
-
-    h1, h2 {
+    h1 {
       color: #fff;
       text-align: center;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-      margin-bottom: 1rem;
-    }
-    h1 {
       font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-    }
-    h2 {
-      font-size: 1.8rem;
       margin-bottom: 2rem;
     }
 
     #videoGallery {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 1.2rem;
-      width: 100%;
     }
 
-    #videoGallery a {
-      display: block;
-      border-radius: var(--radius);
-      box-shadow: 0 4px 12px rgba(35, 134, 54, 0.3);
+    .video-item {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%; /* 16:9 */
+      background: #000;
+      border-radius: 12px;
       overflow: hidden;
-      background: var(--container-bg);
-      transition: box-shadow 0.3s ease, transform 0.3s ease;
-      cursor: pointer;
-      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(35, 134, 54, 0.3);
     }
 
-    #videoGallery a:hover {
-      box-shadow: 0 8px 20px rgba(35, 134, 54, 0.6);
-      transform: translateY(-5px);
-    }
-
-    #videoGallery img {
+    .video-item iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
-      aspect-ratio: 16 / 9;
-      object-fit: cover;
-      display: block;
-      border-radius: var(--radius);
-      user-select: none;
-      pointer-events: none;
-      transition: transform 0.3s ease;
-    }
-
-    #videoGallery a:hover img {
-      transform: scale(1.05);
-    }
-
-    .alt-btn {
-      display: inline-block;
-      margin: 2rem auto 0 auto;
-      background: #30363d;
-      color: #c9d1d9;
-      border-radius: var(--radius);
-      padding: 0.8rem 2rem;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background 0.2s;
-      text-decoration: none;
-      text-align: center;
-    }
-
-    .alt-btn:hover {
-      background: #22262c;
+      height: 100%;
+      border: none;
     }
 
     @media (max-width: 600px) {
-      main, .container {
-        padding: 1rem;
-        max-width: 98vw;
-      }
       h1 {
         font-size: 1.8rem;
-      }
-      h2 {
-        font-size: 1.2rem;
-      }
-    }
-
-    @media (max-width: 400px) {
-      body, html {
-        padding: 1rem 0.5rem;
+        margin-bottom: 1.2rem;
       }
     }
   </style>
@@ -154,19 +82,24 @@
   <script src="js/menu-loader.js"></script>
 
   <main>
-    <div class="container">
-      <h1>WebApp Refúgios</h1>
-      <h2>Galeria de Vídeos</h2>
+    <h1>Galeria de Vídeos</h1>
 
-      <div id="videoGallery">
-        <!-- seus vídeos aqui -->
-        <a href="https://www.youtube.com/watch?v=1dlvVPuDcrI" target="_blank" aria-label="Assistir vídeo Corte Grupo Y'shua" title="Corte Grupo Y'shua">
-          <img src="assets/img/Super Corte Grupo Y´shua.png" alt="Miniatura do vídeo Corte Grupo Y'shua" loading="lazy" />
-        </a>
-        <!-- demais vídeos... -->
+    <div id="videoGallery">
+      <div class="video-item">
+        <iframe src="https://www.youtube.com/embed/1dlvVPuDcrI" title="Corte Grupo Y'shua" allowfullscreen></iframe>
       </div>
-
-      <a href="index.html" class="alt-btn" aria-label="Voltar para página inicial">Voltar para a Home</a>
+      <div class="video-item">
+        <iframe src="https://www.youtube.com/embed/BwYeIqEz7bI" title="Pe. Michel Rodrigue" allowfullscreen></iframe>
+      </div>
+      <div class="video-item">
+        <iframe src="https://www.youtube.com/embed/N-2K2jSyNS8" title="Refúgio espiritual" allowfullscreen></iframe>
+      </div>
+      <div class="video-item">
+        <iframe src="https://www.youtube.com/embed/-zc7vdmxKss" title="Sua casa como refúgio" allowfullscreen></iframe>
+      </div>
+      <div class="video-item">
+        <iframe src="https://www.youtube.com/embed/us1qNeQplBA" title="Oração para consagrar a casa como refúgio" allowfullscreen></iframe>
+      </div>
     </div>
   </main>
 
