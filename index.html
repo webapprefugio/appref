@@ -250,7 +250,7 @@
   </a>
 </div>
 
-<a href="todos-videos.html" class="alt-btn" style="margin-top: 1rem;">Ver todos os vídeos</a>
+
 
 
 <button id="scrollRight" class="scroll-button" aria-label="Rolar vídeos para a direita">
@@ -260,6 +260,7 @@
 </div>
 
 <div id="descricaoCentral" class="descricao-video"></div>
+<a href="galeriavideos.html" class="alt-btn" style="margin-top: 1rem;">Ir para a Galeria de Vídeos</a>
 
 
 <script>
@@ -309,16 +310,23 @@
 leftBtn.onclick = () => {
   const last = gallery.lastElementChild;
   gallery.insertBefore(last, gallery.firstElementChild);
-  gallery.scrollLeft += last.offsetWidth + 16; // ajusta scroll após mover
+  gallery.scrollLeft += last.offsetWidth + 16; // compensar scroll
   atualizarDescricaoCentral();
 };
 
 rightBtn.onclick = () => {
   const first = gallery.firstElementChild;
   const width = first.offsetWidth + 16; // inclui gap
-gallery.scrollBy({ left: width, behavior: 'smooth' });
-  atualizarDescricaoCentral();
+
+  gallery.scrollBy({ left: width, behavior: 'smooth' });
+
+  setTimeout(() => {
+    gallery.appendChild(first);
+    gallery.scrollLeft -= width;
+    atualizarDescricaoCentral();
+  }, 300); // ajustar conforme duração do scroll smooth
 };
+
 
 
   // Atualiza moldura e título ao carregar ou redimensionar
