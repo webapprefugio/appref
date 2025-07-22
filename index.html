@@ -31,7 +31,7 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    overflow-x: hidden;
+    overflow-x: clip;
   }
 
   .container {
@@ -137,9 +137,9 @@
   }
 
   /* Botões laterais responsivos */
-  @media (max-width: 600px) {
+  @media (max-width: 500px) {
     h1 {
-      font-size: 1.4rem;
+      font-size: 1.3rem;
     }
 
     .container {
@@ -184,25 +184,28 @@
       width: 100px;
     }
   }
-  
-  .scroll-button {
-  background: rgba(48, 54, 61, 0.7); /* fundo escuro translúcido */
+.scroll-button {
+  background: transparent;
   border: none;
-  width: 42px;
-  height: 42px;
+  font-size: 2rem;
+  color: var(--primary);
   cursor: pointer;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  transition: background 0.3s ease;
-  filter: drop-shadow(0 2px 8px #000);
+  padding: 0.2rem 0.7rem;
+  transition: color 0.2s ease;
 }
 
 .scroll-button:hover {
-  background: rgba(46, 160, 67, 0.85); /* tom verde escuro no hover */
+  color: var(--button-bg-hover);
 }
+
+#videoGallery img {
+  transition: transform 0.3s ease;
+}
+
+#videoGallery a:hover img {
+  transform: scale(1.03);
+}
+
 
 
 </style>
@@ -225,35 +228,33 @@
 
 <div id="videoGalleryWrapper" style="display: flex; align-items: center; justify-content: center; gap: 0.6rem; max-width: 100%; overflow: hidden; padding: 0 0.5rem;">
 <button id="scrollLeft" class="scroll-button" aria-label="Rolar vídeos para a esquerda">
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-    <polyline points="15 18 9 12 15 6" />
-  </svg>
+  ❮
 </button>
 
 
 <div id="videoGallery">
   <a href="https://www.youtube.com/watch?v=1dlvVPuDcrI" target="_blank" data-titulo="Corte Grupo Y'shua" aria-label="Assistir vídeo Corte Grupo Y'shua">
-    <img src="assets/img/Super Corte Grupo Y´shua.png" alt="Miniatura do vídeo Corte Grupo Y'shua">
+    <img src="assets/img/Super Corte Grupo Y´shua.png" alt="Miniatura do vídeo Corte Grupo Y'shua" loading="lazy">
   </a>
   <a href="https://www.youtube.com/watch?v=BwYeIqEz7bI" target="_blank" data-titulo="Pe. Michel Rodrigue" aria-label="Assistir vídeo Pe. Michel Rodrigue">
-    <img src="assets/img/¡Padre MICHEL RODRIGUE! El AVISO, Los REFUGIOS.png" alt="Miniatura do vídeo Pe. Michel Rodrigue">
+    <img src="assets/img/¡Padre MICHEL RODRIGUE! El AVISO, Los REFUGIOS.png" alt="Miniatura do vídeo Pe. Michel Rodrigue" loading="lazy">
   </a>
   <a href="https://www.youtube.com/watch?v=N-2K2jSyNS8" target="_blank" data-titulo="Refúgio espiritual" aria-label="Assistir vídeo Refúgio espiritual">
-    <img src="assets/img/RETIRO - MONTANDO UM REFÚGIO ESPIRITUAL.png" alt="Miniatura do vídeo Refúgio espiritual">
+    <img src="assets/img/RETIRO - MONTANDO UM REFÚGIO ESPIRITUAL.png" alt="Miniatura do vídeo Refúgio espiritual" loading="lazy">
   </a>
   <a href="https://www.youtube.com/watch?v=-zc7vdmxKss" target="_blank" data-titulo="Sua casa como refúgio" aria-label="Assistir vídeo Sua casa como refúgio">
-    <img src="assets/img/PREPARAR SUA CASA COMO REFUGIO.png" alt="Miniatura do vídeo Sua casa como refúgio">
+    <img src="assets/img/PREPARAR SUA CASA COMO REFUGIO.png" alt="Miniatura do vídeo Sua casa como refúgio" loading="lazy">
   </a>
-    <a href="https://www.youtube.com/watch?v=us1qNeQplBA" target="_blank" data-titulo="Oração para consagrar a casa como refúgio" aria-label="Assistir vídeo Sua casa como refúgio">
-    <img src="assets/img/Oração para consagrar a casa como refúgio.png" alt="Miniatura do vídeo Sua casa como refúgio">
+  <a href="https://www.youtube.com/watch?v=us1qNeQplBA" target="_blank" data-titulo="Oração para consagrar a casa como refúgio" aria-label="Assistir vídeo Sua casa como refúgio">
+    <img src="assets/img/Oração para consagrar a casa como refúgio.png" alt="Miniatura do vídeo Sua casa como refúgio" loading="lazy">
   </a>
 </div>
 
+<a href="todos-videos.html" class="alt-btn" style="margin-top: 1rem;">Ver todos os vídeos</a>
+
 
 <button id="scrollRight" class="scroll-button" aria-label="Rolar vídeos para a direita">
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-    <polyline points="9 18 15 12 9 6" />
-  </svg>
+  ❯
 </button>
 
 </div>
@@ -315,8 +316,7 @@ leftBtn.onclick = () => {
 rightBtn.onclick = () => {
   const first = gallery.firstElementChild;
   const width = first.offsetWidth + 16; // inclui gap
-  gallery.scrollLeft -= width; // move scroll antes de trocar
-  gallery.appendChild(first);
+gallery.scrollBy({ left: width, behavior: 'smooth' });
   atualizarDescricaoCentral();
 };
 
