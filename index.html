@@ -184,6 +184,27 @@
       width: 100px;
     }
   }
+  
+  .scroll-button {
+  background: rgba(48, 54, 61, 0.7); /* fundo escuro translúcido */
+  border: none;
+  width: 42px;
+  height: 42px;
+  cursor: pointer;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background 0.3s ease;
+  filter: drop-shadow(0 2px 8px #000);
+}
+
+.scroll-button:hover {
+  background: rgba(46, 160, 67, 0.85); /* tom verde escuro no hover */
+}
+
+
 </style>
 
 
@@ -203,11 +224,12 @@
 </h2>
 
 <div id="videoGalleryWrapper" style="display: flex; align-items: center; justify-content: center; gap: 0.6rem; max-width: 100%; overflow: hidden; padding: 0 0.5rem;">
-  <button id="scrollLeft" aria-label="Rolar vídeos para a esquerda" style="background: transparent; border: none; width: 40px; height: 40px; cursor: pointer; z-index: 2; display: flex; align-items: center; justify-content: center; filter: drop-shadow(0 2px 8px #222);">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-      <polyline points="15 18 9 12 15 6" />
-    </svg>
-  </button>
+<button id="scrollLeft" class="scroll-button" aria-label="Rolar vídeos para a esquerda">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="15 18 9 12 15 6" />
+  </svg>
+</button>
+
 
 <div id="videoGallery">
   <a href="https://www.youtube.com/watch?v=1dlvVPuDcrI" target="_blank" data-titulo="Corte Grupo Y'shua" aria-label="Assistir vídeo Corte Grupo Y'shua">
@@ -228,11 +250,12 @@
 </div>
 
 
-  <button id="scrollRight" aria-label="Rolar vídeos para a direita" style="background: transparent; border: none; width: 40px; height: 40px; cursor: pointer; z-index: 2; display: flex; align-items: center; justify-content: center; filter: drop-shadow(0 2px 8px #222);">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-      <polyline points="9 18 15 12 9 6" />
-    </svg>
-  </button>
+<button id="scrollRight" class="scroll-button" aria-label="Rolar vídeos para a direita">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="9 18 15 12 9 6" />
+  </svg>
+</button>
+
 </div>
 
 <div id="descricaoCentral" class="descricao-video"></div>
@@ -281,15 +304,22 @@
   }
 
   // Navegação por clique
+// Navegação com rolagem infinita (DOM manipulado)
 leftBtn.onclick = () => {
-  gallery.scrollBy({ left: -gallery.offsetWidth / 2, behavior: 'smooth' });
-  setTimeout(atualizarDescricaoCentral, 400); // aguarda rolagem
+  const last = gallery.lastElementChild;
+  gallery.insertBefore(last, gallery.firstElementChild);
+  gallery.scrollLeft += last.offsetWidth + 16; // ajusta scroll após mover
+  atualizarDescricaoCentral();
 };
 
 rightBtn.onclick = () => {
-  gallery.scrollBy({ left: gallery.offsetWidth / 2, behavior: 'smooth' });
-  setTimeout(atualizarDescricaoCentral, 400);
+  const first = gallery.firstElementChild;
+  const width = first.offsetWidth + 16; // inclui gap
+  gallery.scrollLeft -= width; // move scroll antes de trocar
+  gallery.appendChild(first);
+  atualizarDescricaoCentral();
 };
+
 
   // Atualiza moldura e título ao carregar ou redimensionar
   window.addEventListener('resize', atualizarDescricaoCentral);
