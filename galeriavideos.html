@@ -49,15 +49,15 @@
       gap: 1.2rem;
     }
 
-.video-item {
-  aspect-ratio: 16 / 9;
-  background: #000;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(35, 134, 54, 0.3);
-  display: flex;
-}
-
+    .video-item {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%; /* 16:9 */
+      background: #000;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(35, 134, 54, 0.3);
+    }
 
     .video-item iframe {
       position: absolute;
