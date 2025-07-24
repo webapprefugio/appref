@@ -6,6 +6,142 @@
   <title>Home | WebApp Refúgios</title>
   <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon" />
   <link rel="stylesheet" href="style/style.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+    }
+
+    nav.menu {
+      background: #880e4f;
+      color: white;
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .menu-links {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      padding: 0;
+      margin: 0;
+    }
+
+    .menu-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .menu-links a.ativo {
+      text-decoration: underline;
+    }
+
+    .secao {
+      padding: 2rem 1rem;
+      margin-bottom: 1rem;
+      background: white;
+      border-bottom: 4px solid #e0e0e0;
+    }
+
+    .secao-videos {
+      background: #fce4ec;
+    }
+
+    .secao-noticias {
+      background: #e3f2fd;
+    }
+
+    .secao-eventos {
+      background: #fff8e1;
+    }
+
+    .secao-canais {
+      background: #e8f5e9;
+    }
+
+    .secao-sites {
+      background: #ede7f6;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      font-weight: bold;
+    }
+
+    .carrossel-videos {
+      display: flex;
+      overflow-x: auto;
+      scroll-behavior: auto;
+      scroll-snap-type: x mandatory;
+    }
+
+    .video-item {
+      min-width: 300px;
+      margin-right: 1rem;
+      flex-shrink: 0;
+      scroll-snap-align: start;
+    }
+
+    .video-item iframe {
+      width: 100%;
+      height: 180px;
+    }
+
+    .descricao {
+      text-align: center;
+      font-weight: bold;
+      padding-top: 0.5rem;
+    }
+
+    .indicadores {
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    .indicadores span {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      margin: 0 3px;
+      background: #ccc;
+      border-radius: 50%;
+    }
+
+    .links-canais a,
+    .links-sites a {
+      display: inline-block;
+      margin: 0.25rem 1rem 0.25rem 0;
+      text-decoration: none;
+      color: #333;
+      background: #fff;
+      padding: 0.5rem;
+      border-radius: 4px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+
+    footer {
+      background: #880e4f;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .botao-destaque {
+      display: inline-block;
+      background: #d81b60;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 5px;
+      margin-top: 1rem;
+    }
+  </style>
 </head>
 <body>
   <nav class="menu">
@@ -33,6 +169,9 @@
         <div class="video-item"><iframe src="https://www.youtube.com/embed/N-2K2jSyNS8" allowfullscreen></iframe><div class="descricao">Refúgio espiritual</div></div>
         <div class="video-item"><iframe src="https://www.youtube.com/embed/-zc7vdmxKss" allowfullscreen></iframe><div class="descricao">Sua casa como refúgio</div></div>
         <div class="video-item"><iframe src="https://www.youtube.com/embed/us1qNeQplBA" allowfullscreen></iframe><div class="descricao">Consagração da casa</div></div>
+      </div>
+      <div class="indicadores" id="indicadores">
+        <span></span><span></span><span></span><span></span><span></span>
       </div>
     </section>
 
@@ -73,6 +212,6 @@
     &copy; 2025 - WebApp Encontre seu Refúgio
   </footer>
 
-  <script src="assets/js/index.js"></script>
+  <script src="index.js"></script>
 </body>
 </html>
