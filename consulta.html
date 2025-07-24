@@ -1,90 +1,80 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-  <title>Consulta de Cadastros | WebApp Refúgios</title>
-  <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon" />
-
-    <nav class="navbar">
-    <div class="logo"></div>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="cadastro.html">Cadastro</a></li>
-      <li><a href="login.html">Login</a></li>
-      <li><a href="sobre.html">Sobre</a></li>
-    </ul>
-  </nav>
-  
-</head>
-<body>
-
-
-  <main>
-    <div class="container">
-      <h1>Consulta de Cadastros</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>Perfil Social</th>
-            <th>UF</th>
-            <th>Cidade</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-      <p class="restriction-note">Esta página é restrita aos usuários logados</p>
-    </div>
-  </main>
-
-    <footer>
-      <div>
-        <a href="cadastro.html">Junte-se a nós!</a>
-      </div>
-      &copy; 2025 - WebApp Encontre seu Refúgio
-    </footer>
-  </script>
-
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-  <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyCzg9Pr8-7UGv7f451Vx30WpzwRcsGd_qs",
-      authDomain: "appref-projeto.firebaseapp.com",
-      projectId: "appref-projeto",
-      storageBucket: "appref-projeto.appspot.com",
-      messagingSenderId: "80380853942",
-      appId: "1:80380853942:web:2320fa16fa06f2ffa77017"
-    };
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
-
-    window.addEventListener('DOMContentLoaded', () => {
-      const tabela = document.querySelector('tbody');
-      if (!tabela) return;
-
-      db.collection("usuarios").orderBy("criadoEm", "desc").get()
-        .then(snapshot => {
-          tabela.innerHTML = ""; // limpa tabela
-          snapshot.forEach(doc => {
-            const u = doc.data();
-            // Mantendo a validação, pois é lógica de dados, não estilização
-            if (!u.email || !u.senha || !u.uf || !u.cidade || !u.linkPerfil) return; 
-
-            tabela.innerHTML += `
-              <tr>
-                <td><a href="${u.linkPerfil}" target="_blank" rel="noopener">Contacte-me</a></td>
-                <td>${u.uf}</td>
-                <td>${u.cidade}</td>
-              </tr>
-            `;
-          });
-        })
-        .catch(err => {
-          console.error("Erro ao buscar dados:", err);
-          tabela.innerHTML = '<tr><td colspan="3">Erro ao carregar dados.</td></tr>';
-        });
-    });
-  </script>
-</body>
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+      <title>Consulta de Cadastros | WebApp Refúgios</title>
+      <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon" />
+      <nav class="navbar">
+         <div class="logo"></div>
+         <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="cadastro.html">Cadastro</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="sobre.html">Sobre</a></li>
+         </ul>
+      </nav>
+   </head>
+   <body>
+      <main>
+         <div class="container">
+            <h1>Consulta de Cadastros</h1>
+            <table>
+               <thead>
+                  <tr>
+                     <th>Perfil Social</th>
+                     <th>UF</th>
+                     <th>Cidade</th>
+                  </tr>
+               </thead>
+               <tbody></tbody>
+            </table>
+            <p class="restriction-note">Esta página é restrita aos usuários logados</p>
+         </div>
+      </main>
+      <footer>
+         <div>
+            <a href="cadastro.html">Junte-se a nós!</a>
+         </div>
+         &copy; 2025 - WebApp Encontre seu Refúgio
+      </footer>
+      </script>
+      <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+      <script>
+         const firebaseConfig = {
+           apiKey: "AIzaSyCzg9Pr8-7UGv7f451Vx30WpzwRcsGd_qs",
+           authDomain: "appref-projeto.firebaseapp.com",
+           projectId: "appref-projeto",
+           storageBucket: "appref-projeto.appspot.com",
+           messagingSenderId: "80380853942",
+           appId: "1:80380853942:web:2320fa16fa06f2ffa77017"
+         };
+         firebase.initializeApp(firebaseConfig);
+         const db = firebase.firestore();
+         window.addEventListener('DOMContentLoaded', () => {
+           const tabela = document.querySelector('tbody');
+           if (!tabela) return;
+           db.collection("usuarios").orderBy("criadoEm", "desc").get()
+             .then(snapshot => {
+               tabela.innerHTML = ""; 
+               snapshot.forEach(doc => {
+                 const u = doc.data();
+                 if (!u.email || !u.senha || !u.uf || !u.cidade || !u.linkPerfil) return; 
+                 tabela.innerHTML += `
+                   <tr>
+                     <td><a href="${u.linkPerfil}" target="_blank" rel="noopener">Contacte-me</a></td>
+                     <td>${u.uf}</td>
+                     <td>${u.cidade}</td>
+                   </tr>
+                 `;
+               });
+             })
+             .catch(err => {
+               console.error("Erro ao buscar dados:", err);
+               tabela.innerHTML = '<tr><td colspan="3">Erro ao carregar dados.</td></tr>';
+             });
+         });
+      </script>
+   </body>
 </html>
