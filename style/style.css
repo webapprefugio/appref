@@ -1,0 +1,166 @@
+/* style.css - Estilo principal */
+
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  line-height: 1.6;
+  color: #222;
+  background-color: #fefefe;
+  padding: 1rem;
+}
+
+nav.menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #5b3e96;
+  padding: 1rem;
+  color: white;
+}
+
+.menu .logo {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.menu-links {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+
+.menu-links a {
+  text-decoration: none;
+  color: white;
+}
+
+.menu-links a.ativo {
+  font-weight: bold;
+  border-bottom: 2px solid #fff;
+}
+
+main {
+  padding: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.boas-vindas {
+  text-align: center;
+}
+
+.botao-destaque {
+  display: inline-block;
+  background-color: #5b3e96;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 1rem;
+  transition: background-color 0.3s;
+}
+
+.botao-destaque:hover {
+  background-color: #432e70;
+}
+
+.carrossel-videos {
+  display: flex;
+  overflow-x: auto;
+  gap: 16px;
+  scroll-behavior: smooth;
+  padding-bottom: 1rem;
+  scroll-snap-type: x mandatory;
+}
+
+.carrossel-videos:hover {
+  cursor: grab;
+}
+
+.video-item {
+  min-width: 300px;
+  flex-shrink: 0;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  scroll-snap-align: center;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.video-item iframe {
+  width: 100%;
+  height: 180px;
+  border: none;
+  display: block;
+}
+
+.video-item.central {
+  transform: scale(1.05);
+  opacity: 1;
+}
+
+.video-item:not(.central) {
+  opacity: 0.6;
+}
+
+.indicadores {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+  font-size: 22px;
+}
+
+.indicadores span {
+  color: #999;
+  transition: color 0.3s ease;
+  cursor: default;
+}
+
+.indicadores .ativo {
+  color: #5b3e96;
+  font-size: 28px;
+}
+
+footer {
+  text-align: center;
+  padding: 2rem 0;
+  background-color: #eee;
+  margin-top: 2rem;
+}
+
+.links-canais, .links-sites {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.links-canais a, .links-sites a {
+  text-decoration: none;
+  color: #5b3e96;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .menu-links {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .video-item iframe {
+    height: 160px;
+  }
+
+  .botao-destaque {
+    width: 100%;
+    text-align: center;
+  }
+}
