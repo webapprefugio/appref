@@ -2,12 +2,10 @@ const carrossel = document.getElementById("videoGallery");
 const indicadores = document.getElementById("indicadores").children;
 let videoItems = Array.from(document.querySelectorAll(".video-item"));
 
-// Clona os vídeos no final e no início
+// Clona os vídeos para criar efeito de rolagem infinita
 videoItems.forEach((item) => {
-  const cloneFim = item.cloneNode(true);
-  const cloneInicio = item.cloneNode(true);
-  carrossel.appendChild(cloneFim);
-  carrossel.insertBefore(cloneInicio, carrossel.firstChild);
+  const clone = item.cloneNode(true);
+  carrossel.appendChild(clone);
 });
 
 videoItems = Array.from(document.querySelectorAll(".video-item"));
@@ -15,37 +13,48 @@ videoItems = Array.from(document.querySelectorAll(".video-item"));
 // Define o tamanho de um item (incluindo margem se houver)
 const itemWidth = videoItems[0].offsetWidth + 16;
 
-// Inicializa na posição correta (primeiro original)
-carrossel.scrollLeft = itemWidth * indicadores.length;
-
 function autoScroll() {
   carrossel.scrollLeft += itemWidth;
 
-  // Se passar do final dos originais, volta para o início
-  if (carrossel.scrollLeft >= itemWidth * (indicadores.length * 2)) {
-    carrossel.scrollLeft = itemWidth * indicadores.length;
+  // Se chegar ao final da galeria, volta para o início
+  if (carrossel.scrollLeft >= carrossel.scrollWidth / 2) {
+    carrossel.scrollLeft = 0;
   }
 
   atualizarIndicadores();
 }
 
-// Atualiza os indicadores com base na posição
 function atualizarIndicadores() {
-  const indexAtual = Math.floor(carrossel.scrollLeft / itemWidth) % indicadores.length;
+  const totalIndicadores = indicadores.length;
+  const indexAtual = Math.floor(carrossel.scrollLeft / itemWidth) % totalIndicadores;
   Array.from(indicadores).forEach((dot, i) => {
     dot.style.background = i === indexAtual ? "#880e4f" : "#ccc";
   });
 }
 
-// Autoplay a cada 7 segundos
+// Rola automaticamente a cada 7 segundos
 let scrollInterval = setInterval(autoScroll, 7000);
+let timeoutRestartAutoScroll;
 
-// Reforça rolagem infinita manual (para trás e frente)
+function pararAutoScrollTemporariamente() {
+  clearInterval(scrollInterval);
+  clearTimeout(timeoutRestartAutoScroll);
+
+  // Reinicia autoScroll após 10 segundos de inatividade
+  timeoutRestartAutoScroll = setTimeout(() => {
+    scrollInterval = setInterval(autoScroll, 7000);
+  }, 10000);
+}
+
+carrossel.addEventListener("touchstart", pararAutoScrollTemporariamente);
+carrossel.addEventListener("mousedown", pararAutoScrollTemporariamente);
+
+// Reforça rolagem infinita também ao rolar manualmente
 carrossel.addEventListener("scroll", () => {
-  if (carrossel.scrollLeft >= itemWidth * (indicadores.length * 2)) {
-    carrossel.scrollLeft = itemWidth * indicadores.length;
-  } else if (carrossel.scrollLeft <= itemWidth * (indicadores.length - 1)) {
-    carrossel.scrollLeft = itemWidth * (indicadores.length + 1);
+  if (carrossel.scrollLeft >= carrossel.scrollWidth / 2) {
+    carrossel.scrollLeft = 0;
+  } else if (carrossel.scrollLeft <= 0) {
+    carrossel.scrollLeft = carrossel.scrollWidth / 2;
   }
 
   atualizarIndicadores();

@@ -17,7 +17,7 @@ body {
   position: fixed;
   top: 0;
   width: 100%;
-  background-color: #1465bb;
+  background-color: #1465bb; /* azul manto */
   color: white;
   display: flex;
   justify-content: space-between;
@@ -31,6 +31,7 @@ body {
   height: 40px;
   background-image: url("../assets/img/favicon.ico");
   background-size: cover;
+  background-repeat: no-repeat;
 }
 .menu-links {
   list-style: none;
@@ -44,7 +45,7 @@ body {
 }
 .menu-links li a.ativo,
 .menu-links li a:hover {
-  border-bottom: 2px solid #bd0003;
+  border-bottom: 2px solid #bd0003; /* vermelho sangue */
 }
 
 /* Seções */
@@ -52,14 +53,36 @@ body {
   padding: 40px 20px;
   max-width: 1000px;
   margin: auto;
+  background-color: #f9fbfd; /* tom azul claríssimo */
 }
 .secao h2 {
   font-size: 1.2rem;
-  color: #003366;
+  color: #003366; /* azul escuro harmônico */
   margin-bottom: 20px;
 }
 .secao p {
   margin-bottom: 20px;
+}
+
+/* Boas-vindas */
+.secao.boas-vindas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 60px 20px;
+}
+.secao.boas-vindas h1 {
+  font-size: 2rem;
+  color: #003366;
+  margin-bottom: 20px;
+}
+.secao.boas-vindas p {
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin-bottom: 30px;
+  color: #333;
 }
 
 /* Botão de destaque */
@@ -67,16 +90,16 @@ body {
   display: inline-block;
   background-color: #bd0003;
   color: white;
-  padding: 12px 24px;
+  padding: 15px 30px;
   border-radius: 30px;
   font-weight: bold;
+  font-size: 1.1rem;
   text-decoration: none;
   text-align: center;
-  margin-top: 20px;
   transition: background 0.3s;
 }
 .botao-destaque:hover {
-  background-color: #bd0003;
+  background-color: #aa184f;
 }
 
 /* Carrossel de vídeos */
@@ -153,6 +176,7 @@ footer {
   color: white;
   padding: 20px;
   text-align: center;
+  border-top: 2px solid #ccc; /* divisória sutil */
 }
 footer a {
   color: #ffcccb;
