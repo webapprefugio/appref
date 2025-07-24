@@ -17,7 +17,7 @@ body {
   position: fixed;
   top: 0;
   width: 100%;
-  background-color: #003366;
+  background-color: #1465bb;
   color: white;
   display: flex;
   justify-content: space-between;
@@ -44,7 +44,7 @@ body {
 }
 .menu-links li a.ativo,
 .menu-links li a:hover {
-  border-bottom: 2px solid #ff0000;
+  border-bottom: 2px solid #bd0003;
 }
 
 /* Seções */
@@ -54,7 +54,7 @@ body {
   margin: auto;
 }
 .secao h2 {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: #003366;
   margin-bottom: 20px;
 }
@@ -65,7 +65,7 @@ body {
 /* Botão de destaque */
 .botao-destaque {
   display: inline-block;
-  background-color: #880e4f;
+  background-color: #bd0003;
   color: white;
   padding: 12px 24px;
   border-radius: 30px;
@@ -76,7 +76,7 @@ body {
   transition: background 0.3s;
 }
 .botao-destaque:hover {
-  background-color: #aa145c;
+  background-color: #bd0003;
 }
 
 /* Carrossel de vídeos */
