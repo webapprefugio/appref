@@ -1,167 +1,176 @@
-/* style.css */
-
-/* Reset */
+/* Reset e base */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-
 body {
   font-family: Arial, sans-serif;
-  background-color: #f4f9ff; /* azul claríssimo - fundo geral */
-  color: #002f6c;
+  background-color: #fdfdfd;
+  color: #222;
+  line-height: 1.6;
+  padding-top: 60px;
 }
 
 /* Menu */
-nav.menu {
-  background-color: #002f6c;
+.menu {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #003366;
   color: white;
-  padding: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 10px 20px;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
-
+.menu .logo {
+  width: 40px;
+  height: 40px;
+  background-image: url("../assets/img/favicon.ico");
+  background-size: cover;
+}
 .menu-links {
   list-style: none;
   display: flex;
-  gap: 1rem;
+  gap: 20px;
 }
-
-.menu-links a {
+.menu-links li a {
   color: white;
   text-decoration: none;
   font-weight: bold;
-  padding: 0.5rem;
-  border-radius: 4px;
 }
-
-.menu-links a.ativo {
-  background-color: #0052a0;
+.menu-links li a.ativo,
+.menu-links li a:hover {
+  border-bottom: 2px solid #ff0000;
 }
 
 /* Seções */
 .secao {
-  background-color: #f9fcff; /* cor quase igual ao body, mas levemente destacada */
-  padding: 2rem 1rem;
-  margin-bottom: 1rem;
-  border-bottom: 2px solid #dde8f2;
+  padding: 40px 20px;
+  max-width: 1000px;
+  margin: auto;
 }
-
 .secao h2 {
   font-size: 1.5rem;
-  margin-bottom: 1rem;
-  color: #d81b60; /* destaque vermelho sangue para os títulos */
+  color: #003366;
+  margin-bottom: 20px;
 }
-
 .secao p {
-  font-size: 1rem;
-  color: #002f6c;
+  margin-bottom: 20px;
 }
 
-.secao.boas-vindas h1,
-.secao.boas-vindas p {
-  text-align: center;
-}
-
-.secao.boas-vindas h1 {
-  color: #002f6c;
-  margin-bottom: 1rem;
-}
-
+/* Botão de destaque */
 .botao-destaque {
-  display: block;
-  margin: 1.5rem auto 0;
-  background-color: #d81b60;
+  display: inline-block;
+  background-color: #880e4f;
   color: white;
-  padding: 0.75rem 1.5rem;
-  text-decoration: none;
+  padding: 12px 24px;
+  border-radius: 30px;
   font-weight: bold;
-  font-size: 1.2rem;
-  border-radius: 8px;
+  text-decoration: none;
   text-align: center;
-  width: max-content;
+  margin-top: 20px;
+  transition: background 0.3s;
+}
+.botao-destaque:hover {
+  background-color: #aa145c;
 }
 
-/* Carrossel */
+/* Carrossel de vídeos */
 .carrossel-videos {
   display: flex;
   overflow-x: auto;
-  scroll-behavior: auto;
-  scroll-snap-type: x mandatory;
-  padding-bottom: 1rem;
+  scroll-behavior: smooth;
+  padding-bottom: 10px;
+  gap: 16px;
 }
-
+.carrossel-videos::-webkit-scrollbar {
+  display: none;
+}
 .video-item {
-  min-width: 300px;
-  margin-right: 1rem;
+  min-width: 320px;
+  max-width: 320px;
   flex-shrink: 0;
-  scroll-snap-align: start;
-  background: white;
-  border-radius: 6px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
-  padding: 0.5rem;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
-
 .video-item iframe {
   width: 100%;
   height: 180px;
   border: none;
 }
-
-.descricao {
+.video-item .descricao {
+  padding: 8px;
   text-align: center;
-  font-weight: bold;
-  margin-top: 0.5rem;
-  color: #002f6c;
+  font-size: 0.9rem;
+  background-color: #f1f1f1;
 }
 
-/* Indicadores (pontinhos) */
+/* Indicadores do carrossel */
 .indicadores {
   text-align: center;
-  margin-top: 1rem;
+  margin-top: 10px;
 }
-
 .indicadores span {
   display: inline-block;
   width: 10px;
   height: 10px;
-  margin: 0 3px;
+  margin: 0 5px;
   background: #ccc;
   border-radius: 50%;
+  transition: background 0.3s;
 }
 
-/* Links de canais e sites */
+/* Links recomendados */
+.links-canais,
+.links-sites {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
 .links-canais a,
 .links-sites a {
-  display: inline-block;
-  margin: 0.5rem 1rem 0.5rem 0;
+  padding: 8px 12px;
+  background-color: #e3f2fd;
+  color: #003366;
+  border-radius: 6px;
   text-decoration: none;
-  color: #002f6c;
-  background-color: #fff;
-  padding: 0.5rem 0.75rem;
-  border-radius: 4px;
-  font-weight: bold;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.05);
-  transition: background-color 0.2s;
+  font-weight: 500;
 }
-
 .links-canais a:hover,
 .links-sites a:hover {
-  background-color: #e1efff;
+  background-color: #bbdefb;
 }
 
 /* Rodapé */
 footer {
-  background-color: #002f6c;
+  background-color: #003366;
   color: white;
+  padding: 20px;
   text-align: center;
-  padding: 1.5rem 1rem;
-  font-size: 0.9rem;
+}
+footer a {
+  color: #ffcccb;
+  text-decoration: none;
+  font-weight: bold;
+}
+footer a:hover {
+  text-decoration: underline;
 }
 
-footer a {
-  color: #fff;
-  text-decoration: underline;
+/* Responsivo */
+@media (max-width: 768px) {
+  .video-item {
+    min-width: 280px;
+    max-width: 280px;
+  }
+  .menu-links {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }

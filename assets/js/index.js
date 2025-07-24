@@ -1,47 +1,49 @@
 const carrossel = document.getElementById("videoGallery");
 const indicadores = document.getElementById("indicadores").children;
-let videoItems = document.querySelectorAll(".video-item");
+let videoItems = Array.from(document.querySelectorAll(".video-item"));
 
-// Clona os vídeos para permitir rolagem infinita visual
+// Clona os vídeos para criar efeito de rolagem infinita
 videoItems.forEach((item) => {
   const clone = item.cloneNode(true);
   carrossel.appendChild(clone);
 });
 
-videoItems = document.querySelectorAll(".video-item"); // Atualiza após clonar
+videoItems = Array.from(document.querySelectorAll(".video-item"));
 
-// Configurações
-let scrollSpeed = 1; // pixels por passo
-let stepTime = 15; // milissegundos entre passos
+// Define o tamanho de um item (incluindo margem se houver)
+const itemWidth = videoItems[0].offsetWidth + 16;
 
 function autoScroll() {
-  carrossel.scrollLeft += scrollSpeed;
+  carrossel.scrollLeft += itemWidth;
 
-  const itemWidth = videoItems[0].offsetWidth + 16;
-  const totalWidth = itemWidth * videoItems.length;
-
-  // Se passou da metade (fim dos originais), reseta
-  if (carrossel.scrollLeft >= totalWidth / 2) {
+  // Se chegar ao final da galeria, volta para o início
+  if (carrossel.scrollLeft >= carrossel.scrollWidth / 2) {
     carrossel.scrollLeft = 0;
   }
 
-  // Atualiza indicador
-  const totalVideos = indicadores.length;
-  const indexAtual = Math.floor(carrossel.scrollLeft / itemWidth) % totalVideos;
+  // Atualiza os indicadores
+  const totalIndicadores = indicadores.length;
+  const indexAtual = Math.floor(carrossel.scrollLeft / itemWidth) % totalIndicadores;
   Array.from(indicadores).forEach((dot, i) => {
     dot.style.background = i === indexAtual ? "#880e4f" : "#ccc";
   });
 }
 
-let scrollInterval = setInterval(autoScroll, stepTime);
+// Rola automaticamente a cada 4 segundos
+let scrollInterval = setInterval(autoScroll, 4000);
 
-// Restaura rolagem infinita mesmo com rolagem manual
+// Reforça rolagem infinita também ao rolar manualmente
 carrossel.addEventListener("scroll", () => {
-  const itemWidth = videoItems[0].offsetWidth + 16;
-  const totalWidth = itemWidth * videoItems.length;
-  if (carrossel.scrollLeft >= totalWidth / 2) {
+  if (carrossel.scrollLeft >= carrossel.scrollWidth / 2) {
     carrossel.scrollLeft = 0;
   } else if (carrossel.scrollLeft <= 0) {
-    carrossel.scrollLeft = totalWidth / 2;
+    carrossel.scrollLeft = carrossel.scrollWidth / 2;
   }
+
+  // Atualiza os indicadores manualmente
+  const totalIndicadores = indicadores.length;
+  const indexAtual = Math.floor(carrossel.scrollLeft / itemWidth) % totalIndicadores;
+  Array.from(indicadores).forEach((dot, i) => {
+    dot.style.background = i === indexAtual ? "#880e4f" : "#ccc";
+  });
 });
