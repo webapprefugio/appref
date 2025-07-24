@@ -71,7 +71,7 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 80px 20px;
+  padding: 60px 20px;
   background-color: #f9fbfd;
 }
 .secao.boas-vindas h1 {
@@ -84,9 +84,6 @@ body {
   max-width: 600px;
   margin-bottom: 30px;
   color: #333;
-}
-.secao.boas-vindas .botao-destaque {
-  margin: 0 auto;
 }
 
 /* Botão de destaque */
@@ -101,6 +98,7 @@ body {
   text-decoration: none;
   text-align: center;
   transition: background 0.3s;
+  margin: 0 auto;
 }
 .botao-destaque:hover {
   background-color: #aa184f;
@@ -138,42 +136,40 @@ body {
   background-color: #f1f1f1;
 }
 
-/* Indicadores do carrossel */
-.indicadores {
+/* Controle do carrossel */
+.controle-carrossel {
   display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
+  gap: 10px;
   margin-top: 20px;
+}
+.seta-carrossel {
   font-size: 1.5rem;
-  user-select: none;
-}
-
-.indicadores .dot {
-  cursor: default;
-  font-size: 1.4rem;
-  opacity: 0.5;
-}
-
-.indicadores .dot.ativo {
-  opacity: 1;
-  color: #bd0003;
-}
-
-.indicadores .seta-esquerda,
-.indicadores .seta-direita {
   cursor: pointer;
-  font-size: 1.6rem;
-  color: #003366;
+  color: #1465bb;
+  user-select: none;
   transition: transform 0.2s;
 }
-
-.indicadores .seta-esquerda:hover,
-.indicadores .seta-direita:hover {
+.seta-carrossel:hover {
   transform: scale(1.2);
-  color: #bd0003;
 }
 
+/* Indicadores com bolinhas */
+.indicadores {
+  display: flex;
+  gap: 8px;
+  font-size: 1.2rem;
+  align-items: center;
+}
+.indicadores span {
+  color: #bbb;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+.indicadores span.ativo {
+  color: #880e4f;
+}
 
 /* Links recomendados */
 .links-canais,
@@ -203,7 +199,6 @@ footer {
   padding: 20px;
   text-align: center;
   border-top: 4px solid #bd0003;
-  font-size: 0.9rem;
 }
 footer a {
   color: #ffcccb;
