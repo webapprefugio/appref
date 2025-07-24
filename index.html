@@ -23,8 +23,7 @@
 
   </head>
   <body>
-    <div id="menu"></div>
-    <script src="js/menu-loader.js"></script>
+
 
     <main>
       <section class="container">
@@ -102,13 +101,12 @@
       </section>
     </main>
 
-    <div id="rodape"></div>
-    <script>
-      fetch('rodape.html')
-        .then(res => res.text())
-        .then(html => {
-          document.getElementById('rodape').innerHTML = html;
-        });
+    <footer>
+      <div>
+        <a href="cadastro.html">Junte-se a nós!</a>
+      </div>
+      &copy; 2025 - WebApp Encontre seu Refúgio
+    </footer>
     </script>
 
     <script>

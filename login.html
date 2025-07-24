@@ -5,11 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Login | WebApp Refúgios</title>
     <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
+
+      <nav class="navbar">
+    <div class="logo"></div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="cadastro.html">Cadastro</a></li>
+      <li><a href="login.html">Login</a></li>
+      <li><a href="sobre.html">Sobre</a></li>
+    </ul>
+  </nav>
+
+  
 </head>
 <body>
 
-<div id="menu"></div>
-<script src="js/menu-loader.js"></script>
+
 
     <main>
         <div class="container">
@@ -30,13 +41,12 @@
             </form>
         </div>
     </main>
-<div id="rodape"></div>
-<script>
-    fetch('rodape.html')
-        .then(res => res.text())
-        .then(html => {
-            document.getElementById('rodape').innerHTML = html;
-        });
+    <footer>
+      <div>
+        <a href="cadastro.html">Junte-se a nós!</a>
+      </div>
+      &copy; 2025 - WebApp Encontre seu Refúgio
+    </footer>
 </script>
 
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
