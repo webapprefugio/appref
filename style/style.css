@@ -1,17 +1,21 @@
-/* Reset básico */
+/* style.css */
+
+/* Reset */
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
 body {
-  margin: 0;
   font-family: Arial, sans-serif;
-  background: #f5f5f5;
+  background-color: #f4f9ff; /* azul claríssimo - fundo geral */
+  color: #002f6c;
 }
 
 /* Menu */
 nav.menu {
-  background: #880e4f;
+  background-color: #002f6c;
   color: white;
   padding: 1rem;
   display: flex;
@@ -19,67 +23,74 @@ nav.menu {
   align-items: center;
 }
 
-nav .logo {
-  font-weight: bold;
-  font-size: 1.2rem;
-}
-
 .menu-links {
   list-style: none;
   display: flex;
   gap: 1rem;
-  padding: 0;
-  margin: 0;
 }
 
 .menu-links a {
   color: white;
   text-decoration: none;
   font-weight: bold;
+  padding: 0.5rem;
+  border-radius: 4px;
 }
 
 .menu-links a.ativo {
-  text-decoration: underline;
+  background-color: #0052a0;
 }
 
 /* Seções */
 .secao {
+  background-color: #f9fcff; /* cor quase igual ao body, mas levemente destacada */
   padding: 2rem 1rem;
   margin-bottom: 1rem;
-  background: white;
-  border-bottom: 4px solid #e0e0e0;
+  border-bottom: 2px solid #dde8f2;
 }
 
-.secao-videos { background: #fce4ec; }
-.secao-noticias { background: #e3f2fd; }
-.secao-eventos { background: #fff8e1; }
-.secao-canais { background: #e8f5e9; }
-.secao-sites { background: #ede7f6; }
-
-h1, h2 {
+.secao h2 {
   font-size: 1.5rem;
   margin-bottom: 1rem;
-  font-weight: bold;
+  color: #d81b60; /* destaque vermelho sangue para os títulos */
 }
 
-/* Botão destaque */
+.secao p {
+  font-size: 1rem;
+  color: #002f6c;
+}
+
+.secao.boas-vindas h1,
+.secao.boas-vindas p {
+  text-align: center;
+}
+
+.secao.boas-vindas h1 {
+  color: #002f6c;
+  margin-bottom: 1rem;
+}
+
 .botao-destaque {
-  display: inline-block;
-  background: #d81b60;
+  display: block;
+  margin: 1.5rem auto 0;
+  background-color: #d81b60;
   color: white;
   padding: 0.75rem 1.5rem;
   text-decoration: none;
   font-weight: bold;
-  border-radius: 5px;
-  margin-top: 1rem;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  text-align: center;
+  width: max-content;
 }
 
-/* Carrossel de vídeos */
+/* Carrossel */
 .carrossel-videos {
   display: flex;
   overflow-x: auto;
   scroll-behavior: auto;
   scroll-snap-type: x mandatory;
+  padding-bottom: 1rem;
 }
 
 .video-item {
@@ -87,6 +98,10 @@ h1, h2 {
   margin-right: 1rem;
   flex-shrink: 0;
   scroll-snap-align: start;
+  background: white;
+  border-radius: 6px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+  padding: 0.5rem;
 }
 
 .video-item iframe {
@@ -98,10 +113,11 @@ h1, h2 {
 .descricao {
   text-align: center;
   font-weight: bold;
-  padding-top: 0.5rem;
+  margin-top: 0.5rem;
+  color: #002f6c;
 }
 
-/* Indicadores */
+/* Indicadores (pontinhos) */
 .indicadores {
   text-align: center;
   margin-top: 1rem;
@@ -114,37 +130,38 @@ h1, h2 {
   margin: 0 3px;
   background: #ccc;
   border-radius: 50%;
-  transition: background 0.3s ease;
 }
 
-/* Canais e Sites */
+/* Links de canais e sites */
 .links-canais a,
 .links-sites a {
   display: inline-block;
-  margin: 0.25rem 1rem 0.25rem 0;
+  margin: 0.5rem 1rem 0.5rem 0;
   text-decoration: none;
-  color: #333;
-  background: #fff;
-  padding: 0.5rem;
+  color: #002f6c;
+  background-color: #fff;
+  padding: 0.5rem 0.75rem;
   border-radius: 4px;
-  box-shadow: 0 0 5px rgba(0,0,0,0.1);
-  transition: background 0.2s ease;
+  font-weight: bold;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.05);
+  transition: background-color 0.2s;
 }
 
 .links-canais a:hover,
 .links-sites a:hover {
-  background: #f1f1f1;
+  background-color: #e1efff;
 }
 
 /* Rodapé */
 footer {
-  background: #880e4f;
+  background-color: #002f6c;
   color: white;
   text-align: center;
-  padding: 1rem;
+  padding: 1.5rem 1rem;
+  font-size: 0.9rem;
 }
 
 footer a {
-  color: white;
+  color: #fff;
   text-decoration: underline;
 }

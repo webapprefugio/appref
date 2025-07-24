@@ -1,29 +1,33 @@
 const carrossel = document.getElementById("videoGallery");
 const indicadores = document.getElementById("indicadores").children;
-const videoItems = document.querySelectorAll(".video-item");
+let videoItems = document.querySelectorAll(".video-item");
 
-// Clona os vídeos para permitir rolagem infinita
+// Clona os vídeos para permitir rolagem infinita visual
 videoItems.forEach((item) => {
-  carrossel.appendChild(item.cloneNode(true));
+  const clone = item.cloneNode(true);
+  carrossel.appendChild(clone);
 });
 
-// Configurações de rolagem automática
+videoItems = document.querySelectorAll(".video-item"); // Atualiza após clonar
+
+// Configurações
 let scrollSpeed = 1; // pixels por passo
-let stepTime = 20; // milissegundos entre passos
+let stepTime = 15; // milissegundos entre passos
 
 function autoScroll() {
   carrossel.scrollLeft += scrollSpeed;
 
-  // Quando chega no final, volta ao início (efeito infinito)
-  if (carrossel.scrollLeft >= carrossel.scrollWidth / 2) {
+  const itemWidth = videoItems[0].offsetWidth + 16;
+  const totalWidth = itemWidth * videoItems.length;
+
+  // Se passou da metade (fim dos originais), reseta
+  if (carrossel.scrollLeft >= totalWidth / 2) {
     carrossel.scrollLeft = 0;
   }
 
-  // Atualiza indicador central (baseado na posição do carrossel)
+  // Atualiza indicador
   const totalVideos = indicadores.length;
-  const videoWidth = videoItems[0].offsetWidth + 16; // largura + margem
-  const indexAtual = Math.floor(carrossel.scrollLeft / videoWidth) % totalVideos;
-
+  const indexAtual = Math.floor(carrossel.scrollLeft / itemWidth) % totalVideos;
   Array.from(indicadores).forEach((dot, i) => {
     dot.style.background = i === indexAtual ? "#880e4f" : "#ccc";
   });
@@ -31,11 +35,13 @@ function autoScroll() {
 
 let scrollInterval = setInterval(autoScroll, stepTime);
 
-// Restaura a rolagem infinita mesmo se o usuário rolar manualmente
+// Restaura rolagem infinita mesmo com rolagem manual
 carrossel.addEventListener("scroll", () => {
-  if (carrossel.scrollLeft >= carrossel.scrollWidth / 2) {
+  const itemWidth = videoItems[0].offsetWidth + 16;
+  const totalWidth = itemWidth * videoItems.length;
+  if (carrossel.scrollLeft >= totalWidth / 2) {
     carrossel.scrollLeft = 0;
   } else if (carrossel.scrollLeft <= 0) {
-    carrossel.scrollLeft = carrossel.scrollWidth / 2;
+    carrossel.scrollLeft = totalWidth / 2;
   }
 });

@@ -6,146 +6,10 @@
   <title>Home | WebApp Refúgios</title>
   <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon" />
   <link rel="stylesheet" href="style/style.css" />
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f5f5f5;
-    }
-
-    nav.menu {
-      background: #880e4f;
-      color: white;
-      padding: 1rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .menu-links {
-      list-style: none;
-      display: flex;
-      gap: 1rem;
-      padding: 0;
-      margin: 0;
-    }
-
-    .menu-links a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .menu-links a.ativo {
-      text-decoration: underline;
-    }
-
-    .secao {
-      padding: 2rem 1rem;
-      margin-bottom: 1rem;
-      background: white;
-      border-bottom: 4px solid #e0e0e0;
-    }
-
-    .secao-videos {
-      background: #fce4ec;
-    }
-
-    .secao-noticias {
-      background: #e3f2fd;
-    }
-
-    .secao-eventos {
-      background: #fff8e1;
-    }
-
-    .secao-canais {
-      background: #e8f5e9;
-    }
-
-    .secao-sites {
-      background: #ede7f6;
-    }
-
-    h2 {
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-      font-weight: bold;
-    }
-
-    .carrossel-videos {
-      display: flex;
-      overflow-x: auto;
-      scroll-behavior: auto;
-      scroll-snap-type: x mandatory;
-    }
-
-    .video-item {
-      min-width: 300px;
-      margin-right: 1rem;
-      flex-shrink: 0;
-      scroll-snap-align: start;
-    }
-
-    .video-item iframe {
-      width: 100%;
-      height: 180px;
-    }
-
-    .descricao {
-      text-align: center;
-      font-weight: bold;
-      padding-top: 0.5rem;
-    }
-
-    .indicadores {
-      text-align: center;
-      margin-top: 1rem;
-    }
-
-    .indicadores span {
-      display: inline-block;
-      width: 10px;
-      height: 10px;
-      margin: 0 3px;
-      background: #ccc;
-      border-radius: 50%;
-    }
-
-    .links-canais a,
-    .links-sites a {
-      display: inline-block;
-      margin: 0.25rem 1rem 0.25rem 0;
-      text-decoration: none;
-      color: #333;
-      background: #fff;
-      padding: 0.5rem;
-      border-radius: 4px;
-      box-shadow: 0 0 5px rgba(0,0,0,0.1);
-    }
-
-    footer {
-      background: #880e4f;
-      color: white;
-      text-align: center;
-      padding: 1rem;
-    }
-
-    .botao-destaque {
-      display: inline-block;
-      background: #d81b60;
-      color: white;
-      padding: 0.75rem 1.5rem;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 5px;
-      margin-top: 1rem;
-    }
-  </style>
 </head>
 <body>
   <nav class="menu">
-    <div class="logo">Refúgios</div>
+    <div class="logo"></div>
     <ul class="menu-links">
       <li><a href="index.html" class="ativo">Home</a></li>
       <li><a href="cadastro.html">Cadastro</a></li>
@@ -161,7 +25,7 @@
       <a href="cadastro.html" class="botao-destaque">Quero me cadastrar!</a>
     </section>
 
-    <section class="secao secao-videos">
+    <section class="secao">
       <h2>▶ Veja sobre o que se trata os Refúgios</h2>
       <div id="videoGallery" class="carrossel-videos">
         <div class="video-item"><iframe src="https://www.youtube.com/embed/1dlvVPuDcrI" allowfullscreen></iframe><div class="descricao">Corte Grupo Y'shua</div></div>
@@ -175,17 +39,17 @@
       </div>
     </section>
 
-    <section class="secao secao-noticias">
+    <section class="secao">
       <h2>📰 Notícias Diárias</h2>
       <p>Em breve você poderá acompanhar aqui as últimas notícias e revelações de fontes confiáveis do meio católico.</p>
     </section>
 
-    <section class="secao secao-eventos">
+    <section class="secao">
       <h2>📆 Eventos, Lives e Postagens de Parceiros</h2>
       <p>Acompanhe os convites para transmissões ao vivo, encontros e conteúdos especiais de nossos parceiros.</p>
     </section>
 
-    <section class="secao secao-canais">
+    <section class="secao">
       <h2>📺 Canais Recomendados</h2>
       <div class="links-canais">
         <a href="https://www.youtube.com/@grupoyshua" target="_blank">Grupo Y'shua</a>
@@ -197,7 +61,7 @@
       </div>
     </section>
 
-    <section class="secao secao-sites">
+    <section class="secao">
       <h2>🌐 Sites Recomendados</h2>
       <div class="links-sites">
         <a href="https://www.vaticannews.va/pt.html" target="_blank">Vatican News</a>
