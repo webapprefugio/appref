@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>Excluir Conta | WebApp Refúgios</title>
   <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon" />
+  <!-- Firebase SDKs -->
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
@@ -34,9 +35,7 @@
   </main>
 
   <footer>
-    <div>
-      <a href="cadastro.html">Junte-se a nós!</a>
-    </div>
+    <div><a href="cadastro.html">Junte-se a nós!</a></div>
     &copy; 2025 - WebApp Encontre seu Refúgio
   </footer>
 
@@ -44,8 +43,12 @@
     const firebaseConfig = {
       apiKey: "AIzaSyCzg9Pr8-7UGv7f451Vx30WpzwRcsGd_qs",
       authDomain: "appref-projeto.firebaseapp.com",
-      projectId: "appref-projeto"
+      projectId: "appref-projeto",
+      storageBucket: "appref-projeto.appspot.com",
+      messagingSenderId: "80380853942",
+      appId: "1:80380853942:web:2320fa16fa06f2ffa77017"
     };
+
     if (!firebase.apps.length) {
       firebase.initializeApp(firebaseConfig);
     }
@@ -71,11 +74,8 @@
 
       try {
         await user.reauthenticateWithCredential(credenciais);
-        
-        // Remove dados no Firestore
+
         await db.collection('usuarios').doc(user.uid).delete();
-        
-        // Remove a conta do Firebase Auth
         await user.delete();
 
         mensagem.textContent = '✅ Conta excluída com sucesso.';
