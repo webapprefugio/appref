@@ -1,107 +1,83 @@
-/* Reset e base */
+/* Reset e configurações gerais */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
 body {
   font-family: Arial, sans-serif;
-  background-color: #fdfdfd;
+  background-color: #fefefe;
   color: #222;
   line-height: 1.6;
-  padding-top: 60px;
+  padding-bottom: 3rem;
 }
 
-/* Menu */
-.menu {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background-color: #1465bb;
-  color: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-  z-index: 1000;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+/* Navegação */
+nav.menu {
+  background-color: #004aad;
+  padding: 0.5rem 1rem;
 }
-.menu .logo {
-  width: 40px;
-  height: 40px;
-  background-image: url("../assets/img/favicon.ico");
-  background-size: cover;
-  background-repeat: no-repeat;
-}
+
 .menu-links {
   list-style: none;
   display: flex;
-  gap: 20px;
+  justify-content: center;
+  gap: 1.5rem;
 }
-.menu-links li a {
-  color: white;
+
+.menu-links a {
+  color: #fff;
   text-decoration: none;
   font-weight: bold;
+  padding: 0.3rem 0.6rem;
+  border-radius: 5px;
+  transition: background-color 0.3s;
 }
-.menu-links li a.ativo,
-.menu-links li a:hover {
-  border-bottom: 2px solid #bd0003;
+
+.menu-links a:hover,
+.menu-links a.ativo {
+  background-color: #00357e;
 }
 
 /* Seções */
-.secao {
-  padding: 40px 20px;
-  max-width: 1000px;
-  margin: auto;
-  background-color: #f9fbfd;
-}
-.secao h2 {
-  font-size: 1.2rem;
-  color: #003366;
-  margin-bottom: 20px;
-}
-.secao p {
-  margin-bottom: 20px;
+main {
+  padding: 2rem 1rem;
 }
 
-/* Boas-vindas */
-.secao.boas-vindas {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+.secao {
+  max-width: 1000px;
+  margin: 0 auto 3rem;
   text-align: center;
-  padding: 60px 20px;
-  background-color: #f9fbfd;
 }
-.secao.boas-vindas h1 {
-  font-size: 2rem;
-  color: #003366;
-  margin-bottom: 20px;
+
+.secao h1,
+.secao h2 {
+  margin-bottom: 1rem;
+  color: #004aad;
 }
-.secao.boas-vindas p {
-  font-size: 1.2rem;
-  max-width: 600px;
-  margin-bottom: 30px;
-  color: #333;
+
+.secao p {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
 }
 
 /* Botão de destaque */
 .botao-destaque {
   display: inline-block;
-  background-color: #bd0003;
-  color: white;
-  padding: 15px 30px;
-  border-radius: 30px;
-  font-weight: bold;
-  font-size: 1.1rem;
+  background-color: #c00000;
+  color: #fff;
+  padding: 0.8rem 1.5rem;
+  font-size: 1.2rem;
+  border-radius: 8px;
   text-decoration: none;
-  text-align: center;
-  transition: background 0.3s;
-  margin: 0 auto;
+  font-weight: bold;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  transition: background-color 0.3s;
 }
+
 .botao-destaque:hover {
-  background-color: #aa184f;
+  background-color: #a00000;
 }
 
 /* Carrossel de vídeos */
@@ -109,134 +85,106 @@ body {
   display: flex;
   overflow-x: auto;
   scroll-behavior: smooth;
-  padding-bottom: 10px;
-  gap: 16px;
-}
-.carrossel-videos::-webkit-scrollbar {
-  display: none;
-}
-.video-item {
-  min-width: 320px;
-  max-width: 320px;
-  flex-shrink: 0;
-  background: #fff;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-.video-item iframe {
-  width: 100%;
-  height: 180px;
-  border: none;
-}
-.video-item .descricao {
-  padding: 8px;
-  text-align: center;
-  font-size: 0.9rem;
-  background-color: #f1f1f1;
+  gap: 1rem;
+  padding: 1rem 0;
 }
 
-/* Controle do carrossel */
+.video-item {
+  flex: 0 0 300px;
+  max-width: 300px;
+}
+
+.video-item iframe {
+  width: 100%;
+  height: 170px;
+  border-radius: 8px;
+  border: none;
+}
+
+.descricao {
+  margin-top: 0.5rem;
+  font-weight: bold;
+}
+
+/* Indicadores e setas */
 .controle-carrossel {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  gap: 1.2rem;
   flex-wrap: nowrap;
-  gap: 1rem;
   margin-top: 1rem;
-  flex-shrink: 0;
+  white-space: nowrap;
 }
+
 .seta-carrossel {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   cursor: pointer;
-  color: #1465bb;
+  color: #004aad;
   user-select: none;
-  transition: transform 0.2s;
 }
-.seta-carrossel:hover {
-  transform: scale(1.2);
-}
-#seta-esquerda,
-#anterior {
+
+#seta-anterior {
   transform: scaleX(-1);
 }
 
-/* Indicadores com bolinhas */
 #indicadores {
   display: flex;
-  gap: 0.5rem;
-  align-items: center;
-  justify-content: center;
+  gap: 0.6rem;
 }
+
 #indicadores span {
-  display: inline-block;
   width: 10px;
   height: 10px;
   background-color: #ccc;
   border-radius: 50%;
-  transition: background-color 0.3s ease;
+  display: inline-block;
+  transition: background-color 0.3s;
 }
+
 #indicadores span.ativo {
   background-color: #004aad;
 }
 
-/* Links recomendados */
+/* Links úteis */
 .links-canais,
 .links-sites {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
 }
+
 .links-canais a,
 .links-sites a {
-  padding: 8px 12px;
-  background-color: #e3f2fd;
-  color: #003366;
-  border-radius: 6px;
+  background-color: #f0f0f0;
+  padding: 0.6rem 1rem;
+  border-radius: 5px;
   text-decoration: none;
-  font-weight: 500;
+  color: #004aad;
+  font-weight: bold;
+  transition: background-color 0.3s;
 }
+
 .links-canais a:hover,
 .links-sites a:hover {
-  background-color: #bbdefb;
+  background-color: #d9eaff;
 }
 
 /* Rodapé */
 footer {
-  background-color: #003366;
-  color: white;
-  padding: 20px;
+  border-top: 2px solid #004aad33;
+  margin-top: 3rem;
+  padding: 1.5rem;
   text-align: center;
-  border-top: 4px solid #bd0003;
+  background-color: #fafafa;
+  color: #333;
   font-size: 0.9rem;
 }
+
 footer a {
-  color: #ffcccb;
+  color: #004aad;
   text-decoration: none;
   font-weight: bold;
-}
-footer a:hover {
-  text-decoration: underline;
-}
-
-/* Divisória entre seções */
-.secao + .secao {
-  border-top: 2px solid #ccc;
-  margin-top: 40px;
-  padding-top: 40px;
-}
-
-/* Responsivo */
-@media (max-width: 768px) {
-  .video-item {
-    min-width: 280px;
-    max-width: 280px;
-  }
-  .menu-links {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .controle-carrossel {
-    flex-wrap: wrap;
-  }
 }
