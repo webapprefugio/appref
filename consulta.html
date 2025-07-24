@@ -5,144 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>Consulta de Cadastros | WebApp Refúgios</title>
   <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon" />
-  <link rel="stylesheet" href="style/stylecss.css" />
-  <style>
-    /* Estilos específicos da página */
-
-    main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem 1rem;
-    }
-
-    .container {
-      background: var(--container-bg);
-      border-radius: var(--radius);
-      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
-      border: 1px solid var(--container-border);
-      max-width: 900px;
-      width: 100%;
-      min-width: 320px;
-      padding: 2rem;
-      margin: 1rem 0;
-      text-align: center;
-    }
-
-    h1 {
-      font-size: 2.2rem;
-      margin-bottom: 1rem;
-      color: var(--text);
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 2rem;
-      background: var(--secondary);
-      color: var(--text);
-    }
-
-    th, td {
-      padding: 0.8rem 0.5rem;
-      border-bottom: 1px solid var(--container-border);
-      text-align: left;
-    }
-
-    th {
-      background: var(--container-bg);
-      color: var(--text);
-      font-weight: 600;
-    }
-
-    tr:last-child td {
-      border-bottom: none;
-    }
-
-    a.contact-link {
-      color: var(--primary);
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.2s;
-    }
-
-    a.contact-link:hover {
-      color: var(--button-bg-hover);
-      text-decoration: underline;
-    }
-
-    p.restriction-note {
-      color: var(--danger, #df5252);
-      font-size: 0.98rem;
-      margin-top: 2rem;
-    }
-
-    @media (max-width: 700px) {
-      .container {
-        padding: 1rem;
-      }
-
-      table, thead, tbody, th, td, tr {
-        display: block;
-      }
-
-      th, td {
-        padding: 0.7rem 0.3rem;
-        text-align: left;
-      }
-
-      th {
-        background: var(--container-bg);
-      }
-
-      tr {
-        margin-bottom: 1.2rem;
-      }
-    }
-  </style>
-
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-  <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyCzg9Pr8-7UGv7f451Vx30WpzwRcsGd_qs",
-      authDomain: "appref-projeto.firebaseapp.com",
-      projectId: "appref-projeto",
-      storageBucket: "appref-projeto.appspot.com",
-      messagingSenderId: "80380853942",
-      appId: "1:80380853942:web:2320fa16fa06f2ffa77017"
-    };
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
-
-    window.addEventListener('DOMContentLoaded', () => {
-      const tabela = document.querySelector('tbody');
-      if (!tabela) return;
-
-      db.collection("usuarios").orderBy("criadoEm", "desc").get()
-        .then(snapshot => {
-          tabela.innerHTML = ""; // limpa tabela
-          snapshot.forEach(doc => {
-            const u = doc.data();
-            if (!u.email || !u.senha || !u.uf || !u.cidade || !u.linkPerfil) return;
-
-            tabela.innerHTML += `
-              <tr>
-                <td><a href="${u.linkPerfil}" target="_blank" rel="noopener" class="contact-link">Contacte-me</a></td>
-                <td>${u.uf}</td>
-                <td>${u.cidade}</td>
-              </tr>
-            `;
-          });
-        })
-        .catch(err => {
-          console.error("Erro ao buscar dados:", err);
-          tabela.innerHTML = '<tr><td colspan="3">Erro ao carregar dados.</td></tr>';
-        });
-    });
-  </script>
 </head>
 <body>
   <div id="menu"></div>
@@ -172,6 +34,48 @@
       .then(html => {
         document.getElementById('rodape').innerHTML = html;
       });
+  </script>
+
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyCzg9Pr8-7UGv7f451Vx30WpzwRcsGd_qs",
+      authDomain: "appref-projeto.firebaseapp.com",
+      projectId: "appref-projeto",
+      storageBucket: "appref-projeto.appspot.com",
+      messagingSenderId: "80380853942",
+      appId: "1:80380853942:web:2320fa16fa06f2ffa77017"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const tabela = document.querySelector('tbody');
+      if (!tabela) return;
+
+      db.collection("usuarios").orderBy("criadoEm", "desc").get()
+        .then(snapshot => {
+          tabela.innerHTML = ""; // limpa tabela
+          snapshot.forEach(doc => {
+            const u = doc.data();
+            // Mantendo a validação, pois é lógica de dados, não estilização
+            if (!u.email || !u.senha || !u.uf || !u.cidade || !u.linkPerfil) return; 
+
+            tabela.innerHTML += `
+              <tr>
+                <td><a href="${u.linkPerfil}" target="_blank" rel="noopener">Contacte-me</a></td>
+                <td>${u.uf}</td>
+                <td>${u.cidade}</td>
+              </tr>
+            `;
+          });
+        })
+        .catch(err => {
+          console.error("Erro ao buscar dados:", err);
+          tabela.innerHTML = '<tr><td colspan="3">Erro ao carregar dados.</td></tr>';
+        });
+    });
   </script>
 </body>
 </html>

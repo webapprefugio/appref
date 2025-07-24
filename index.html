@@ -5,102 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
     <title>Home | WebApp Refúgios</title>
     <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="style/stylecss.css" />
-    <style>
-      /* Somente estilos exclusivos do home (galeria, moldura verde e scroll) */
 
-      /* Moldura verde no item central da galeria */
-      .moldura-verde {
-        box-shadow: 2px 2px 2px 3px var(--primary) !important;
-        border-radius: 8px;
-        transition: box-shadow 0.3s ease;
-      }
 
-      /* Galeria horizontal responsiva */
-      #videoGallery {
-        display: flex;
-        overflow-x: auto;
-        scroll-behavior: smooth;
-        gap: 1rem;
-        padding: 0.5rem 0;
-        width: 100%;
-        max-width: 100%;
-      }
 
-      #videoGallery a {
-        flex: 0 0 auto;
-        width: 23%; /* 4 vídeos cabem na tela */
-        min-width: 140px;
-        max-width: 200px;
-        display: block;
-        border-radius: 8px;
-        overflow: hidden;
-      }
+  <nav class="navbar">
+    <div class="logo"></div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="cadastro.html">Cadastro</a></li>
+      <li><a href="login.html">Login</a></li>
+      <li><a href="sobre.html">Sobre</a></li>
+    </ul>
+  </nav>
 
-      #videoGallery img {
-        width: 100%;
-        aspect-ratio: 16/9;
-        object-fit: cover;
-        border-radius: 8px;
-        transition: transform 0.3s ease;
-      }
 
-      #videoGallery a:hover img {
-        transform: scale(1.03);
-      }
 
-      /* Botões laterais responsivos */
-      .scroll-button {
-        background: transparent;
-        border: none;
-        font-size: 2rem;
-        color: var(--primary);
-        cursor: pointer;
-        padding: 0.2rem 0.7rem;
-        transition: color 0.2s ease;
-        box-shadow: none !important;
-        outline: none;
-      }
 
-      /* Responsividade */
-      @media (max-width: 500px) {
-        #videoGallery a {
-          width: 23vw; /* 4 vídeos na tela */
-        }
-      }
-
-      @media (max-width: 400px) {
-        #videoGallery a {
-          width: 24vw;
-        }
-      }
-
-      @media (max-width: 320px) {
-        #videoGallery a {
-          width: 100px;
-        }
-      }
-    </style>
   </head>
   <body>
     <div id="menu"></div>
     <script src="js/menu-loader.js"></script>
 
     <main>
-      <section class="container" style="margin-top:1rem; text-align:center;">
+      <section class="container">
         <h1>Bem-vindo ao Portal WebApp Refúgios</h1>
         <p>
           Junte-se às pessoas de sua cidade que estão se organizando na criação de Refúgios para o Fim dos Tempos. Cadastre-se e entre em contato pelos links que elas disponibilizaram.
         </p>
-        <a href="cadastro.html" class="button" style="margin-top: 0.5rem; display:inline-block;">
+        <a href="cadastro.html" class="button">
           Quero me cadastrar!
         </a>
       </section>
 
-      <section class="container" style="max-width: 80%; margin: 2rem auto;">
-        <h2 style="margin-bottom: 1.5rem;">Veja sobre o que se trata os Refúgios</h2>
+      <section class="container">
+        <h2>Veja sobre o que se trata os Refúgios</h2>
 
-        <div id="videoGalleryWrapper" style="display: flex; align-items: center; justify-content: center; gap: 0.6rem; overflow: hidden; padding: 0 0.5rem;">
+        <div id="videoGalleryWrapper">
           <button id="scrollLeft" class="scroll-button" aria-label="Rolar vídeos para a esquerda">❮</button>
 
           <div id="videoGallery" aria-label="Galeria de vídeos sobre Refúgios">
@@ -124,18 +64,18 @@
           <button id="scrollRight" class="scroll-button" aria-label="Rolar vídeos para a direita">❯</button>
         </div>
 
-        <div id="descricaoCentral" class="descricao-video" style="margin-top: 1.5rem; margin-bottom: 1.5rem;"></div>
+        <div id="descricaoCentral" class="descricao-video"></div>
 
-        <div style="text-align:center;">
-          <a href="galeriavideos.html" class="button" style="background: var(--primary); color: #fff; font-weight: 700; padding: 1rem 2.5rem; border-radius: var(--radius); text-decoration: none; box-shadow: 0 2px 8px rgba(35,134,54,0.12); transition: background 0.2s;">
+        <div>
+          <a href="galeriavideos.html" class="button">
             Ir para Galeria
           </a>
         </div>
       </section>
 
-      <section class="container" style="max-width: 600px; margin: 2rem auto;">
-        <h2 style="text-align:center; margin-bottom: 1rem;">Canais Recomendados</h2>
-        <div style="text-align:center; font-size: 0.92rem;">
+      <section class="container">
+        <h2>Canais Recomendados</h2>
+        <div>
           <a href="https://www.youtube.com/@grupoyshua" target="_blank" class="link-primary">Grupo Y'shua</a>
           <span class="separator">-</span>
           <a href="https://www.instagram.com/lucasgelasio/" target="_blank" class="link-primary">Lucas Gelasio</a>
@@ -150,9 +90,9 @@
         </div>
       </section>
 
-      <section class="container" style="max-width: 600px; margin: 2rem auto;">
-        <h2 style="text-align:center; margin-bottom: 1rem;">Sites Recomendados</h2>
-        <div style="text-align:center; font-size: 0.92rem;">
+      <section class="container">
+        <h2>Sites Recomendados</h2>
+        <div>
           <a href="https://www.vaticannews.va/pt.html" target="_blank" class="link-primary">Vatican News</a>
           <span class="separator">-</span>
           <a href="https://www.a12.com/" target="_blank" class="link-primary">Santuário Nacional Aparecida</a>
@@ -185,7 +125,7 @@
         let distanciaMinima = Infinity;
 
         cards.forEach(card => {
-          card.classList.remove('moldura-verde');
+          card.classList.remove('moldura-verde'); // Removido: estilização via classe
           const centroCard = card.offsetLeft + card.offsetWidth / 2;
           const distancia = Math.abs(centroCard - centroGaleria);
           if (distancia < distanciaMinima) {
@@ -194,7 +134,7 @@
           }
         });
 
-        elementoCentral.classList.add('moldura-verde');
+        elementoCentral.classList.add('moldura-verde'); // Removido: estilização via classe
 
         // Atualiza a descrição
         const descricao = elementoCentral.getAttribute("data-titulo") || "";

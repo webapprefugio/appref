@@ -5,201 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>Alterar Senha | WebApp Refúgios</title>
   <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon" />
-  <link rel="stylesheet" href="style/stylecss.css" />
-
-  <style>
-    :root {
-      --color-primary: #238636;
-      --color-primary-hover: #2ea043;
-      --color-secondary: #0d1117;
-      --color-text: #c9d1d9;
-      --color-text-muted: #8b949e;
-      --color-error: #df5252;
-      --color-bg-container: #161b22;
-      --color-border-container: #30363d;
-      --color-btn-alt-bg: #30363d;
-      --color-btn-alt-bg-hover: #22262c;
-      --border-radius: 12px;
-      --font-family-base: 'Segoe UI', Arial, sans-serif;
-      --transition-fast: 0.2s ease-in-out;
-    }
-
-    /* Reset */
-    *, *::before, *::after {
-      box-sizing: border-box;
-    }
-    body, h1, p, label, input, button {
-      margin: 0;
-      padding: 0;
-      font-weight: normal;
-    }
-
-    body {
-      font-family: var(--font-family-base);
-      background-color: var(--color-secondary);
-      color: var(--color-text);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      line-height: 1.5;
-    }
-
-    main {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem 1rem;
-    }
-
-    .container {
-      background-color: var(--color-bg-container);
-      border-radius: var(--border-radius);
-      border: 1px solid var(--color-border-container);
-      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
-      max-width: 480px;
-      min-width: 320px;
-      width: 100%;
-      padding: 2rem;
-      text-align: center;
-    }
-
-    h1 {
-      font-size: 2.2rem;
-      margin-bottom: 1rem;
-      color: #fff;
-    }
-
-    p, label {
-      font-size: 1.1rem;
-      color: var(--color-text-muted);
-    }
-
-    label#perguntaSeguranca {
-      color: var(--color-error);
-      font-weight: 700;
-      font-size: 1rem;
-      margin-bottom: 0.3em;
-      display: block;
-      text-align: center;
-    }
-
-    form.formulario {
-      margin-top: 2rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    input[type="email"],
-    input[type="text"] {
-      padding: 0.7rem 1rem;
-      border-radius: 8px;
-      border: 1px solid var(--color-border-container);
-      background-color: var(--color-secondary);
-      color: var(--color-text);
-      font-size: 1rem;
-      width: 100%;
-      transition: border-color var(--transition-fast);
-    }
-
-    input[type="email"]:focus,
-    input[type="text"]:focus {
-      border-color: var(--color-primary);
-      outline: none;
-    }
-
-    #mensagem {
-      min-height: 1.3em;
-      font-size: 1rem;
-      color: var(--color-error);
-    }
-
-    button {
-      background-color: var(--color-primary);
-      color: #fff;
-      border: none;
-      border-radius: var(--border-radius);
-      padding: 0.8rem 2rem;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background-color var(--transition-fast);
-    }
-
-    button:hover {
-      background-color: var(--color-primary-hover);
-    }
-
-    button.alt-btn {
-      background-color: var(--color-btn-alt-bg);
-      color: var(--color-text);
-      margin-top: 0.5rem;
-    }
-
-    button.alt-btn:hover {
-      background-color: var(--color-btn-alt-bg-hover);
-    }
-
-    /* Pergunta container alinhamento */
-    #perguntaContainer > div {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    /* Botão "Ir para Login" (criado dinamicamente) */
-    #btnLogin {
-      margin-top: 1rem;
-      background-color: var(--color-btn-alt-bg);
-      color: var(--color-text);
-      border-radius: var(--border-radius);
-      padding: 0.8rem 2rem;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background-color var(--transition-fast);
-    }
-    #btnLogin:hover {
-      background-color: var(--color-btn-alt-bg-hover);
-    }
-
-    a {
-      text-decoration: none;
-      color: var(--color-primary);
-    }
-
-    /* Responsividade */
-    @media (max-width: 600px) {
-      .container {
-        padding: 1rem;
-        max-width: 98vw;
-      }
-      h1 {
-        font-size: 1.4rem;
-      }
-      p, label {
-        font-size: 1rem;
-      }
-    }
-
-    @media (max-width: 400px) {
-      .container {
-        padding: 0.5rem;
-      }
-      h1 {
-        font-size: 1.1rem;
-      }
-    }
-
-    @media (max-width: 320px) {
-      body, html {
-        min-width: 320px;
-        overflow-x: auto;
-      }
-      .container {
-        min-width: 320px;
-      }
-    }
-  </style>
 </head>
 <body>
   <div id="menu"></div>
@@ -220,7 +25,7 @@
       <form class="formulario" id="formAlterarSenha">
         <input type="email" placeholder="Email" id="email" required />
 
-        <div id="perguntaContainer" style="display:none;">
+        <div id="perguntaContainer">
           <div>
             <label id="perguntaSeguranca"></label>
             <input type="text" id="respostaUsuario" placeholder="Digite sua resposta" />
@@ -277,7 +82,7 @@
       const mensagem = document.getElementById('mensagem');
       mensagem.textContent = '';
       if (!email) {
-        document.getElementById('perguntaContainer').style.display = 'none';
+        document.getElementById('perguntaContainer').style.display = 'none'; // Mantido: é uma funcionalidade de exibição, não estilização puramente visual
         return;
       }
 
@@ -289,16 +94,16 @@
           .get();
         if (query.empty) {
           mensagem.textContent = 'E-mail não encontrado.';
-          document.getElementById('perguntaContainer').style.display = 'none';
+          document.getElementById('perguntaContainer').style.display = 'none'; // Mantido
           return;
         }
         const doc = query.docs[0].data();
         document.getElementById('perguntaSeguranca').textContent =
           doc.perguntaSeguranca || '';
-        document.getElementById('perguntaContainer').style.display = 'block';
+        document.getElementById('perguntaContainer').style.display = 'block'; // Mantido
       } catch (erro) {
         mensagem.textContent = 'Erro ao buscar pergunta de segurança.';
-        document.getElementById('perguntaContainer').style.display = 'none';
+        document.getElementById('perguntaContainer').style.display = 'none'; // Mantido
       }
     });
 
@@ -309,7 +114,7 @@
         const email = document.getElementById('email').value.trim().toLowerCase();
         const resposta = document.getElementById('respostaUsuario').value.trim();
         const mensagem = document.getElementById('mensagem');
-        mensagem.style.color = 'var(--color-error)';
+        // mensagem.style.color = 'var(--color-error)'; // Removido: estilização inline
         mensagem.textContent = '';
 
         if (!email || !resposta) {
@@ -340,16 +145,16 @@
           auth
             .sendPasswordResetEmail(email)
             .then(() => {
-              mensagem.style.color = 'var(--color-primary)';
+              // mensagem.style.color = 'var(--color-primary)'; // Removido: estilização inline
               mensagem.innerHTML = `✅ Link de redefinição enviado para o seu e-mail.<br>Por favor, verifique também sua caixa de spam (lixo eletrônico).`;
 
-              document.getElementById('email').style.display = 'none';
-              document.getElementById('perguntaContainer').style.display = 'none';
+              document.getElementById('email').style.display = 'none'; // Mantido: funcionalidade de exibição
+              document.getElementById('perguntaContainer').style.display = 'none'; // Mantido
 
               document.querySelector('#formAlterarSenha button[type=submit]').style.display =
-                'none';
+                'none'; // Mantido: funcionalidade de exibição
               document.querySelector('#formAlterarSenha button.alt-btn').style.display =
-                'none';
+                'none'; // Mantido: funcionalidade de exibição
 
               mostrarBotaoLogin();
             })
@@ -370,8 +175,8 @@
       const btn = document.createElement('button');
       btn.id = 'btnLogin';
       btn.textContent = 'Ir para Login';
-      btn.className = 'alt-btn';
-      btn.style.marginTop = '1rem';
+      // btn.className = 'alt-btn'; // Removido: estilização via classe
+      // btn.style.marginTop = '1rem'; // Removido: estilização inline
       btn.onclick = () => (window.location.href = 'login.html');
 
       container.appendChild(btn);
