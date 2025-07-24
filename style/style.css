@@ -17,7 +17,7 @@ body {
   position: fixed;
   top: 0;
   width: 100%;
-  background-color: #1465bb; /* azul manto */
+  background-color: #1465bb;
   color: white;
   display: flex;
   justify-content: space-between;
@@ -45,7 +45,7 @@ body {
 }
 .menu-links li a.ativo,
 .menu-links li a:hover {
-  border-bottom: 2px solid #bd0003; /* vermelho sangue */
+  border-bottom: 2px solid #bd0003;
 }
 
 /* Seções */
@@ -53,11 +53,11 @@ body {
   padding: 40px 20px;
   max-width: 1000px;
   margin: auto;
-  background-color: #f9fbfd; /* tom azul claríssimo */
+  background-color: #f9fbfd;
 }
 .secao h2 {
   font-size: 1.2rem;
-  color: #003366; /* azul escuro harmônico */
+  color: #003366;
   margin-bottom: 20px;
 }
 .secao p {
@@ -72,6 +72,7 @@ body {
   justify-content: center;
   text-align: center;
   padding: 60px 20px;
+  background-color: #f9fbfd;
 }
 .secao.boas-vindas h1 {
   font-size: 2rem;
@@ -97,6 +98,7 @@ body {
   text-decoration: none;
   text-align: center;
   transition: background 0.3s;
+  margin: 0 auto;
 }
 .botao-destaque:hover {
   background-color: #aa184f;
@@ -176,7 +178,7 @@ footer {
   color: white;
   padding: 20px;
   text-align: center;
-  border-top: 2px solid #ccc; /* divisória sutil */
+  border-top: 4px solid #bd0003;
 }
 footer a {
   color: #ffcccb;
@@ -185,6 +187,13 @@ footer a {
 }
 footer a:hover {
   text-decoration: underline;
+}
+
+/* Divisória entre seções */
+.secao + .secao {
+  border-top: 2px solid #ccc;
+  margin-top: 40px;
+  padding-top: 40px;
 }
 
 /* Responsivo */
