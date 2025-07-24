@@ -1,5 +1,9 @@
 const carrossel = document.getElementById("videoGallery");
-const indicadores = document.getElementById("indicadores").children;
+const indicadorContainer = document.getElementById("indicadores");
+const indicadores = Array.from(indicadorContainer.querySelectorAll(".dot"));
+const setaEsquerda = indicadorContainer.querySelector(".seta-esquerda");
+const setaDireita = indicadorContainer.querySelector(".seta-direita");
+
 const videoItems = Array.from(document.querySelectorAll(".video-item"));
 const itemWidth = videoItems[0].offsetWidth + 16;
 const totalItems = videoItems.length;
@@ -16,8 +20,9 @@ function autoScroll() {
 }
 
 function atualizarIndicadores() {
-  Array.from(indicadores).forEach((dot, i) => {
-    dot.textContent = i === indexAtual ? ">" : ".";
+  indicadores.forEach((dot, i) => {
+    dot.textContent = "⭕️";
+    dot.classList.toggle("ativo", i === indexAtual);
   });
 }
 
@@ -30,17 +35,22 @@ function pararAutoScrollPermanentemente() {
   autoScrollAtivo = false;
 }
 
+setaDireita.addEventListener("click", () => {
+  pararAutoScrollPermanentemente();
+  indexAtual = (indexAtual + 1) % totalItems;
+  carrossel.scrollLeft = indexAtual * itemWidth;
+  atualizarIndicadores();
+});
+
+setaEsquerda.addEventListener("click", () => {
+  pararAutoScrollPermanentemente();
+  indexAtual = (indexAtual - 1 + totalItems) % totalItems;
+  carrossel.scrollLeft = indexAtual * itemWidth;
+  atualizarIndicadores();
+});
+
 carrossel.addEventListener("touchstart", pararAutoScrollPermanentemente);
 carrossel.addEventListener("mousedown", pararAutoScrollPermanentemente);
-
-carrossel.addEventListener("scroll", () => {
-  if (!autoScrollAtivo) return;
-  const novoIndex = Math.round(carrossel.scrollLeft / itemWidth);
-  if (novoIndex !== indexAtual) {
-    indexAtual = novoIndex % totalItems;
-    atualizarIndicadores();
-  }
-});
 
 // Inicializa
 iniciarAutoScroll();
