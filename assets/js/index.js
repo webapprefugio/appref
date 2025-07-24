@@ -26,40 +26,45 @@ function clonarVideos() {
 
 clonarVideos();
 
+// Atualizar os indicadores visuais
 function atualizarIndicadores(index) {
   for (let i = 0; i < indicadores.length; i++) {
-    indicadores[i].classList.toggle("ativo", i === index % indicadores.length);
+    indicadores[i].classList.remove("ativo");
   }
+  indicadores[index % indicadores.length].classList.add("ativo");
 }
 
 function irParaProximo() {
   if (videoGallery.scrollLeft >= videoGallery.scrollWidth - videoGallery.offsetWidth * 2) {
     videoGallery.scrollLeft = videoGallery.children[2].offsetLeft;
+    videoIndex = 0;
+  } else {
+    videoIndex++;
   }
 
-  videoIndex++;
   videoGallery.scrollTo({
     left: videoGallery.children[videoIndex + 2].offsetLeft,
     behavior: "smooth"
   });
 
-  atualizarIndicadores(videoIndex % indicadores.length);
+  atualizarIndicadores(videoIndex);
 }
 
 function irParaAnterior() {
   if (videoGallery.scrollLeft <= videoGallery.children[1].offsetLeft) {
     videoGallery.scrollLeft = videoGallery.children[totalVideos + 1].offsetLeft;
+    videoIndex = totalVideos - 1;
+  } else {
+    videoIndex--;
+    if (videoIndex < 0) videoIndex = totalVideos - 1;
   }
-
-  videoIndex--;
-  if (videoIndex < 0) videoIndex = totalVideos - 1;
 
   videoGallery.scrollTo({
     left: videoGallery.children[videoIndex + 2].offsetLeft,
     behavior: "smooth"
   });
 
-  atualizarIndicadores(videoIndex % indicadores.length);
+  atualizarIndicadores(videoIndex);
 }
 
 function iniciarAutoScroll() {
@@ -74,7 +79,7 @@ function pararAutoScroll() {
 
 function reiniciarAutoScrollComAtraso() {
   clearTimeout(autoScrollTimeout);
-  autoScrollTimeout = setTimeout(iniciarAutoScroll, 10000); // 10 segundos
+  autoScrollTimeout = setTimeout(iniciarAutoScroll, 10000);
 }
 
 btnProximo.addEventListener("click", () => {
