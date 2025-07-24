@@ -28,12 +28,18 @@ body {
 .menu-links .ativo {
   border-bottom: 2px solid red;
 }
-
+/* Centralizar o conteúdo da seção de boas-vindas */
+.secao.boas-vindas {
+  text-align: center;
+}
 .secao {
   padding: 40px 20px;
   max-width: 960px;
-  margin: auto;
+  margin: 40px auto;
+  border-bottom: 1px solid #ccd9e8; /* linha divisória sutil */
+  box-shadow: 0 2px 4px rgba(0, 51, 102, 0.05); /* sombra leve azulada */
 }
+
 
 .destaque {
   background: #eef4ff;
@@ -49,15 +55,18 @@ body {
 
 .botao-destaque {
   display: inline-block;
-  padding: 12px 24px;
+  padding: 12px 28px;
   background-color: red;
   color: white;
   text-decoration: none;
   font-weight: bold;
-  border-radius: 8px;
+  border-radius: 25px;
   margin-top: 20px;
+  transition: background-color 0.3s ease;
 }
-
+.botao-destaque:hover {
+  background-color: #cc0000;
+}
 .carrossel-videos {
   display: flex;
   overflow-x: auto;
@@ -121,11 +130,17 @@ body {
   background: red;
 }
 
+/* Ajustar visual do rodapé */
 footer {
-  margin-top: 40px;
-  padding: 20px;
+  font-size: 0.85rem; /* diminuir o texto */
   background: #003366;
   color: white;
   text-align: center;
+  padding: 20px;
   border-top: 2px solid #ccc;
+}
+
+footer a {
+  color: white; /* manter link branco */
+  text-decoration: underline;
 }
