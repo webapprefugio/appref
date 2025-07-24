@@ -1,69 +1,57 @@
 const gallery = document.getElementById('videoGallery');
 const indicadores = document.getElementById('indicadores');
+let videoItems = Array.from(gallery.children);
 
-// Função para atualizar a centralização visual
-function atualizarCentralizacao() {
-  const items = Array.from(gallery.querySelectorAll('.video-item'));
-  const centroGaleria = gallery.scrollLeft + gallery.offsetWidth / 2;
-
-  items.forEach((item) => item.classList.remove('central'));
-
-  let central = items.reduce((prev, curr) => {
-    const prevCenter = prev.offsetLeft + prev.offsetWidth / 2;
-    const currCenter = curr.offsetLeft + curr.offsetWidth / 2;
-    return Math.abs(currCenter - centroGaleria) < Math.abs(prevCenter - centroGaleria) ? curr : prev;
-  });
-
-  central.classList.add('central');
-  atualizarIndicadores(items.indexOf(central));
-}
-
-// Rolagem automática
-let scrollando = true;
-function rolarAutomaticamente() {
-  if (!scrollando) return;
-  gallery.scrollBy({ left: 1, behavior: 'smooth' });
-  requestAnimationFrame(rolarAutomaticamente);
-}
-rolarAutomaticamente();
-
-// Rolagem infinita
-gallery.addEventListener('scroll', () => {
-  const cards = gallery.querySelectorAll('.video-item');
-  const gap = 16;
-  const scrollLeft = gallery.scrollLeft;
-  const scrollWidth = gallery.scrollWidth;
-  const clientWidth = gallery.clientWidth;
-
-  if (scrollLeft <= 0) {
-    const last = cards[cards.length - 1];
-    gallery.insertBefore(last, cards[0]);
-    gallery.scrollLeft += last.offsetWidth + gap;
-  }
-
-  if (scrollLeft + clientWidth >= scrollWidth - 1) {
-    const first = cards[0];
-    gallery.appendChild(first);
-    gallery.scrollLeft -= first.offsetWidth + gap;
-  }
-
-  atualizarCentralizacao();
+// Clonar os vídeos para rolagem infinita
+videoItems.forEach(item => {
+  const cloneBefore = item.cloneNode(true);
+  const cloneAfter = item.cloneNode(true);
+  gallery.insertBefore(cloneBefore, gallery.firstChild);
+  gallery.appendChild(cloneAfter);
 });
 
-// Indicadores
-function atualizarIndicadores(indiceCentral) {
-  const total = gallery.querySelectorAll('.video-item').length;
+function atualizarCentral() {
+  const items = document.querySelectorAll('.video-item');
+  let centro = gallery.scrollLeft + gallery.offsetWidth / 2;
+  let indexAtivo = 0;
+
+  items.forEach((item, i) => {
+    const itemCenter = item.offsetLeft + item.offsetWidth / 2;
+    item.classList.remove('central');
+    if (Math.abs(itemCenter - centro) < item.offsetWidth / 2) {
+      item.classList.add('central');
+      indexAtivo = i % (videoItems.length);
+    }
+  });
+
+  const total = videoItems.length;
   indicadores.innerHTML = '';
   for (let i = 0; i < total; i++) {
     const ponto = document.createElement('span');
-    ponto.textContent = '•';
-    if (i === indiceCentral) ponto.classList.add('ativo');
+    ponto.innerHTML = i === indexAtivo ? '●' : '○';
+    ponto.classList.toggle('ativo', i === indexAtivo);
     indicadores.appendChild(ponto);
   }
 }
 
-window.addEventListener('load', () => {
-  atualizarCentralizacao();
-  scrollando = true;
-});
-window.addEventListener('resize', atualizarCentralizacao);
+gallery.addEventListener('scroll', atualizarCentral);
+
+// Autoplay com rolagem infinita
+let scrollSpeed = 1;
+function rolarAutomaticamente() {
+  gallery.scrollLeft += scrollSpeed;
+
+  // Reposiciona para início se chegar ao fim
+  if (gallery.scrollLeft >= gallery.scrollWidth - gallery.clientWidth) {
+    gallery.scrollLeft = gallery.scrollWidth / 3;
+  }
+
+  // Reposiciona para fim se voltar demais
+  if (gallery.scrollLeft <= 0) {
+    gallery.scrollLeft = gallery.scrollWidth / 3;
+  }
+
+  atualizarCentral();
+}
+
+let autoplay = setInterval(rolarAutomaticamente, 40); // velocidade ajustável
