@@ -71,7 +71,7 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 60px 20px;
+  padding: 80px 20px;
   background-color: #f9fbfd;
 }
 .secao.boas-vindas h1 {
@@ -84,6 +84,9 @@ body {
   max-width: 600px;
   margin-bottom: 30px;
   color: #333;
+}
+.secao.boas-vindas .botao-destaque {
+  margin: 0 auto;
 }
 
 /* Botão de destaque */
@@ -98,7 +101,6 @@ body {
   text-decoration: none;
   text-align: center;
   transition: background 0.3s;
-  margin: 0 auto;
 }
 .botao-destaque:hover {
   background-color: #aa184f;
@@ -140,15 +142,9 @@ body {
 .indicadores {
   text-align: center;
   margin-top: 10px;
-}
-.indicadores span {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  margin: 0 5px;
-  background: #ccc;
-  border-radius: 50%;
-  transition: background 0.3s;
+  font-size: 1.5rem;
+  color: #003366;
+  letter-spacing: 5px;
 }
 
 /* Links recomendados */
@@ -179,6 +175,7 @@ footer {
   padding: 20px;
   text-align: center;
   border-top: 4px solid #bd0003;
+  font-size: 0.9rem;
 }
 footer a {
   color: #ffcccb;

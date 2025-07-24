@@ -1,61 +1,47 @@
 const carrossel = document.getElementById("videoGallery");
 const indicadores = document.getElementById("indicadores").children;
-let videoItems = Array.from(document.querySelectorAll(".video-item"));
-
-// Clona os vídeos para criar efeito de rolagem infinita
-videoItems.forEach((item) => {
-  const clone = item.cloneNode(true);
-  carrossel.appendChild(clone);
-});
-
-videoItems = Array.from(document.querySelectorAll(".video-item"));
-
-// Define o tamanho de um item (incluindo margem se houver)
+const videoItems = Array.from(document.querySelectorAll(".video-item"));
 const itemWidth = videoItems[0].offsetWidth + 16;
+const totalItems = videoItems.length;
+
+let indexAtual = 0;
+let scrollInterval;
+let autoScrollAtivo = true;
 
 function autoScroll() {
-  carrossel.scrollLeft += itemWidth;
-
-  // Se chegar ao final da galeria, volta para o início
-  if (carrossel.scrollLeft >= carrossel.scrollWidth / 2) {
-    carrossel.scrollLeft = 0;
-  }
-
+  if (!autoScrollAtivo) return;
+  indexAtual = (indexAtual + 1) % totalItems;
+  carrossel.scrollLeft = indexAtual * itemWidth;
   atualizarIndicadores();
 }
 
 function atualizarIndicadores() {
-  const totalIndicadores = indicadores.length;
-  const indexAtual = Math.floor(carrossel.scrollLeft / itemWidth) % totalIndicadores;
   Array.from(indicadores).forEach((dot, i) => {
-    dot.style.background = i === indexAtual ? "#880e4f" : "#ccc";
+    dot.textContent = i === indexAtual ? ">" : ".";
   });
 }
 
-// Rola automaticamente a cada 7 segundos
-let scrollInterval = setInterval(autoScroll, 7000);
-let timeoutRestartAutoScroll;
-
-function pararAutoScrollTemporariamente() {
-  clearInterval(scrollInterval);
-  clearTimeout(timeoutRestartAutoScroll);
-
-  // Reinicia autoScroll após 10 segundos de inatividade
-  timeoutRestartAutoScroll = setTimeout(() => {
-    scrollInterval = setInterval(autoScroll, 7000);
-  }, 10000);
+function iniciarAutoScroll() {
+  scrollInterval = setInterval(autoScroll, 7000);
 }
 
-carrossel.addEventListener("touchstart", pararAutoScrollTemporariamente);
-carrossel.addEventListener("mousedown", pararAutoScrollTemporariamente);
+function pararAutoScrollPermanentemente() {
+  clearInterval(scrollInterval);
+  autoScrollAtivo = false;
+}
 
-// Reforça rolagem infinita também ao rolar manualmente
+carrossel.addEventListener("touchstart", pararAutoScrollPermanentemente);
+carrossel.addEventListener("mousedown", pararAutoScrollPermanentemente);
+
 carrossel.addEventListener("scroll", () => {
-  if (carrossel.scrollLeft >= carrossel.scrollWidth / 2) {
-    carrossel.scrollLeft = 0;
-  } else if (carrossel.scrollLeft <= 0) {
-    carrossel.scrollLeft = carrossel.scrollWidth / 2;
+  if (!autoScrollAtivo) return;
+  const novoIndex = Math.round(carrossel.scrollLeft / itemWidth);
+  if (novoIndex !== indexAtual) {
+    indexAtual = novoIndex % totalItems;
+    atualizarIndicadores();
   }
-
-  atualizarIndicadores();
 });
+
+// Inicializa
+iniciarAutoScroll();
+atualizarIndicadores();
