@@ -1,123 +1,69 @@
-// index.js - Carrossel de vídeos com rolagem automática, infinita e toque no celular
+const gallery = document.getElementById('videoGallery');
+const indicadores = document.getElementById('indicadores');
 
-const galeria = document.querySelector('.carrossel-videos');
-const indicadores = document.querySelector('.indicadores');
-const videos = Array.from(galeria.children);
+// Função para atualizar a centralização visual
+function atualizarCentralizacao() {
+  const items = Array.from(gallery.querySelectorAll('.video-item'));
+  const centroGaleria = gallery.scrollLeft + gallery.offsetWidth / 2;
 
-let intervaloAutoScroll;
-let larguraItem = 0;
-const gap = 16;
+  items.forEach((item) => item.classList.remove('central'));
 
-// Cria os indicadores (...)
-function criarIndicadores() {
-  indicadores.innerHTML = '';
-  videos.forEach((_, i) => {
-    const ponto = document.createElement('span');
-    ponto.textContent = '•';
-    if (i === 0) ponto.classList.add('ativo');
-    indicadores.appendChild(ponto);
-  });
-}
-
-// Atualiza item central e indicador
-function atualizarItemCentral() {
-  const centro = galeria.scrollLeft + galeria.offsetWidth / 2;
-  let central = videos[0];
-  let distanciaMin = Infinity;
-
-  videos.forEach(item => {
-    const centroItem = item.offsetLeft + item.offsetWidth / 2;
-    const distancia = Math.abs(centroItem - centro);
-    if (distancia < distanciaMin) {
-      distanciaMin = distancia;
-      central = item;
-    }
-    item.classList.remove('central');
+  let central = items.reduce((prev, curr) => {
+    const prevCenter = prev.offsetLeft + prev.offsetWidth / 2;
+    const currCenter = curr.offsetLeft + curr.offsetWidth / 2;
+    return Math.abs(currCenter - centroGaleria) < Math.abs(prevCenter - centroGaleria) ? curr : prev;
   });
 
   central.classList.add('central');
-  const index = videos.indexOf(central);
-  atualizarIndicadores(index);
-}
-
-function atualizarIndicadores(indexAtivo) {
-  const pontos = indicadores.querySelectorAll('span');
-  pontos.forEach((p, i) => {
-    p.classList.toggle('ativo', i === indexAtivo);
-  });
-}
-
-// Loop infinito
-function verificarLoopInfinito() {
-  const scrollLeft = galeria.scrollLeft;
-  const scrollWidth = galeria.scrollWidth;
-  const clientWidth = galeria.clientWidth;
-
-  if (scrollLeft <= 0) {
-    const ultimo = galeria.lastElementChild;
-    galeria.insertBefore(ultimo, galeria.firstElementChild);
-    galeria.scrollLeft += ultimo.offsetWidth + gap;
-  }
-
-  if (scrollLeft + clientWidth >= scrollWidth - 1) {
-    const primeiro = galeria.firstElementChild;
-    galeria.appendChild(primeiro);
-    galeria.scrollLeft -= primeiro.offsetWidth + gap;
-  }
+  atualizarIndicadores(items.indexOf(central));
 }
 
 // Rolagem automática
-function iniciarAutoScroll() {
-  pararAutoScroll();
-  intervaloAutoScroll = setInterval(() => {
-    galeria.scrollLeft += larguraItem + gap;
-  }, 4000);
+let scrollando = true;
+function rolarAutomaticamente() {
+  if (!scrollando) return;
+  gallery.scrollBy({ left: 1, behavior: 'smooth' });
+  requestAnimationFrame(rolarAutomaticamente);
 }
+rolarAutomaticamente();
 
-function pararAutoScroll() {
-  clearInterval(intervaloAutoScroll);
-}
+// Rolagem infinita
+gallery.addEventListener('scroll', () => {
+  const cards = gallery.querySelectorAll('.video-item');
+  const gap = 16;
+  const scrollLeft = gallery.scrollLeft;
+  const scrollWidth = gallery.scrollWidth;
+  const clientWidth = gallery.clientWidth;
 
-// Toque para rolagem manual no celular
-let tocando = false;
-let inicioX = 0;
-let scrollInicio = 0;
+  if (scrollLeft <= 0) {
+    const last = cards[cards.length - 1];
+    gallery.insertBefore(last, cards[0]);
+    gallery.scrollLeft += last.offsetWidth + gap;
+  }
 
-galeria.addEventListener('touchstart', (e) => {
-  pararAutoScroll();
-  tocando = true;
-  inicioX = e.touches[0].clientX;
-  scrollInicio = galeria.scrollLeft;
-}, { passive: true });
+  if (scrollLeft + clientWidth >= scrollWidth - 1) {
+    const first = cards[0];
+    gallery.appendChild(first);
+    gallery.scrollLeft -= first.offsetWidth + gap;
+  }
 
-galeria.addEventListener('touchmove', (e) => {
-  if (!tocando) return;
-  const deslocamento = e.touches[0].clientX - inicioX;
-  galeria.scrollLeft = scrollInicio - deslocamento;
-}, { passive: true });
-
-galeria.addEventListener('touchend', () => {
-  tocando = false;
-  iniciarAutoScroll();
+  atualizarCentralizacao();
 });
 
-galeria.addEventListener('scroll', () => {
-  verificarLoopInfinito();
-  atualizarItemCentral();
-});
+// Indicadores
+function atualizarIndicadores(indiceCentral) {
+  const total = gallery.querySelectorAll('.video-item').length;
+  indicadores.innerHTML = '';
+  for (let i = 0; i < total; i++) {
+    const ponto = document.createElement('span');
+    ponto.textContent = '•';
+    if (i === indiceCentral) ponto.classList.add('ativo');
+    indicadores.appendChild(ponto);
+  }
+}
 
-galeria.addEventListener('mouseenter', pararAutoScroll);
-galeria.addEventListener('mouseleave', iniciarAutoScroll);
-
-// Inicialização
 window.addEventListener('load', () => {
-  larguraItem = galeria.querySelector('.video-item').offsetWidth;
-  criarIndicadores();
-  atualizarItemCentral();
-  iniciarAutoScroll();
+  atualizarCentralizacao();
+  scrollando = true;
 });
-
-window.addEventListener('resize', () => {
-  larguraItem = galeria.querySelector('.video-item').offsetWidth;
-  atualizarItemCentral();
-});
+window.addEventListener('resize', atualizarCentralizacao);

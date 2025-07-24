@@ -2,15 +2,14 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>Home | WebApp Refúgios</title>
   <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon" />
-  <link rel="stylesheet" href="assets/css/style.css">
-  <script defer src="assets/js/index.js"></script>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <nav class="menu">
-    <div class="logo">WebApp Refúgios</div>
+    <div class="logo">Refúgios</div>
     <ul class="menu-links">
       <li><a href="index.html" class="ativo">Home</a></li>
       <li><a href="cadastro.html">Cadastro</a></li>
@@ -28,51 +27,16 @@
       <a href="cadastro.html" class="botao-destaque">Quero me cadastrar!</a>
     </section>
 
-    <section class="galeria-videos">
+    <section>
       <h2>Veja sobre o que se trata os Refúgios</h2>
       <div id="videoGallery" class="carrossel-videos">
-        <div class="video-item">
-          <iframe src="https://www.youtube.com/embed/1dlvVPuDcrI" allowfullscreen></iframe>
-          <div class="descricao">Corte Grupo Y'shua</div>
-        </div>
-        <div class="video-item">
-          <iframe src="https://www.youtube.com/embed/BwYeIqEz7bI" allowfullscreen></iframe>
-          <div class="descricao">Pe. Michel Rodrigue</div>
-        </div>
-        <div class="video-item">
-          <iframe src="https://www.youtube.com/embed/N-2K2jSyNS8" allowfullscreen></iframe>
-          <div class="descricao">Refúgio espiritual</div>
-        </div>
-        <div class="video-item">
-          <iframe src="https://www.youtube.com/embed/-zc7vdmxKss" allowfullscreen></iframe>
-          <div class="descricao">Sua casa como refúgio</div>
-        </div>
-        <div class="video-item">
-          <iframe src="https://www.youtube.com/embed/us1qNeQplBA" allowfullscreen></iframe>
-          <div class="descricao">Oração para consagrar a casa como refúgio</div>
-        </div>
+        <div class="video-item"><iframe src="https://www.youtube.com/embed/1dlvVPuDcrI" allowfullscreen></iframe><div class="descricao">Corte Grupo Y'shua</div></div>
+        <div class="video-item"><iframe src="https://www.youtube.com/embed/BwYeIqEz7bI" allowfullscreen></iframe><div class="descricao">Pe. Michel Rodrigue</div></div>
+        <div class="video-item"><iframe src="https://www.youtube.com/embed/N-2K2jSyNS8" allowfullscreen></iframe><div class="descricao">Refúgio espiritual</div></div>
+        <div class="video-item"><iframe src="https://www.youtube.com/embed/-zc7vdmxKss" allowfullscreen></iframe><div class="descricao">Sua casa como refúgio</div></div>
+        <div class="video-item"><iframe src="https://www.youtube.com/embed/us1qNeQplBA" allowfullscreen></iframe><div class="descricao">Oração para consagrar a casa como refúgio</div></div>
       </div>
-      <div id="descricaoCentral" class="descricao-central"></div>
-      <div id="indicadores" class="indicadores"></div>
-      <div>
-        <a href="galeriavideos.html">Ir para Galeria</a>
-      </div>
-    </section>
-
-    <section class="noticias">
-      <h2>Notícias Diárias</h2>
-      <div class="lista-noticias">
-        <p>⚠️ Atualizações sobre novos refúgios sendo formados...</p>
-        <p>📖 Palavras do dia, inspirações e mensagens da Igreja...</p>
-      </div>
-    </section>
-
-    <section class="eventos">
-      <h2>Eventos e Participações</h2>
-      <div class="eventos-conteudo">
-        <p>🎥 Live com convidados especiais sobre preparação espiritual - sexta às 20h.</p>
-        <p>🙏 Convite à novena dos Refúgios - participe conosco pelo Instagram do projeto.</p>
-      </div>
+      <div class="indicadores" id="indicadores"></div>
     </section>
 
     <section>
@@ -80,7 +44,7 @@
       <div class="links-canais">
         <a href="https://www.youtube.com/@grupoyshua" target="_blank">Grupo Y'shua</a>
         <a href="https://www.instagram.com/lucasgelasio/" target="_blank">Lucas Gelasio</a>
-        <a href="https://www.youtube.com/@SemillasdeFe" target="_blank">Cemillas de Fe</a>
+        <a href="https://www.youtube.com/@SemillasdeFe" target="_blank">Semillas de Fe</a>
         <a href="https://www.youtube.com/@RevelacionesMarianasLM" target="_blank">Revelaciones Marianas</a>
         <a href="https://www.youtube.com/@OCruxAveMedia" target="_blank">O Crux Ave</a>
         <a href="https://www.youtube.com/@AleMachadoOfficial" target="_blank">Ale Machado</a>
@@ -101,5 +65,7 @@
     <div><a href="cadastro.html">Junte-se a nós!</a></div>
     &copy; 2025 - WebApp Encontre seu Refúgio
   </footer>
+
+  <script src="index.js"></script>
 </body>
 </html>
