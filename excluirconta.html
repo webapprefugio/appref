@@ -1,38 +1,96 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-   <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-      <title>Excluir Conta | WebApp Refúgios</title>
-      <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon" />
-      <nav class="navbar">
-         <div class="logo"></div>
-         <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="cadastro.html">Cadastro</a></li>
-            <li><a href="login.html">Login</a></li>
-            <li><a href="sobre.html">Sobre</a></li>
-         </ul>
-      </nav>
-   </head>
-   <body>
-      <main>
-         <div class="container">
-            <h1>Excluir Conta</h1>
-            <p class="danger-text">Esta ação é irreversível. Tem certeza que deseja excluir sua conta?</p>
-            <form class="formulario">
-               <input type="password" placeholder="Confirme sua senha" required />
-               <button type="submit" class="danger-btn">Excluir Conta</button>
-               <button type="button" class="alt-btn" onclick="window.location.href='index.html'">Cancelar</button>
-            </form>
-         </div>
-      </main>
-      <footer>
-         <div>
-            <a href="cadastro.html">Junte-se a nós!</a>
-         </div>
-         &copy; 2025 - WebApp Encontre seu Refúgio
-      </footer>
-      </script>
-   </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>Excluir Conta | WebApp Refúgios</title>
+  <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon" />
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo"></div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="cadastro.html">Cadastro</a></li>
+      <li><a href="login.html">Login</a></li>
+      <li><a href="sobre.html">Sobre</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="container">
+      <h1>Excluir Conta</h1>
+      <p class="danger-text">Esta ação é irreversível. Tem certeza que deseja excluir sua conta?</p>
+      <form class="formulario" id="formExcluirConta">
+        <input type="password" placeholder="Confirme sua senha" required id="senhaConfirmacao" />
+        <div id="mensagem" style="margin-top: 10px;"></div>
+        <button type="submit" class="danger-btn">Excluir Conta</button>
+        <button type="button" class="alt-btn" onclick="window.location.href='index.html'">Cancelar</button>
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    <div>
+      <a href="cadastro.html">Junte-se a nós!</a>
+    </div>
+    &copy; 2025 - WebApp Encontre seu Refúgio
+  </footer>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyCzg9Pr8-7UGv7f451Vx30WpzwRcsGd_qs",
+      authDomain: "appref-projeto.firebaseapp.com",
+      projectId: "appref-projeto"
+    };
+    if (!firebase.apps.length) {
+      firebase.initializeApp(firebaseConfig);
+    }
+
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
+    document.getElementById('formExcluirConta').addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const senha = document.getElementById('senhaConfirmacao').value.trim();
+      const mensagem = document.getElementById('mensagem');
+      mensagem.textContent = '';
+
+      const user = auth.currentUser;
+
+      if (!user) {
+        mensagem.textContent = 'Usuário não autenticado.';
+        return;
+      }
+
+      const credenciais = firebase.auth.EmailAuthProvider.credential(user.email, senha);
+
+      try {
+        await user.reauthenticateWithCredential(credenciais);
+        
+        // Remove dados no Firestore
+        await db.collection('usuarios').doc(user.uid).delete();
+        
+        // Remove a conta do Firebase Auth
+        await user.delete();
+
+        mensagem.textContent = '✅ Conta excluída com sucesso.';
+        setTimeout(() => {
+          window.location.href = 'index.html';
+        }, 2000);
+      } catch (erro) {
+        console.error('Erro ao excluir conta:', erro);
+        if (erro.code === 'auth/wrong-password') {
+          mensagem.textContent = '❌ Senha incorreta.';
+        } else {
+          mensagem.textContent = '❌ Erro ao excluir conta: ' + erro.message;
+        }
+      }
+    });
+  </script>
+</body>
 </html>

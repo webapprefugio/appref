@@ -1,148 +1,138 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-   <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-      <title>Home | WebApp Refúgios</title>
-      <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon" />
-      <nav class="navbar">
-         <div class="logo"></div>
-         <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="cadastro.html">Cadastro</a></li>
-            <li><a href="login.html">Login</a></li>
-            <li><a href="sobre.html">Sobre</a></li>
-         </ul>
-      </nav>
-   </head>
-   <body>
-      <main>
-         <section class="container">
-            <h1>Bem-vindo ao Portal WebApp Refúgios</h1>
-            <p>
-               Junte-se às pessoas de sua cidade que estão se organizando na criação de Refúgios para o Fim dos Tempos. Cadastre-se e entre em contato pelos links que elas disponibilizaram.
-            </p>
-            <a href="cadastro.html" class="button">
-            Quero me cadastrar!
-            </a>
-         </section>
-         <section class="container">
-            <h2>Veja sobre o que se trata os Refúgios</h2>
-            <div id="videoGalleryWrapper">
-               <div class="video-item">
-                  <iframe src="https://www.youtube.com/embed/1dlvVPuDcrI" title="Corte Grupo Y'shua" allowfullscreen></iframe>
-               </div>
-               <div class="video-item">
-                  <iframe src="https://www.youtube.com/embed/BwYeIqEz7bI" title="Pe. Michel Rodrigue" allowfullscreen></iframe>
-               </div>
-               <div class="video-item">
-                  <iframe src="https://www.youtube.com/embed/N-2K2jSyNS8" title="Refúgio espiritual" allowfullscreen></iframe>
-               </div>
-               <div class="video-item">
-                  <iframe src="https://www.youtube.com/embed/-zc7vdmxKss" title="Sua casa como refúgio" allowfullscreen></iframe>
-               </div>
-               <div class="video-item">
-                  <iframe src="https://www.youtube.com/embed/us1qNeQplBA" title="Oração para consagrar a casa como refúgio" allowfullscreen></iframe>
-               </div>
-            </div>
-            <div id="descricaoCentral" class="descricao-video"></div>
-            <div>
-               <a href="galeriavideos.html" class="button">
-               Ir para Galeria
-               </a>
-            </div>
-         </section>
-         <section class="container">
-            <h2>Canais Recomendados</h2>
-            <div>
-               <a href="https://www.youtube.com/@grupoyshua" target="_blank" class="link-primary">Grupo Y'shua</a>
-               <span class="separator">-</span>
-               <a href="https://www.instagram.com/lucasgelasio/" target="_blank" class="link-primary">Lucas Gelasio</a>
-               <span class="separator">-</span>
-               <a href="https://www.youtube.com/@SemillasdeFe" target="_blank" class="link-primary">Cemillas de Fe</a>
-               <span class="separator">-</span>
-               <a href="https://www.youtube.com/@RevelacionesMarianasLM" target="_blank" class="link-primary">Revelaciones Marianas (Luz de Maria de Bonilla)</a>
-               <span class="separator">-</span>
-               <a href="https://www.youtube.com/@OCruxAveMedia" target="_blank" class="link-primary">O Crux Ave (Xavier Ayral)</a>
-               <span class="separator">-</span>
-               <a href="https://www.youtube.com/@AleMachadoOfficial" target="_blank" class="link-primary">Ale Machado Official</a>
-            </div>
-         </section>
-         <section class="container">
-            <h2>Sites Recomendados</h2>
-            <div>
-               <a href="https://www.vaticannews.va/pt.html" target="_blank" class="link-primary">Vatican News</a>
-               <span class="separator">-</span>
-               <a href="https://www.a12.com/" target="_blank" class="link-primary">Santuário Nacional Aparecida</a>
-               <span class="separator">-</span>
-               <a href="https://www.cancaonova.com/" target="_blank" class="link-primary">Canção Nova</a>
-            </div>
-         </section>
-      </main>
-      <footer>
-         <div>
-            <a href="cadastro.html">Junte-se a nós!</a>
-         </div>
-         &copy; 2025 - WebApp Encontre seu Refúgio
-      </footer>
-      </script>
-      <script>
-         const gallery = document.getElementById('videoGallery');
-         const leftBtn = document.getElementById('scrollLeft');
-         const rightBtn = document.getElementById('scrollRight');
-         function atualizarDescricaoCentral() {
-           const cards = gallery.querySelectorAll('a');
-           if (!cards.length) return;
-           const centroGaleria = gallery.scrollLeft + gallery.offsetWidth / 2;
-           let elementoCentral = cards[0];
-           let distanciaMinima = Infinity;
-           cards.forEach(card => {
-             card.classList.remove('moldura-verde'); 
-             const centroCard = card.offsetLeft + card.offsetWidth / 2;
-             const distancia = Math.abs(centroCard - centroGaleria);
-             if (distancia < distanciaMinima) {
-               distanciaMinima = distancia;
-               elementoCentral = card;
-             }
-           });
-           elementoCentral.classList.add('moldura-verde'); 
-           const descricao = elementoCentral.getAttribute("data-titulo") || "";
-           document.getElementById("descricaoCentral").textContent = descricao;
-         }
-         leftBtn.onclick = () => {
-           const last = gallery.lastElementChild;
-           gallery.insertBefore(last, gallery.firstElementChild);
-           gallery.scrollLeft += last.offsetWidth + 16;
-           atualizarDescricaoCentral();
-         };
-         rightBtn.onclick = () => {
-           const first = gallery.firstElementChild;
-           gallery.appendChild(first);
-           gallery.scrollLeft -= first.offsetWidth + 16;
-           atualizarDescricaoCentral();
-         };
-         gallery.addEventListener('scroll', () => {
-           const scrollLeft = gallery.scrollLeft;
-           const scrollWidth = gallery.scrollWidth;
-           const clientWidth = gallery.clientWidth;
-           const gap = 16;
-           if (scrollLeft <= 0) {
-             const last = gallery.lastElementChild;
-             const lastWidth = last.offsetWidth + gap;
-             gallery.insertBefore(last, gallery.firstElementChild);
-             gallery.scrollLeft += lastWidth;
-             atualizarDescricaoCentral();
-           }
-           if (scrollLeft + clientWidth >= scrollWidth - 1) {
-             const first = gallery.firstElementChild;
-             const firstWidth = first.offsetWidth + gap;
-             gallery.appendChild(first);
-             gallery.scrollLeft -= firstWidth;
-             atualizarDescricaoCentral();
-           }
-         });
-         window.addEventListener('resize', atualizarDescricaoCentral);
-         window.addEventListener('load', atualizarDescricaoCentral);
-      </script>
-   </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>Home | WebApp Refúgios</title>
+  <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon" />
+</head>
+<body>
+  <nav>
+    <div>Logo</div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="cadastro.html">Cadastro</a></li>
+      <li><a href="login.html">Login</a></li>
+      <li><a href="sobre.html">Sobre</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section>
+      <h1>Bem-vindo ao Portal WebApp Refúgios</h1>
+      <p>
+        Junte-se às pessoas de sua cidade que estão se organizando na criação de Refúgios para o Fim dos Tempos. Cadastre-se e entre em contato pelos links que elas disponibilizaram.
+      </p>
+      <a href="cadastro.html">Quero me cadastrar!</a>
+    </section>
+
+    <section>
+      <h2>Veja sobre o que se trata os Refúgios</h2>
+      <div id="videoGallery">
+        <div class="video-item">
+          <iframe src="https://www.youtube.com/embed/1dlvVPuDcrI" allowfullscreen></iframe>
+          <div class="descricao">Corte Grupo Y'shua</div>
+        </div>
+        <div class="video-item">
+          <iframe src="https://www.youtube.com/embed/BwYeIqEz7bI" allowfullscreen></iframe>
+          <div class="descricao">Pe. Michel Rodrigue</div>
+        </div>
+        <div class="video-item">
+          <iframe src="https://www.youtube.com/embed/N-2K2jSyNS8" allowfullscreen></iframe>
+          <div class="descricao">Refúgio espiritual</div>
+        </div>
+        <div class="video-item">
+          <iframe src="https://www.youtube.com/embed/-zc7vdmxKss" allowfullscreen></iframe>
+          <div class="descricao">Sua casa como refúgio</div>
+        </div>
+        <div class="video-item">
+          <iframe src="https://www.youtube.com/embed/us1qNeQplBA" allowfullscreen></iframe>
+          <div class="descricao">Oração para consagrar a casa como refúgio</div>
+        </div>
+      </div>
+      <div id="descricaoCentral"></div>
+      <div>
+        <a href="galeriavideos.html">Ir para Galeria</a>
+      </div>
+    </section>
+
+    <section>
+      <h2>Canais Recomendados</h2>
+      <div>
+        <a href="https://www.youtube.com/@grupoyshua" target="_blank">Grupo Y'shua</a> -
+        <a href="https://www.instagram.com/lucasgelasio/" target="_blank">Lucas Gelasio</a> -
+        <a href="https://www.youtube.com/@SemillasdeFe" target="_blank">Cemillas de Fe</a> -
+        <a href="https://www.youtube.com/@RevelacionesMarianasLM" target="_blank">Revelaciones Marianas</a> -
+        <a href="https://www.youtube.com/@OCruxAveMedia" target="_blank">O Crux Ave</a> -
+        <a href="https://www.youtube.com/@AleMachadoOfficial" target="_blank">Ale Machado</a>
+      </div>
+    </section>
+
+    <section>
+      <h2>Sites Recomendados</h2>
+      <div>
+        <a href="https://www.vaticannews.va/pt.html" target="_blank">Vatican News</a> -
+        <a href="https://www.a12.com/" target="_blank">Santuário Nacional Aparecida</a> -
+        <a href="https://www.cancaonova.com/" target="_blank">Canção Nova</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div><a href="cadastro.html">Junte-se a nós!</a></div>
+    &copy; 2025 - WebApp Encontre seu Refúgio
+  </footer>
+
+  <script>
+    const gallery = document.getElementById('videoGallery');
+
+    function atualizarDescricaoCentral() {
+      const cards = gallery.querySelectorAll('.video-item');
+      if (!cards.length) return;
+
+      const centroGaleria = gallery.scrollLeft + gallery.offsetWidth / 2;
+      let elementoCentral = cards[0];
+      let distanciaMinima = Infinity;
+
+      cards.forEach(card => {
+        const centroCard = card.offsetLeft + card.offsetWidth / 2;
+        const distancia = Math.abs(centroCard - centroGaleria);
+        if (distancia < distanciaMinima) {
+          distanciaMinima = distancia;
+          elementoCentral = card;
+        }
+      });
+
+      const descricaoEl = elementoCentral.querySelector('.descricao');
+      const descricao = descricaoEl ? descricaoEl.textContent : "";
+      document.getElementById("descricaoCentral").textContent = descricao;
+    }
+
+    gallery.addEventListener('scroll', () => {
+      const scrollLeft = gallery.scrollLeft;
+      const scrollWidth = gallery.scrollWidth;
+      const clientWidth = gallery.clientWidth;
+      const gap = 16;
+
+      if (scrollLeft <= 0) {
+        const last = gallery.lastElementChild;
+        const lastWidth = last.offsetWidth + gap;
+        gallery.insertBefore(last, gallery.firstElementChild);
+        gallery.scrollLeft += lastWidth;
+        atualizarDescricaoCentral();
+      }
+
+      if (scrollLeft + clientWidth >= scrollWidth - 1) {
+        const first = gallery.firstElementChild;
+        const firstWidth = first.offsetWidth + gap;
+        gallery.appendChild(first);
+        gallery.scrollLeft -= firstWidth;
+        atualizarDescricaoCentral();
+      }
+    });
+
+    window.addEventListener('resize', atualizarDescricaoCentral);
+    window.addEventListener('load', atualizarDescricaoCentral);
+  </script>
+</body>
 </html>
