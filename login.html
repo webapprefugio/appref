@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Login | WebApp Refúgios</title>
+  <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <link rel="stylesheet" href="style/style.css">
+  <link rel="stylesheet" href="style/login.css">
+</head>
+<body>
+  <nav class="menu">
+    <ul class="menu-links">
+      <li><a href="index.html" class="ativo">Home</a></li>
+      <li><a href="login.html">Login</a></li>
+      <li><a href="galeriavideos.html">Galeria</a></li>
+      <li><a href="sobre.html">Sobre</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="container">
+      <h1>Entrar</h1>
+      <form class="formulario">
+        <input type="email" placeholder="E-mail" required>
+        <input type="password" placeholder="Senha" required>
+        <button type="submit">Entrar</button>
+        <button type="button" class="alt-btn" onclick="window.location.href='index.html'">Cancelar</button>
+        <div>
+          <p>Ainda não possui conta? <a href="cadastro.html">Cadastre-se</a></p>
+          <p>Esqueceu sua senha? <a href="alterarsenha.html">Clique aqui</a></p>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    <div><a href="cadastro.html">Junte-se a nós!</a></div><br>
+    &copy; 2025 - WebApp Encontre seu Refúgio
+  </footer>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyCzg9Pr8-7UGv7f451Vx30WpzwRcsGd_qs",
+      authDomain: "appref-projeto.firebaseapp.com",
+      projectId: "appref-projeto",
+      storageBucket: "appref-projeto.appspot.com",
+      messagingSenderId: "80380853942",
+      appId: "1:80380853942:web:2320fa16fa06f2ffa77017"
+    };
+
+    if (!firebase.apps.length) {
+      firebase.initializeApp(firebaseConfig);
+    }
+
+    const db = firebase.firestore();
+    const auth = firebase.auth();
+
+    window.addEventListener('DOMContentLoaded', function () {
+      const loginForm = document.querySelector('.formulario');
+      const container = document.querySelector('.container');
+      let areaConsulta = document.getElementById('area-consulta');
+
+      if (!areaConsulta) {
+        areaConsulta = document.createElement('div');
+        areaConsulta.id = 'area-consulta';
+        areaConsulta.style.display = 'none';
+        container.appendChild(areaConsulta);
+      }
+
+      function showLoginMessage(msg) {
+        let msgDiv = document.getElementById('login-msg');
+        if (!msgDiv) {
+          msgDiv = document.createElement('div');
+          msgDiv.id = 'login-msg';
+          loginForm.insertBefore(msgDiv, loginForm.querySelector('button'));
+        }
+        msgDiv.textContent = msg;
+      }
+
+      function carregarConsulta() {
+        const user = auth.currentUser;
+        if (!user) return;
+
+        db.collection("usuarios").where("email", "==", user.email).limit(1).get().then(snapshot => {
+          let nome = '';
+          let cidadeUsuario = '';
+          if (!snapshot.empty) {
+            const userData = snapshot.docs[0].data();
+            nome = userData.nome || '';
+            cidadeUsuario = userData.cidade || '';
+            localStorage.setItem('userCity', cidadeUsuario);
+          }
+          const saudacao = nome ? `<div>Paz e Bem, <span>${nome}</span>!</div>` : '';
+          renderConsulta(saudacao, nome);
+        }).catch(error => {
+          console.error("Erro ao buscar dados do usuário:", error);
+          renderConsulta('', '');
+        });
+
+function renderConsulta(saudacaoHtml, nomeUsuario) {
+  const h1 = document.querySelector('.container h1');
+  if (h1) h1.style.display = 'none';
+
+  areaConsulta.innerHTML = `
+    ${saudacaoHtml}
+    <div><button id="btnLogout">Sair</button></div>
+    <div><button id="excluirconta">Excluir Conta</button></div>
+    <div id="msg-excluir" style="color: red; font-weight: bold; margin-top: 10px;"></div>
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>Perfil Social</th>
+            <th>Nome</th>
+            <th>UF</th>
+            <th>Cidade</th>
+          </tr>
+        </thead>
+        <tbody id="tabela-usuarios"></tbody>
+      </table>
+    </div>`;
+
+  const tabela = document.getElementById('tabela-usuarios');
+  db.collection("usuarios").get().then(snapshot => {
+    tabela.innerHTML = "";
+    const cidadesUsuario = [];
+    const emailUsuario = auth.currentUser.email;
+
+    snapshot.forEach(doc => {
+      const u = doc.data();
+      if (u.email === emailUsuario && u.cidade) {
+        cidadesUsuario.push(u.cidade.trim().toLowerCase());
+      }
+    });
+
+    const registros = [];
+    snapshot.forEach(doc => {
+      const u = doc.data();
+      if (!u.email || !u.uf || !u.cidade || !u.linkPerfil || !u.nome) return;
+
+      const cidadeIgual = cidadesUsuario.includes(u.cidade.trim().toLowerCase());
+      const mesmoUsuario = u.email === emailUsuario;
+
+      if (cidadeIgual || mesmoUsuario) {
+        registros.push(u);
+      }
+    });
+
+    const agrupadoPorUF = {};
+    registros.forEach(u => {
+      const uf = u.uf.toUpperCase();
+      if (!agrupadoPorUF[uf]) agrupadoPorUF[uf] = [];
+      agrupadoPorUF[uf].push(u);
+    });
+
+    for (const uf in agrupadoPorUF) {
+      const grupo = agrupadoPorUF[uf];
+      for (let i = grupo.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [grupo[i], grupo[j]] = [grupo[j], grupo[i]];
+      }
+    }
+
+    const ufsOrdenadas = Object.keys(agrupadoPorUF).sort();
+    ufsOrdenadas.forEach(uf => {
+      tabela.innerHTML += `<tr><td colspan="4">Estado: ${uf}</td></tr>`;
+      agrupadoPorUF[uf].forEach(usuario => {
+        tabela.innerHTML += `
+          <tr>
+            <td><a href="${usuario.linkPerfil}" target="_blank" rel="noopener">Contacte-me</a></td>
+            <td>${usuario.nome}</td>
+            <td>${usuario.uf}</td>
+            <td>${usuario.cidade}</td>
+          </tr>`;
+      });
+    });
+  }).catch(() => {
+    tabela.innerHTML = '<tr><td colspan="4">Erro ao carregar dados.</td></tr>';
+  });
+
+  // Botão de logout
+  document.getElementById('btnLogout').onclick = function () {
+    auth.signOut().then(() => {
+      localStorage.removeItem('userCity');
+      window.location.reload();
+    });
+  };
+
+  // Botão de exclusão de conta
+  document.getElementById('excluirconta').onclick = function () {
+    const user = auth.currentUser;
+    const msgDiv = document.getElementById('msg-excluir');
+    msgDiv.textContent = 'Processando exclusão...';
+
+    user.delete().then(() => {
+      // Redireciona para uma página de confirmação após excluir
+      window.location.href = 'contaexcluida.html';
+    }).catch(error => {
+      if (error.code === 'auth/requires-recent-login') {
+        msgDiv.textContent = 'Por segurança, refaça o login para excluir sua conta.';
+        auth.signOut().then(() => window.location.reload());
+      } else {
+        msgDiv.textContent = 'Erro ao excluir conta: ' + error.message;
+      }
+    });
+  };
+
+}
+      }
+
+      loginForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const email = loginForm.querySelector('input[type="email"]').value.trim();
+        const senha = loginForm.querySelector('input[type="password"]').value.trim();
+
+        if (!email || !senha) {
+          showLoginMessage('Preencha todos os campos.');
+          return;
+        }
+
+        auth.signInWithEmailAndPassword(email, senha)
+          .then(() => {
+            showLoginMessage('');
+            loginForm.style.display = 'none';
+            areaConsulta.style.display = 'block';
+            carregarConsulta();
+          })
+          .catch(() => {
+            showLoginMessage('E-mail ou senha inválidos.');
+          });
+      });
+
+      auth.onAuthStateChanged(user => {
+        if (user) {
+          loginForm.style.display = 'none';
+          areaConsulta.style.display = 'block';
+          carregarConsulta();
+        } else {
+          loginForm.style.display = 'flex';
+          areaConsulta.style.display = 'none';
+          localStorage.removeItem('userCity');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
