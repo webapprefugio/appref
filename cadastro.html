@@ -7,6 +7,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="style/style.css" />
+    <link rel="stylesheet" href="style/cadastro.css" />
     <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
@@ -25,25 +27,26 @@
     </script>
   </head>
   <body>
-    <nav class="navbar">
-      <div class="logo"></div>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="cadastro.html">Cadastro</a></li>
-        <li><a href="login.html">Login</a></li>
-        <li><a href="sobre.html">Sobre</a></li>
-      </ul>
-    </nav>
+  <nav class="menu">
+    <ul class="menu-links">
+      <li><a href="index.html" class="ativo">Home</a></li>
+      <li><a href="login.html">Login</a></li>
+      <li><a href="galeriavideos.html">Galeria</a></li>
+      <li><a href="sobre.html">Sobre</a></li>
+    </ul>
+  </nav>
 
     <main>
       <div class="container">
         <h1>Cadastre-se</h1>
         <form class="formulario" id="formCadastro">
+          <br>
           <div>
             <input type="checkbox" id="chkTermos" required />
             &nbsp;&nbsp;Concordo com os
-            <a href="termos.html">&nbsp;Termos de uso e Condições</a>
+            <a href="termos.html">&nbsp;Termos de uso e Privacidade</a>
           </div>
+          
           <input type="text" placeholder="Link do seu Perfil Social" required id="txtPerfilSocial" />
           <input type="text" placeholder="Nome de usuário" required id="txtNome" />
           <input type="email" placeholder="E-mail" required id="txtEmail" />
@@ -69,12 +72,10 @@
       </div>
     </main>
 
-    <footer>
-      <div>
-        <a href="cadastro.html">Junte-se a nós!</a>
-      </div>
-      &copy; 2025 - WebApp Encontre seu Refúgio
-    </footer>
+  <footer>
+    <div><a href="cadastro.html">Junte-se a nós!</a></div><br>
+    &copy; 2025 - WebApp Encontre seu Refúgio
+  </footer>
 
     <script>
       function forcarSugestoes(input) {

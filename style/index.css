@@ -1,0 +1,71 @@
+/* index.css */
+
+/* Centralizar o conteúdo da seção de boas-vindas */
+.secao.boas-vindas {
+  text-align: center;
+  color: #004080;
+}
+
+/* Carrossel de vídeos */
+.carrossel-videos {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap: 10px;
+  padding: 20px 0;
+}
+
+.video-item {
+  flex: 0 0 auto;
+  width: 300px;
+  position: relative;
+  text-align: center;
+}
+
+.video-thumb {
+  position: relative;
+  cursor: pointer;
+}
+
+.video-thumb img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.play-button {
+  position: absolute;
+  top: 40%;
+  left: 45%;
+  transform: translate(-50%, -50%);
+  font-size: 32px;
+  color: white;
+  text-shadow: 0 0 5px black;
+}
+
+.controle-carrossel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.seta-carrossel {
+  cursor: pointer;
+  font-size: 32px;
+  color: #003366;
+}
+
+#indicadores span {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin: 0 4px;
+  background: #ccc;
+  border-radius: 50%;
+}
+
+#indicadores span.ativo {
+  background: red;
+}

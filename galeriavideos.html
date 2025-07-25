@@ -1,48 +1,54 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-    <title>Galeria de Vídeos | WebApp Refúgios</title>
-    <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon" />
-  </head>
-  <body>
-    <nav class="navbar">
-      <div class="logo"></div>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="cadastro.html">Cadastro</a></li>
-        <li><a href="login.html">Login</a></li>
-        <li><a href="sobre.html">Sobre</a></li>
-      </ul>
-    </nav>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>Galeria de Vídeos | WebApp Refúgios</title>
+  <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="style/style.css" />
+  <link rel="stylesheet" href="style/galeriavideos.css" />
+</head>
+<body>
+  <nav class="menu">
+    <ul class="menu-links">
+      <li><a href="index.html" class="ativo">Home</a></li>
+      <li><a href="login.html">Login</a></li>
+      <li><a href="galeriavideos.html">Galeria</a></li>
+      <li><a href="sobre.html">Sobre</a></li>
+    </ul>
+  </nav>
 
-    <main>
-      <h1>Galeria de Vídeos</h1>
-      <div id="videoGallery">
-        <div class="video-item">
-          <iframe src="https://www.youtube.com/embed/1dlvVPuDcrI" title="Corte Grupo Y'shua" allowfullscreen></iframe>
-        </div>
-        <div class="video-item">
-          <iframe src="https://www.youtube.com/embed/BwYeIqEz7bI" title="Pe. Michel Rodrigue" allowfullscreen></iframe>
-        </div>
-        <div class="video-item">
-          <iframe src="https://www.youtube.com/embed/N-2K2jSyNS8" title="Refúgio espiritual" allowfullscreen></iframe>
-        </div>
-        <div class="video-item">
-          <iframe src="https://www.youtube.com/embed/-zc7vdmxKss" title="Sua casa como refúgio" allowfullscreen></iframe>
-        </div>
-        <div class="video-item">
-          <iframe src="https://www.youtube.com/embed/us1qNeQplBA" title="Oração para consagrar a casa como refúgio" allowfullscreen></iframe>
-        </div>
+  <main>
+    <section class="autor-section">
+      <h2>Autor: Grupo Y'shua</h2>
+      <p>Acessem o canal do autor, curta, inscreva-se e compartilhe</p>
+      <div class="galeria-videos">
+        <iframe src="https://www.youtube.com/embed/1dlvVPuDcrI" loading="lazy" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/N-2K2jSyNS8" loading="lazy" allowfullscreen></iframe>
       </div>
-    </main>
+    </section>
 
-    <footer>
-      <div>
-        <a href="cadastro.html">Junte-se a nós!</a>
+    <section class="autor-section">
+      <h2>Autor: Cemillas de Fe</h2>
+      <p>Acessem o canal do autor, curta, inscreva-se e compartilhe</p>
+      <div class="galeria-videos">
+        <iframe src="https://www.youtube.com/embed/us1qNeQplBA" loading="lazy" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/BwYeIqEz7bI" loading="lazy" allowfullscreen></iframe>
       </div>
-      &copy; 2025 - WebApp Encontre seu Refúgio
-    </footer>
-  </body>
+    </section>
+
+    <section class="autor-section">
+      <h2>Autor: Xavier</h2>
+      <p>Acessem o canal do autor, curta, inscreva-se e compartilhe</p>
+      <div class="galeria-videos">
+        <iframe src="https://www.youtube.com/embed/-zc7vdmxKss" loading="lazy" allowfullscreen></iframe>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div><a href="cadastro.html">Junte-se a nós!</a></div><br>
+    &copy; 2025 - WebApp Encontre seu Refúgio
+  </footer>
+</body>
 </html>
