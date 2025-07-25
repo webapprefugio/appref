@@ -8,14 +8,15 @@
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <link rel="stylesheet" href="style/style.css">
+  <link rel="stylesheet" href="style/login.css">
 </head>
 <body>
-  <nav class="navbar">
-    <div class="logo"></div>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="cadastro.html">Cadastro</a></li>
+  <nav class="menu">
+    <ul class="menu-links">
+      <li><a href="index.html" class="ativo">Home</a></li>
       <li><a href="login.html">Login</a></li>
+      <li><a href="galeriavideos.html">Galeria</a></li>
       <li><a href="sobre.html">Sobre</a></li>
     </ul>
   </nav>
@@ -37,7 +38,7 @@
   </main>
 
   <footer>
-    <div><a href="cadastro.html">Junte-se a nós!</a></div>
+    <div><a href="cadastro.html">Junte-se a nós!</a></div><br>
     &copy; 2025 - WebApp Encontre seu Refúgio
   </footer>
 
@@ -100,92 +101,115 @@
           renderConsulta('', '');
         });
 
-        function renderConsulta(saudacaoHtml, nomeUsuario) {
-          const h1 = document.querySelector('.container h1');
-          if (h1) h1.style.display = 'none';
+function renderConsulta(saudacaoHtml, nomeUsuario) {
+  const h1 = document.querySelector('.container h1');
+  if (h1) h1.style.display = 'none';
 
-          areaConsulta.innerHTML = `
-            ${saudacaoHtml}
-            <div><button id="btnLogout">Sair</button></div>
-            <div>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Perfil Social</th>
-                    <th>Nome</th>
-                    <th>UF</th>
-                    <th>Cidade</th>
-                  </tr>
-                </thead>
-                <tbody id="tabela-usuarios"></tbody>
-              </table>
-            </div>`;
+  areaConsulta.innerHTML = `
+    ${saudacaoHtml}
+    <div><button id="btnLogout">Sair</button></div>
+    <div><button id="excluirconta">Excluir Conta</button></div>
+    <div id="msg-excluir" style="color: red; font-weight: bold; margin-top: 10px;"></div>
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>Perfil Social</th>
+            <th>Nome</th>
+            <th>UF</th>
+            <th>Cidade</th>
+          </tr>
+        </thead>
+        <tbody id="tabela-usuarios"></tbody>
+      </table>
+    </div>`;
 
-          const tabela = document.getElementById('tabela-usuarios');
-          db.collection("usuarios").get().then(snapshot => {
-            tabela.innerHTML = "";
-            const cidadesUsuario = [];
-            const emailUsuario = auth.currentUser.email;
+  const tabela = document.getElementById('tabela-usuarios');
+  db.collection("usuarios").get().then(snapshot => {
+    tabela.innerHTML = "";
+    const cidadesUsuario = [];
+    const emailUsuario = auth.currentUser.email;
 
-            snapshot.forEach(doc => {
-              const u = doc.data();
-              if (u.email === emailUsuario && u.cidade) {
-                cidadesUsuario.push(u.cidade.trim().toLowerCase());
-              }
-            });
+    snapshot.forEach(doc => {
+      const u = doc.data();
+      if (u.email === emailUsuario && u.cidade) {
+        cidadesUsuario.push(u.cidade.trim().toLowerCase());
+      }
+    });
 
-            const registros = [];
-            snapshot.forEach(doc => {
-              const u = doc.data();
-              if (!u.email || !u.uf || !u.cidade || !u.linkPerfil || !u.nome) return;
+    const registros = [];
+    snapshot.forEach(doc => {
+      const u = doc.data();
+      if (!u.email || !u.uf || !u.cidade || !u.linkPerfil || !u.nome) return;
 
-              const cidadeIgual = cidadesUsuario.includes(u.cidade.trim().toLowerCase());
-              const mesmoUsuario = u.email === emailUsuario;
+      const cidadeIgual = cidadesUsuario.includes(u.cidade.trim().toLowerCase());
+      const mesmoUsuario = u.email === emailUsuario;
 
-              if (cidadeIgual || mesmoUsuario) {
-                registros.push(u);
-              }
-            });
+      if (cidadeIgual || mesmoUsuario) {
+        registros.push(u);
+      }
+    });
 
-            const agrupadoPorUF = {};
-            registros.forEach(u => {
-              const uf = u.uf.toUpperCase();
-              if (!agrupadoPorUF[uf]) agrupadoPorUF[uf] = [];
-              agrupadoPorUF[uf].push(u);
-            });
+    const agrupadoPorUF = {};
+    registros.forEach(u => {
+      const uf = u.uf.toUpperCase();
+      if (!agrupadoPorUF[uf]) agrupadoPorUF[uf] = [];
+      agrupadoPorUF[uf].push(u);
+    });
 
-            for (const uf in agrupadoPorUF) {
-              const grupo = agrupadoPorUF[uf];
-              for (let i = grupo.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [grupo[i], grupo[j]] = [grupo[j], grupo[i]];
-              }
-            }
+    for (const uf in agrupadoPorUF) {
+      const grupo = agrupadoPorUF[uf];
+      for (let i = grupo.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [grupo[i], grupo[j]] = [grupo[j], grupo[i]];
+      }
+    }
 
-            const ufsOrdenadas = Object.keys(agrupadoPorUF).sort();
-            ufsOrdenadas.forEach(uf => {
-              tabela.innerHTML += `<tr><td colspan="4">Estado: ${uf}</td></tr>`;
-              agrupadoPorUF[uf].forEach(usuario => {
-                tabela.innerHTML += `
-                  <tr>
-                    <td><a href="${usuario.linkPerfil}" target="_blank" rel="noopener">Contacte-me</a></td>
-                    <td>${usuario.nome}</td>
-                    <td>${usuario.uf}</td>
-                    <td>${usuario.cidade}</td>
-                  </tr>`;
-              });
-            });
-          }).catch(() => {
-            tabela.innerHTML = '<tr><td colspan="4">Erro ao carregar dados.</td></tr>';
-          });
+    const ufsOrdenadas = Object.keys(agrupadoPorUF).sort();
+    ufsOrdenadas.forEach(uf => {
+      tabela.innerHTML += `<tr><td colspan="4">Estado: ${uf}</td></tr>`;
+      agrupadoPorUF[uf].forEach(usuario => {
+        tabela.innerHTML += `
+          <tr>
+            <td><a href="${usuario.linkPerfil}" target="_blank" rel="noopener">Contacte-me</a></td>
+            <td>${usuario.nome}</td>
+            <td>${usuario.uf}</td>
+            <td>${usuario.cidade}</td>
+          </tr>`;
+      });
+    });
+  }).catch(() => {
+    tabela.innerHTML = '<tr><td colspan="4">Erro ao carregar dados.</td></tr>';
+  });
 
-          document.getElementById('btnLogout').onclick = function () {
-            auth.signOut().then(() => {
-              localStorage.removeItem('userCity');
-              window.location.reload();
-            });
-          };
-        }
+  // Botão de logout
+  document.getElementById('btnLogout').onclick = function () {
+    auth.signOut().then(() => {
+      localStorage.removeItem('userCity');
+      window.location.reload();
+    });
+  };
+
+  // Botão de exclusão de conta
+  document.getElementById('excluirconta').onclick = function () {
+    const user = auth.currentUser;
+    const msgDiv = document.getElementById('msg-excluir');
+    msgDiv.textContent = 'Processando exclusão...';
+
+    user.delete().then(() => {
+      // Redireciona para uma página de confirmação após excluir
+      window.location.href = 'contaexcluida.html';
+    }).catch(error => {
+      if (error.code === 'auth/requires-recent-login') {
+        msgDiv.textContent = 'Por segurança, refaça o login para excluir sua conta.';
+        auth.signOut().then(() => window.location.reload());
+      } else {
+        msgDiv.textContent = 'Erro ao excluir conta: ' + error.message;
+      }
+    });
+  };
+
+}
       }
 
       loginForm.addEventListener('submit', function (e) {

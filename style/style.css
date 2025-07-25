@@ -6,8 +6,8 @@ body {
 }
 
 .menu {
-  background: #003366;
-  padding: 10px 0;
+  background: #004080;
+  padding: 20px 0;
 }
 
 .menu-links {
@@ -31,34 +31,42 @@ body {
 /* Centralizar o conteúdo da seção de boas-vindas */
 .secao.boas-vindas {
   text-align: center;
+  color: #cc0000;
 }
 .secao {
   padding: 40px 20px;
   max-width: 960px;
-  margin: 40px auto;
-  border-top: 2px solid #ccc;     /* nova borda no topo */
-  border-bottom: 1px solid #ccd9e8; /* linha divisória inferior sutil */
-  box-shadow: none;               /* remover sombra */
+  margin: 20px auto;
+  box-shadow: none;
+}
+.galeria-videos {
+  margin-top: 5px; /* menos espaço acima */
 }
 
 
+h2 a.ver-todos {
+  text-decoration: none; /* remove o sublinhado */
+  color: inherit;        /* herda a cor do h2 */
+  font-weight: inherit;  /* herda peso da fonte do h2 */
+}
+
 
 .destaque {
-  background: #eef4ff;
-  border-left: 4px solid #3366cc;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-  margin-bottom: 30px;
-  border-radius: 10px;
+  background: #f2f6fd;
+  border-bottom: 1px solid #003366;
+  padding: 2px;
+  
 }
 
 .secao h2 {
   color: #003366;
+
 }
 
 .botao-destaque {
   display: inline-block;
   padding: 12px 28px;
-  background-color: red;
+  background-color: #cc0000;
   color: white;
   text-decoration: none;
   font-weight: bold;
@@ -132,10 +140,31 @@ body {
   background: red;
 }
 
+.links-canais a,
+.links-sites a {
+  display: inline-block;
+  margin: 8px;
+  padding: 10px 20px;
+  background-color: #003366; /* azul profundo */
+  color: white;
+  text-decoration: none;
+  border-radius: 25px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.links-canais a:hover,
+.links-sites a:hover {
+  background-color: #004080; /* azul mais claro no hover */
+  transform: translateY(-2px);
+}
+
+
 /* Ajustar visual do rodapé */
 footer {
   font-size: 0.85rem; /* diminuir o texto */
-  background: #003366;
+  background: #004080;
   color: white;
   text-align: center;
   padding: 20px;
@@ -145,4 +174,5 @@ footer {
 footer a {
   color: white; /* manter link branco */
   text-decoration: underline;
+  font-size: 1.2rem;
 }
