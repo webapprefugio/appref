@@ -1,0 +1,35 @@
+/* termos.css */
+
+/* Estilo específico para a seção de termos */
+.termos-content {
+  max-width: 960px;
+  margin: 60px auto;
+  padding: 20px;
+  background-color: #ffffff;
+}
+
+.termos-content h1,
+.termos-content h2 {
+  color: #003366;
+  margin-bottom: 16px;
+}
+
+.termos-content p {
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.termos-content ul {
+  padding-left: 20px;
+  margin-bottom: 20px;
+}
+
+.termos-content ul li {
+  margin-bottom: 8px;
+  list-style: disc;
+}
+.termos-content a[href^="mailto:"] {
+  color: #cc0000;
+  font-weight: bold;
+  text-decoration: underline;
+}
