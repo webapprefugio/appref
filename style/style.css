@@ -1,10 +1,21 @@
+/* Layout Global */
 body {
   margin: 0;
+  padding: 0;
   font-family: Arial, sans-serif;
   background: #f9fbff;
   color: #222;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
+/* Conteúdo principal */
+main {
+  flex: 1;
+}
+
+/* Navegação */
 .menu {
   background: #004080;
   padding: 20px 0;
@@ -13,166 +24,74 @@ body {
 .menu-links {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 40px;
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.menu-links a {
-  color: white;
+.menu-links li a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 500;
+  font-size: 14px;
+  color: white; /* texto branco padrão */
 }
 
-.menu-links .ativo {
-  border-bottom: 2px solid red;
-}
-/* Centralizar o conteúdo da seção de boas-vindas */
-.secao.boas-vindas {
-  text-align: center;
-  color: #cc0000;
-}
-.secao {
-  padding: 40px 20px;
-  max-width: 960px;
-  margin: 20px auto;
-  box-shadow: none;
-}
-.galeria-videos {
-  margin-top: 5px; /* menos espaço acima */
-}
-
-
-h2 a.ver-todos {
-  text-decoration: none; /* remove o sublinhado */
-  color: inherit;        /* herda a cor do h2 */
-  font-weight: inherit;  /* herda peso da fonte do h2 */
-}
-
-
-.destaque {
-  background: #f2f6fd;
-  border-bottom: 1px solid #003366;
-  padding: 2px;
+.menu-links li a i {
+  font-size: 24px;
+  margin-bottom: 6px;
+  color: white; /* ícone branco padrão */
   
 }
 
-.secao h2 {
-  color: #003366;
-
+.menu-links li a span {
+  color: white; /* nome branco padrão */
+  
 }
 
-.botao-destaque {
-  display: inline-block;
-  padding: 12px 28px;
-  background-color: #cc0000;
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-  border-radius: 25px;
-  margin-top: 20px;
-  transition: background-color 0.3s ease;
-}
-.botao-destaque:hover {
-  background-color: #cc0000;
-}
-.carrossel-videos {
+.menu-links li a {
   display: flex;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  gap: 10px;
-  padding: 20px 0;
-}
-
-.video-item {
-  flex: 0 0 auto;
-  width: 300px;
-  position: relative;
-  text-align: center;
-}
-
-.video-thumb {
-  position: relative;
-  cursor: pointer;
-}
-
-.video-thumb img {
-  width: 100%;
-  border-radius: 8px;
-}
-
-.play-button {
-  position: absolute;
-  top: 40%;
-  left: 45%;
-  transform: translate(-50%, -50%);
-  font-size: 32px;
-  color: white;
-  text-shadow: 0 0 5px black;
-}
-
-.controle-carrossel {
-  display: flex;
-  justify-content: center;
+  flex-direction: column; /* força ícone em cima e nome embaixo */
   align-items: center;
-  gap: 16px;
-  margin-top: 10px;
-  flex-wrap: wrap;
-}
-
-.seta-carrossel {
-  cursor: pointer;
-  font-size: 32px;
-  color: #003366;
-}
-
-#indicadores span {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  margin: 0 4px;
-  background: #ccc;
-  border-radius: 50%;
-}
-
-#indicadores span.ativo {
-  background: red;
-}
-
-.links-canais a,
-.links-sites a {
-  display: inline-block;
-  margin: 8px;
-  padding: 10px 20px;
-  background-color: #003366; /* azul profundo */
-  color: white;
   text-decoration: none;
-  border-radius: 25px;
-  font-weight: bold;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-weight: 500;
+  font-size: 14px;
+  color: white;
+  
 }
 
-.links-canais a:hover,
-.links-sites a:hover {
-  background-color: #004080; /* azul mais claro no hover */
-  transform: translateY(-2px);
+.menu-links li a i {
+  font-size: 24px;
+  margin-bottom: 6px; /* distância do ícone pro nome */
+  color: white;
 }
 
+.menu-links li a span {
+  color: white;
+  
+}
 
-/* Ajustar visual do rodapé */
+/* Item ativo: só o sublinhado vermelho */
+.menu-links li a.ativo {
+  border-bottom: 4px solid red;
+  padding-bottom: 6px;
+}
+
+/* Rodapé */
 footer {
-  font-size: 0.85rem; /* diminuir o texto */
+  font-size: 0.85rem;
   background: #004080;
   color: white;
   text-align: center;
-  padding: 20px;
+  padding: 10px;
   border-top: 2px solid #ccc;
 }
 
 footer a {
-  color: white; /* manter link branco */
+  color: white;
   text-decoration: underline;
   font-size: 1.2rem;
 }

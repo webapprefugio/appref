@@ -1,22 +1,26 @@
-/* Container geral da tela de login */
+/* Container de Login */
 .container {
-  max-width: 480px;
-  margin: 40px auto;
+  max-width: 380px;
+  min-width: 280px;
+  width: 100%;
+  margin: 20px auto;
   padding: 20px;
+  text-align: left;
   background-color: #ffffff;
   border-radius: 12px;
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
-  width: calc(100% - 40px);
 }
 
-/* Título da página */
 .container h1 {
-  text-align: center;
   margin-bottom: 24px;
+  text-align: center;
   color: #003366;
 }
 
+/* Botão Excluir Conta */
 #excluirconta {
+  display: block;
+  margin: 0 auto;
   padding: 10px 20px;
   font-size: 1rem;
   background-color: #e03b3b;
@@ -25,15 +29,13 @@
   border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin: 0 auto;
-  display: block;
 }
 
 #excluirconta:hover {
   background-color: #990000;
 }
 
-/* Estilo do formulário */
+/* Formulário */
 .formulario {
   display: flex;
   flex-direction: column;
@@ -62,7 +64,6 @@
   background-color: #002244;
 }
 
-/* Botão alternativo (Cancelar) */
 .formulario .alt-btn {
   background-color: #999;
 }
@@ -82,13 +83,14 @@
   color: #cc0000;
   text-decoration: none;
   font-weight: 500;
+  font-weight: bold;
 }
 
 .formulario div a:hover {
   text-decoration: underline;
 }
 
-/* Mensagem de login */
+/* Mensagem de Login */
 #login-msg {
   background-color: #ffeeee;
   color: #cc0000;
@@ -98,37 +100,54 @@
   text-align: center;
 }
 
-/* Área de consulta após login */
+/* Área de Consulta */
 #area-consulta {
   margin-top: 30px;
-  background-color: #f4f8fc;
   padding: 20px;
+  background-color: #f4f8fc;
   border-radius: 10px;
 }
 
-/* Saudação */
-#area-consulta span {
-  font-weight: bold;
-  color: #003366;
+#area-consulta > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 16px;
 }
 
-/* Tabela de usuários */
+#area-consulta span {
+  color: #003366;
+  font-weight: bold;
+}
+
+/* Tabela de Usuários */
 #area-consulta table {
   width: 100%;
-  border-collapse: collapse;
   margin-top: 20px;
+  border-collapse: collapse;
 }
 
 #area-consulta th,
 #area-consulta td {
   padding: 10px;
-  border: 1px solid #ccc;
   text-align: left;
+  border: 1px solid #ccc;
 }
 
 #area-consulta th {
+  text-align: center;
   background-color: #003366;
-  color: #fff;
+  color: #e0f0ff;
+  font-weight: bold;
+}
+
+#area-consulta table tr td[colspan="4"] {
+  background-color: #e0f0ff;
+  text-align: center;
+  font-weight: bold;
+  color: #003366;
+  padding: 8px;
+  border-radius: 4px;
 }
 
 #area-consulta a {
@@ -140,36 +159,10 @@
   text-decoration: underline;
 }
 
-/* Botão de logout */
+/* Botão de Logout */
 #btnLogout {
-  margin-top: 20px;
-  padding: 10px 16px;
-  background-color: #00cc44;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-#btnLogout:hover {
-  background-color: #1a9900;
-}
-/* Centraliza a saudação e o botão de logout */
-#area-consulta > div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 16px;
-}
-
-/* Estiliza o nome na saudação */
-#area-consulta span {
-  color: #003366;
-  font-weight: bold;
-}
-
-/* Estiliza e centraliza o botão "Sair" */
-#btnLogout {
+  display: block;
+  margin: 20px auto;
   padding: 10px 20px;
   font-size: 1rem;
   background-color: #f3901f;
@@ -178,39 +171,22 @@
   border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin: 0 auto;
 }
 
 #btnLogout:hover {
   background-color: #994a00;
 }
-/* Linha de separação por estado na tabela */
-#area-consulta table tr td[colspan="4"] {
-  background-color: #e0f0ff;
-  text-align: center;
-  font-weight: bold;
-  color: #003366;
-  padding: 8px;
-  border-radius: 4px;
-}
 
-/* Centraliza os títulos da tabela */
-#area-consulta table th {
-  text-align: center;
-  padding: 10px;
-  background-color: #003366;
-  color: #e0f0ff;
-  font-weight: bold;
-}
+/* Mensagens de Exclusão */
 #mensagem-exclusao {
+  display: none;
   margin: 20px auto;
   padding: 12px 16px;
   max-width: 480px;
-  border-radius: 6px;
   font-size: 0.95rem;
   text-align: center;
   font-weight: 500;
-  display: none;
+  border-radius: 6px;
 }
 
 #mensagem-exclusao.sucesso {

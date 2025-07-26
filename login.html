@@ -10,16 +10,42 @@
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
   <link rel="stylesheet" href="style/style.css">
   <link rel="stylesheet" href="style/login.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 </head>
 <body>
-  <nav class="menu">
-    <ul class="menu-links">
-      <li><a href="index.html" class="ativo">Home</a></li>
-      <li><a href="login.html">Login</a></li>
-      <li><a href="galeriavideos.html">Galeria</a></li>
-      <li><a href="sobre.html">Sobre</a></li>
-    </ul>
-  </nav>
+  
+<nav class="menu">
+  <ul class="menu-links">
+    <li>
+      <a href="index.html"
+        <i class="fas fa-house"></i>
+        <span>Home</span>
+      </a>
+    </li>
+    <li>
+      <a href="login.html" class="ativo">
+        <i class="fas fa-right-to-bracket"></i>
+        <span>Login</span>
+      </a>
+    </li>
+    <li>
+      <a href="galeriavideos.html">
+        <i class="fas fa-photo-film"></i>
+        <span>Galeria</span>
+      </a>
+    </li>
+    <li>
+      <a href="sobre.html">
+        <i class="fas fa-circle-info"></i>
+        <span>Sobre</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+
+
 
   <main>
     <div class="container">
@@ -30,7 +56,9 @@
         <button type="submit">Entrar</button>
         <button type="button" class="alt-btn" onclick="window.location.href='index.html'">Cancelar</button>
         <div>
+          <br>
           <p>Ainda não possui conta? <a href="cadastro.html">Cadastre-se</a></p>
+          <br>
           <p>Esqueceu sua senha? <a href="alterarsenha.html">Clique aqui</a></p>
         </div>
       </form>

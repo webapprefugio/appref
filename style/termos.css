@@ -1,17 +1,17 @@
-/* termos.css */
-
 /* Estilo específico para a seção de termos */
 .termos-content {
   max-width: 960px;
-  margin: 60px auto;
+  margin: 20px auto;
   padding: 20px;
   background-color: #ffffff;
+  text-align: justify;
 }
 
 .termos-content h1,
 .termos-content h2 {
   color: #003366;
   margin-bottom: 16px;
+  font-size: 25px;
 }
 
 .termos-content p {
@@ -32,4 +32,26 @@
   color: #cc0000;
   font-weight: bold;
   text-decoration: underline;
+}
+
+/* Botões de Destaque */
+.botao-destaque {
+  display: inline-block;
+  padding: 12px 28px;
+  background-color: #cc0000;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 25px;
+
+  transition: background-color 0.3s ease;
+}
+.botao-destaque:hover {
+  background-color: #cc0000;
+  text-align: center;
+}
+.termos-content .botao-destaque {
+  display: block;
+  margin: 0 auto; /* centraliza horizontalmente */
+  text-align: center;
 }

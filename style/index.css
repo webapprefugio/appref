@@ -1,12 +1,37 @@
-/* index.css */
-
-/* Centralizar o conteúdo da seção de boas-vindas */
+/* Seção de Boas-Vindas */
 .secao.boas-vindas {
   text-align: center;
   color: #004080;
 }
 
-/* Carrossel de vídeos */
+/* Seções Gerais */
+.secao {
+  padding: 20px;
+  max-width: 960px;
+  margin: 20px auto;
+  box-shadow: none;
+}
+
+.secao h2 {
+  color: #003366;
+}
+
+.destaque {
+  border-bottom: 1px solid #003366;
+  padding: 20px;
+}
+
+/* Galeria de Vídeos */
+.galeria-videos {
+  margin-top: 5px;
+}
+
+h2 a.ver-todos {
+  text-decoration: none;
+  color: inherit;
+  font-weight: inherit;
+}
+
 .carrossel-videos {
   display: flex;
   overflow-x: auto;
@@ -42,6 +67,7 @@
   text-shadow: 0 0 5px black;
 }
 
+/* Controles do Carrossel */
 .controle-carrossel {
   display: flex;
   justify-content: center;
@@ -68,4 +94,42 @@
 
 #indicadores span.ativo {
   background: red;
+}
+
+/* Botões de Destaque */
+.botao-destaque {
+  display: inline-block;
+  padding: 12px 28px;
+  background-color: #cc0000;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 25px;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.botao-destaque:hover {
+  background-color: #cc0000;
+}
+
+/* Links Recomendados */
+.links-canais a,
+.links-sites a {
+  display: inline-block;
+  margin: 8px;
+  padding: 10px 20px;
+  background-color: #003366;
+  color: white;
+  text-decoration: none;
+  border-radius: 25px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.links-canais a:hover,
+.links-sites a:hover {
+  background-color: #004080;
+  transform: translateY(-2px);
 }

@@ -1,12 +1,10 @@
-/* ===== sobre.css ===== */
-
 /* Container principal da seção sobre */
 .sobre-content {
   max-width: 960px;
-  margin: 60px auto;
+  margin: 20px auto;
   padding: 20px;
   background-color: #ffffff;
-
+  text-align: justify;
 }
 
 /* Título principal */
