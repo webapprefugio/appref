@@ -28,6 +28,13 @@ main {
   list-style: none;
   padding: 0;
   margin: 0;
+  flex-wrap: nowrap; /* impede quebra de linha */
+  overflow-x: auto; /* rolagem horizontal se necessário */
+}
+
+.menu-links li {
+  flex: 0 0 auto; /* mantém largura conforme conteúdo */
+  text-align: center;
 }
 
 .menu-links li a {
@@ -37,44 +44,20 @@ main {
   text-decoration: none;
   font-weight: 500;
   font-size: 14px;
-  color: white; /* texto branco padrão */
+  color: white;
+  padding: 10px;
 }
 
 .menu-links li a i {
   font-size: 24px;
   margin-bottom: 6px;
-  color: white; /* ícone branco padrão */
-  
-}
-
-.menu-links li a span {
-  color: white; /* nome branco padrão */
-  
-}
-
-.menu-links li a {
-  display: flex;
-  flex-direction: column; /* força ícone em cima e nome embaixo */
-  align-items: center;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 14px;
-  color: white;
-  
-}
-
-.menu-links li a i {
-  font-size: 24px;
-  margin-bottom: 6px; /* distância do ícone pro nome */
   color: white;
 }
 
 .menu-links li a span {
   color: white;
-  
 }
 
-/* Item ativo: só o sublinhado vermelho */
 .menu-links li a.ativo {
   border-bottom: 4px solid red;
   padding-bottom: 6px;
