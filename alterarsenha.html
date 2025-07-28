@@ -3,11 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-    <title>Alterar Senha | WebApp Refúgios</title>
+    <title>Redefinir Senha | WebApp Refúgios</title>
     <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="style/style.css" />
     <link rel="stylesheet" href="style/alterarsenha.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="all" onload="this.media='all'">
+   
     <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
@@ -24,8 +25,8 @@
     </li>
     <li>
       <a href="login.html">
-        <i class="fas fa-right-to-bracket"></i>
-        <span>Login</span>
+        <i class="fas fa-user"></i>
+        <span>Membros</span>
       </a>
     </li>
     <li>
@@ -46,7 +47,8 @@
 
     <main>
       <div class="container">
-        <h1>Alterar Senha</h1>
+        <br>
+        <h1>Redefinir Senha</h1>
         <form class="formulario" id="formAlterarSenha">
           <input type="email" placeholder="Email" id="email" required />
           <div id="perguntaContainer" style="display:none;">
@@ -58,13 +60,14 @@
           <div id="mensagem"></div>
           <button type="submit">Alterar Senha</button>
           <button type="button" class="alt-btn" onclick="window.location.href='index.html'">Cancelar</button>
+          <br>          
         </form>
       </div>
     </main>
 
   <footer>
     <div><a href="cadastro.html">Junte-se a nós!</a></div><br>
-    &copy; 2025 - WebApp Encontre seu Refúgio
+    &copy; 2025 - WebApp  Refúgios (V. 1.0)
   </footer>
 
     <script>

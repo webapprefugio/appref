@@ -6,10 +6,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const videoThumbs = document.querySelectorAll(".video-thumb");
 
   let scrollIndex = 0;
-  const videoWidth = 310; // Aproximado (300px + gap)
+  const videoWidth = 310;
   const totalVideos = galeria.children.length;
 
-  // Indicador inicial
+  let autoScroll = setInterval(() => rolar(1), 7000);
+  let carrosselAtivo = true; // ✅ flag de controle
+
   function atualizarIndicadores() {
     [...indicadores].forEach((dot, i) => {
       dot.classList.toggle("ativo", i === scrollIndex % indicadores.length);
@@ -19,6 +21,8 @@ document.addEventListener("DOMContentLoaded", () => {
   atualizarIndicadores();
 
   function rolar(direcao) {
+    if (!carrosselAtivo) return; // 🚫 bloqueia rolagem se desativado
+
     if (direcao === 1 && scrollIndex < totalVideos - 1) {
       scrollIndex++;
     } else if (direcao === -1 && scrollIndex > 0) {
@@ -35,18 +39,24 @@ document.addEventListener("DOMContentLoaded", () => {
   proximo.addEventListener("click", () => rolar(1));
   anterior.addEventListener("click", () => rolar(-1));
 
-  // AutoScroll
-  setInterval(() => rolar(1), 7000);
-
-  // Lazy embed
   videoThumbs.forEach(thumb => {
     thumb.addEventListener("click", () => {
       const id = thumb.getAttribute("data-video-id");
       const iframe = document.createElement("iframe");
-      iframe.src = `https://www.youtube.com/embed/${id}?autoplay=1`;
-      iframe.loading = "lazy";
+      iframe.src = `https://www.youtube.com/embed/${id}?autoplay=1&rel=0&modestbranding=1`;
+      iframe.allow = "autoplay; encrypted-media";
       iframe.allowFullscreen = true;
+      iframe.loading = "lazy";
+      iframe.width = "100%";
+      iframe.height = "100%";
+      iframe.style.border = "none";
+      iframe.style.borderRadius = "8px";
+
       thumb.replaceWith(iframe);
+
+      // Parar o carrossel para sempre
+      clearInterval(autoScroll);
+      carrosselAtivo = false;
     });
   });
 });

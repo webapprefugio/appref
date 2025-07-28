@@ -1,11 +1,15 @@
 /* Container principal da página Alterar Senha */
 .container {
-  max-width: 480px;
-  margin: 40px auto;
-  padding: 20px;
+  width: 90vw; /* ocupa 90% da viewport */
+  max-width: 500px;
+  min-width: 280px;
+  margin: 20px auto;
+  padding: 10px 10px;
+  text-align: left;
   background-color: #ffffff;
   border-radius: 12px;
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
 }
 
 /* Título da página */

@@ -2,25 +2,38 @@
 .secao.boas-vindas {
   text-align: center;
   color: #004080;
+  font-size: 0.9rem;
+}
+
+h1  {
+  font-size: 1.5rem;
+  margin-bottom: 5px;
 }
 
 /* Seções Gerais */
 .secao {
-  padding: 20px;
+  padding: 15px;
   max-width: 960px;
-  margin: 20px auto;
+  margin: 0px auto;
   box-shadow: none;
+  font-size: 0.9rem;
 }
 
 .secao h2 {
   color: #003366;
+  
 }
 
 .destaque {
-  border-bottom: 1px solid #003366;
-  padding: 20px;
+  background: linear-gradient(to bottom, #f2fcfd, #ffffff, #ffffff, #ffffff, #ffffff);
+  padding: 10px;
 }
 
+
+.destaque p {
+   padding: 10px;
+   font-size: 0.9rem;
+}
 /* Galeria de Vídeos */
 .galeria-videos {
   margin-top: 5px;
@@ -80,7 +93,7 @@ h2 a.ver-todos {
 .seta-carrossel {
   cursor: pointer;
   font-size: 32px;
-  color: #003366;
+  color: #004080;
 }
 
 #indicadores span {
@@ -93,34 +106,51 @@ h2 a.ver-todos {
 }
 
 #indicadores span.ativo {
-  background: red;
+  background: #f77070;
 }
 
 /* Botões de Destaque */
 .botao-destaque {
   display: inline-block;
   padding: 12px 28px;
-  background-color: #cc0000;
+  background: linear-gradient(150deg,#196302, #2fc202);
   color: white;
   text-decoration: none;
   font-weight: bold;
   border-radius: 25px;
-  margin-top: 20px;
   transition: background-color 0.3s ease;
 }
 
 .botao-destaque:hover {
-  background-color: #cc0000;
+  background-color: #1f8102;
 }
+
+@keyframes coracao {
+  0%   { transform: scale(1); }
+  10%  { transform: scale(1.15); }
+  20%  { transform: scale(1); }
+  30%  { transform: scale(1.10); }
+  40%  { transform: scale(1); }
+  100% { transform: scale(1); }
+}
+
+.botao-destaque {
+  animation: coracao 1s ease-in-out infinite;
+}
+
+
+
 
 /* Links Recomendados */
 .links-canais a,
 .links-sites a {
+  font-size: 0.7rem;
   display: inline-block;
-  margin: 8px;
+  margin: 4px;
   padding: 10px 20px;
-  background-color: #003366;
-  color: white;
+  background-color: transparent;
+  color: #004080;
+  
   text-decoration: none;
   border-radius: 25px;
   font-weight: bold;
@@ -130,6 +160,7 @@ h2 a.ver-todos {
 
 .links-canais a:hover,
 .links-sites a:hover {
-  background-color: #004080;
+  background-color: #008011;
+  color: #ccc;
   transform: translateY(-2px);
 }

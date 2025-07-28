@@ -1,14 +1,17 @@
+
+
 /* Container de Login */
 .container {
-  max-width: 380px;
+  width: 90vw; /* ocupa 90% da viewport */
+  max-width: 480px;
   min-width: 280px;
-  width: 100%;
   margin: 20px auto;
   padding: 20px;
   text-align: left;
   background-color: #ffffff;
   border-radius: 12px;
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
 }
 
 .container h1 {
@@ -17,22 +20,30 @@
   color: #003366;
 }
 
+@media screen and (max-width: 280px) {
+  .container {
+    width: 90vw; /* 90% da viewport */
+    padding: 10px; /* reduz espaço interno pra caber melhor */
+  }
+}
+
 /* Botão Excluir Conta */
 #excluirconta {
   display: block;
-  margin: 0 auto;
+  margin: 20px auto;
   padding: 10px 20px;
   font-size: 1rem;
-  background-color: #e03b3b;
-  color: #fff;
+  background: linear-gradient(150deg,#630202, #c20202);
+  color: #ffffff;
   border: none;
-  border-radius: 6px;
+  border-radius: 25px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 #excluirconta:hover {
-  background-color: #990000;
+  background-color: #f06464;
+  color: #020000;
 }
 
 /* Formulário */
@@ -104,7 +115,7 @@
 #area-consulta {
   margin-top: 30px;
   padding: 20px;
-  background-color: #f4f8fc;
+
   border-radius: 10px;
 }
 
@@ -118,6 +129,7 @@
 #area-consulta span {
   color: #003366;
   font-weight: bold;
+  text-align: center;
 }
 
 /* Tabela de Usuários */
@@ -162,19 +174,20 @@
 /* Botão de Logout */
 #btnLogout {
   display: block;
-  margin: 20px auto;
-  padding: 10px 20px;
+  margin: 5px auto;
+  padding: 14px 50px;
   font-size: 1rem;
-  background-color: #f3901f;
-  color: #fff;
+  background: linear-gradient(150deg,#630202, #c20202);
+  color: #ffffff;
   border: none;
-  border-radius: 6px;
+  border-radius: 24px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 #btnLogout:hover {
-  background-color: #994a00;
+  background-color: #2b7003;
+  color: #ffffff;
 }
 
 /* Mensagens de Exclusão */
@@ -197,7 +210,7 @@
 
 #mensagem-exclusao.erro {
   background-color: #f8d7da;
-  color: #721c24;
+  color: #cc0000;
   border: 1px solid #f5c6cb;
 }
 

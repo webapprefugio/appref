@@ -1,13 +1,20 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 /* Layout Global */
 body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-  background: #f9fbff;
+  background: #f9fbff
   color: #222;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 /* Conteúdo principal */
@@ -17,23 +24,26 @@ main {
 
 /* Navegação */
 .menu {
-  background: #004080;
+  background: linear-gradient(to right, #004080, #0074D9);
   padding: 20px 0;
+   overflow-x: hidden;
 }
 
 .menu-links {
   display: flex;
   justify-content: center;
-  gap: 40px;
+  gap: 30px;
   list-style: none;
-  padding: 0;
+  padding: 0 10px;
   margin: 0;
-  flex-wrap: nowrap; /* impede quebra de linha */
-  overflow-x: auto; /* rolagem horizontal se necessário */
+  flex-wrap: nowrap;
+  overflow-x: hidden;
 }
 
 .menu-links li {
-  flex: 0 0 auto; /* mantém largura conforme conteúdo */
+  flex: 1 1 90px;
+  min-width: 70px;
+  max-width: 25vw;
   text-align: center;
 }
 
@@ -41,15 +51,16 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 7px;
   text-decoration: none;
   font-weight: 500;
-  font-size: 14px;
+  font-size: clamp(0.75rem, 2vw, 0.95rem);
   color: white;
   padding: 10px;
 }
 
 .menu-links li a i {
-  font-size: 24px;
+  font-size: clamp(1rem, 5vw, 1.5rem);
   margin-bottom: 6px;
   color: white;
 }
@@ -59,22 +70,76 @@ main {
 }
 
 .menu-links li a.ativo {
-  border-bottom: 4px solid red;
+  border-bottom: 4px solid rgb(0, 192, 0);
   padding-bottom: 6px;
+}
+
+/* Media Queries */
+@media screen and (max-width: 320px) {
+  .menu-links {
+    gap: 20px;
+    padding: 0 8px;
+  }
+
+  .menu-links li {
+    max-width: 45vw;
+    flex: 1 1 auto;
+  }
+
+  .menu-links li a {
+    font-size: 0.7rem;
+    padding: 6px;
+  }
+
+  .menu-links li a i {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .menu-links {
+    gap: 20px;
+  }
+
+  .menu-links li a {
+    font-size: 12px;
+    padding: 6px;
+  }
+
+  .menu-links li a i {
+    font-size: 18px;
+    margin-bottom: 4px;
+  }
 }
 
 /* Rodapé */
 footer {
-  font-size: 0.85rem;
-  background: #004080;
+  font-size: 0.7rem;
+  background: linear-gradient(to right, #004080, #0074D9);
   color: white;
   text-align: center;
-  padding: 10px;
+  padding: 20px 10px 10px 10px;
   border-top: 2px solid #ccc;
+  
 }
 
 footer a {
+  display: inline-block;
+  padding: 5px 24px;
+  background-color: transparent;
   color: white;
-  text-decoration: underline;
-  font-size: 1.2rem;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: bold;
+  border: 2px solid #729b65;
+  border-radius: 25px;
+  transition: all 0.3s ease;
 }
+
+footer a:hover {
+  background-color: #1f8102;
+}
+
+
+
+

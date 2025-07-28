@@ -1,3 +1,7 @@
+body {
+  line-height: 1.5;
+}
+
 /* Estilo específico para a seção de termos */
 .termos-content {
   max-width: 960px;
@@ -5,6 +9,7 @@
   padding: 20px;
   background-color: #ffffff;
   text-align: justify;
+    width: 90vw; /* ocupa 90% da viewport */
 }
 
 .termos-content h1,
@@ -13,7 +18,10 @@
   margin-bottom: 16px;
   font-size: 25px;
 }
-
+h3 {
+  margin-top: 20px;
+  font-size: 20px;
+}
 .termos-content p {
   line-height: 1.6;
   margin-bottom: 16px;
@@ -38,7 +46,7 @@
 .botao-destaque {
   display: inline-block;
   padding: 12px 28px;
-  background-color: #cc0000;
+  background: linear-gradient(150deg,#196302, #2fc202);
   color: white;
   text-decoration: none;
   font-weight: bold;
@@ -47,11 +55,24 @@
   transition: background-color 0.3s ease;
 }
 .botao-destaque:hover {
-  background-color: #cc0000;
+  background-color: #1f8102;
   text-align: center;
 }
 .termos-content .botao-destaque {
   display: block;
   margin: 0 auto; /* centraliza horizontalmente */
   text-align: center;
+}
+
+@keyframes coracao {
+  0%   { transform: scale(1); }
+  10%  { transform: scale(1.15); }
+  20%  { transform: scale(1); }
+  30%  { transform: scale(1.10); }
+  40%  { transform: scale(1); }
+  100% { transform: scale(1); }
+}
+
+.botao-destaque {
+  animation: coracao 1s ease-in-out infinite;
 }

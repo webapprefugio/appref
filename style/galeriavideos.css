@@ -1,17 +1,19 @@
-/* style/galeriavideos.css */
-
+/* Layout principal */
 main {
+  width: 90vw;
   max-width: 1100px;
-  margin: 40px auto;
+  margin: 10px auto;
   padding: 20px;
+  min-width: 180px;
 }
 
+/* Seções de autor */
 .autor-section {
   background-color: #ffffff;
   border: 1px solid #ddd;
   border-radius: 12px;
   padding: 20px;
-  margin-bottom: 40px;
+  margin-bottom: 10px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
@@ -25,17 +27,41 @@ main {
   margin-bottom: 16px;
 }
 
-/* Carrossel de vídeos por autor */
+/* Galeria de vídeos responsiva (YouTube) */
 .galeria-videos {
-  position: relative;
-  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 1.5rem;
+  
 }
 
-.galeria-videos .carrossel-videos {
+/* Wrapper do vídeo */
+.video-wrapper {
+  flex: 1 1 45%;
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+  overflow: hidden;
+  min-width: 180px;
+  max-width: 100%;
+    width: 90%;
+  max-width: 990px; /* opcional, para limitar o tamanho */
+  margin: 0 auto; /* para centralizar */
+}
+
+/* Iframe do vídeo */
+.video-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Carrossel horizontal (vídeos locais ou alternativos) */
+.carrossel-videos {
   display: flex;
   gap: 20px;
-  scroll-behavior: smooth;
   overflow-x: auto;
+  scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
   padding-bottom: 12px;
 }
@@ -57,12 +83,12 @@ main {
 }
 
 /* Indicadores por seção */
-.galeria-videos .indicadores {
+.indicadores {
   text-align: center;
   margin-top: 12px;
 }
 
-.galeria-videos .indicadores span {
+.indicadores span {
   display: inline-block;
   width: 10px;
   height: 10px;
@@ -71,13 +97,82 @@ main {
   margin: 0 4px;
 }
 
-.galeria-videos .indicadores span.ativo {
+.indicadores span.ativo {
   background-color: #003366;
 }
 
-@media (max-width: 768px) {
-  .carrossel-videos {
-    flex-direction: column;
-    align-items: center;
+@media screen and (max-width: 600px) {
+  .video-wrapper {
+    flex: 1 1 100%;
+    margin-bottom: 1rem;
+    
+  }
+
+  .video-thumb {
+    flex: 1 1 100%;
+    margin-bottom: 0,5rem;
   }
 }
+
+
+.galeria-thumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+}
+.nota {
+  font-size: 0.7rem;
+}
+
+
+.video-thumb {
+  position: relative;
+  flex: 1 1 45%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 8px;
+  min-width: 180px;
+  max-width: 100%;
+  width: 50%;
+}
+
+.video-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 8px;
+}
+
+/* Botão de play personalizado */
+.play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0,0,0,0.6);
+  color: #fff;
+  font-size: 2rem;
+  padding: 10px 16px;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.video-thumb::after {
+  
+  position: absolute;
+  bottom: 8px;
+  left: 12px;
+  background-color: rgba(0,0,0,0.5);
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+
+.video-thumb:hover .video-title {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+

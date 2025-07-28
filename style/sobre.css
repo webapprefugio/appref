@@ -1,3 +1,6 @@
+body {
+  line-height: 1.5;
+}
 /* Container principal da seção sobre */
 .sobre-content {
   max-width: 960px;
@@ -5,6 +8,7 @@
   padding: 20px;
   background-color: #ffffff;
   text-align: justify;
+    width: 90vw; /* ocupa 90% da viewport */
 }
 
 /* Título principal */
