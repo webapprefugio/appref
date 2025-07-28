@@ -77,14 +77,14 @@
            areaConsulta.innerHTML = `
              ${saudacaoHtml}
              <div><button id="btnLogout">Sair</button></div>
-             <div id="msg-excluir" style="color: red; font-weight: bold; margin-top: 10px;"></div>
+             
              <div>
                <table>
                  <thead>
                    <tr>
                      <th>Perfil Social</th>
                      <th>Nome</th>
-                     <th>UF</th>
+                     
                      <th>Cidade</th>
                    </tr>
                  </thead>
@@ -92,9 +92,20 @@
                </table>
              </div>
             <div><br>
-              <button id="excluirconta">
-                Clique aqui para excluir sua conta.<br />Esse processo, uma vez iniciado, é irreversível!
-              </button>
+
+<form class="formulario">
+  
+  <div id="msg-excluir"></div>
+
+<!-- Botão de exclusão inativo -->
+<div class="excluir-botao">
+  <button id="excluirconta">Excluir minha conta</button>
+</div>
+
+  <!-- ... resto do formulário ... -->
+  
+</form>
+
             </div>
 
            `;
@@ -170,7 +181,7 @@
              <tr>
                <td><a href="${usuario.linkPerfil}" target="_blank" rel="noopener">Contacte-me</a></td>
                <td>${usuario.nome}</td>
-               <td>${usuario.uf}</td>
+               
                <td>${cidade}</td>
              </tr>`;
          }
@@ -189,22 +200,60 @@
              });
            };
          
-           document.getElementById('excluirconta').onclick = function () {
-             const user = auth.currentUser;
-             const msgDiv = document.getElementById('msg-excluir');
-             msgDiv.textContent = 'Processando exclusão...';
-         
-             user.delete().then(() => {
-               window.location.href = 'contaexcluida.html';
-             }).catch(error => {
-               if (error.code === 'auth/requires-recent-login') {
-                 msgDiv.textContent = 'Por segurança, refaça o login para excluir sua conta.';
-                 auth.signOut().then(() => window.location.reload());
-               } else {
-                 msgDiv.textContent = 'Erro ao excluir conta: ' + error.message;
-               }
-             });
-           };
+           let countdownInterval; 
+let countdown = 10; 
+let isConfirmingDeletion = false; 
+
+document.getElementById('excluirconta').onclick = function (e) { // <-- Adicione 'e' como parâmetro aqui
+  e.preventDefault(); // <-- ADICIONE ESTA LINHA AQUI!
+
+  const user = auth.currentUser;
+  const msgDiv = document.getElementById('msg-excluir');
+  const btnExcluir = this; 
+
+  if (isConfirmingDeletion) {
+    clearInterval(countdownInterval); 
+    countdownInterval = null; 
+    countdown = 10; 
+    isConfirmingDeletion = false; 
+
+    btnExcluir.innerHTML = '<i class="fas fa-trash"></i> Excluir minha conta'; 
+    
+    msgDiv.textContent = 'Processando exclusão...';
+    user.delete().then(() => {
+      window.location.href = 'contaexcluida.html';
+    }).catch(error => {
+      if (error.code === 'auth/requires-recent-login') {
+        msgDiv.textContent = 'Por segurança, refaça o login para excluir sua conta.';
+        auth.signOut().then(() => window.location.reload());
+      } else {
+        msgDiv.textContent = 'Erro ao excluir conta: ' + error.message;
+      }
+    });
+
+  } else {
+    isConfirmingDeletion = true; 
+    
+ 
+
+    countdownInterval = setInterval(() => {
+      countdown--;
+      if (countdown > 0) {
+        btnExcluir.innerHTML = `Confirme sua exclusão em até ${countdown} segundos, ou aguarde o cancelamento.`;
+        
+      
+      } else {
+        clearInterval(countdownInterval); 
+        countdownInterval = null; 
+        countdown = 10; 
+        isConfirmingDeletion = false; 
+
+        btnExcluir.innerHTML = ' Excluir minha conta';
+        msgDiv.textContent = 'Tempo esgotado. Exclusão cancelada!';
+      }
+    }, 1000); 
+  }
+};
          }
          
          function carregarConsulta() {

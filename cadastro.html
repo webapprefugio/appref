@@ -92,7 +92,7 @@
             <option value="" disabled selected>Selecione um Estado</option>
           </select>
           <div id="campo-cidades">
-            <span id="msg-cidade-placeholder">Selecione uma cidade</span>
+            <span id="msg-cidade-placeholder">Selecione uma Cidade</span>
           </div>
           <div id="msg-cidade-info">Selecione no máximo 3 cidades</div>
           <div id="mensagem"></div>
@@ -327,10 +327,24 @@ await db.collection("usuarios").doc(user.uid).set({
           window.location.href = "login.html";
         }, 2000);
 
-      } catch (error) {
-        console.error("Erro no cadastro:", error);
-        mensagem.textContent = "Erro ao cadastrar: " + "Este usuário já está cadastrado ou verifique se o email esá correto e sua senha se contem 6 ou mais caracteres " + error.message;
-      }
+} catch (error) {
+  console.error("Erro no cadastro:", error);
+
+  switch (error.code) {
+    case 'auth/email-already-in-use':
+      mensagem.textContent = "Este email já está cadastrado. Tente fazer login ou use outro email.";
+      break;
+    case 'auth/invalid-email':
+      mensagem.textContent = "O email informado é inválido. Verifique se está correto.";
+      break;
+    case 'auth/weak-password':
+      mensagem.textContent = "A senha precisa conter 6 caracteres ou mais.";
+      break;
+    default:
+      mensagem.textContent = "Erro ao cadastrar: " + error.message;
+  }
+}
+
     });
   }); 
 
