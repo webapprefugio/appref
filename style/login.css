@@ -1,221 +1,290 @@
-
-
-/* Container de Login */
+/* Container principal (usado tanto para Login quanto para Cadastro) */
 .container {
-  width: 90vw; /* ocupa 90% da viewport */
-  max-width: 480px;
-  min-width: 280px;
-  margin: 20px auto;
-  padding: 20px;
-  text-align: left;
-  background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
-  box-sizing: border-box;
-}
-
-.container h1 {
-  margin-bottom: 24px;
-  text-align: center;
-  color: #003366;
+    width: 90vw; /* ocupa 90% da viewport */
+    max-width: 480px; /* Reduzido para o container de login, conforme seu CSS original. No de cadastro, é 800px. Você pode precisar de uma classe separada para diferenciar. */
+    min-width: 280px;
+    margin: 20px auto;
+    padding: 20px;
+    text-align: left;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
 }
 
 @media screen and (max-width: 280px) {
-  .container {
-    width: 90vw; /* 90% da viewport */
-    padding: 10px; /* reduz espaço interno pra caber melhor */
-  }
+    .container {
+        width: 90vw; /* 90% da viewport */
+        padding: 10px; /* reduz espaço interno pra caber melhor */
+    }
 }
 
-/* Botão Excluir Conta */
-#excluirconta {
-  display: block;
-  margin: 20px auto;
-  padding: 10px 20px;
-  font-size: 1rem;
-  background: linear-gradient(150deg,#630202, #c20202);
-  color: #ffffff;
-  border: none;
-  border-radius: 25px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+/* Títulos dentro do Container */
+.container h1 {
+    margin-bottom: 24px;
+    text-align: center;
+    color: #003366; /* Cor específica para h1 no login */
+    font-size: 1.8rem; /* Removido do seu código original de login, mas mantido se for o caso do cadastro */
 }
 
-#excluirconta:hover {
-  background-color: #f06464;
-  color: #020000;
-}
 
-/* Formulário */
+/* Formulário Geral */
 .formulario {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 0 20px; /* Adicionado do seu código de cadastro para consistência */
+    box-sizing: border-box; /* Adicionado do seu código de cadastro para consistência */
 }
 
-.formulario input {
-  padding: 12px;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+/* Campos de entrada e select */
+.formulario input[type="text"],
+.formulario input[type="email"],
+.formulario input[type="password"],
+.formulario select,
+.formulario textarea {
+    padding: 12px; /* Padronizado para 12px */
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    width: 100%; /* Adicionado para garantir largura total */
+    box-sizing: border-box; /* Garante que padding não aumente a largura */
 }
 
+/* Estilo UF */
+#lstUf {
+    color: #777; /* cor cinza para placeholder */
+    background-color: #ffffff;
+}
+#lstUf:valid {
+    color: #000; /* cor preta após seleção */
+}
+
+/* Estilo do campo de cidades como listbox vertical */
+#campo-cidades {
+    max-height: 125px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #ffffff;
+}
+
+/* Cada cidade ocupa uma linha */
+#campo-cidades label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+
+/* Botões do Formulário (Geral) */
 .formulario button {
-  padding: 12px;
-  font-size: 1rem;
-  background-color: #003366;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+    padding: 12px; /* Padronizado para 12px */
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px; /* Padronizado para 6px */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%; /* Garante que botões preencham a largura */
+    box-sizing: border-box; /* Garante que padding não aumente a largura */
 }
 
-.formulario button:hover {
-  background-color: #002244;
+/* Botão de envio (Submit) */
+.formulario button[type="submit"] {
+    background-color: #003366;
+    color: #fff;
 }
 
+.formulario button[type="submit"]:hover {
+    background-color: #002244;
+}
+
+/* Botão alternativo (Cancelar/Voltar) */
 .formulario .alt-btn {
-  background-color: #999;
+    background-color: #ccc;
+    color: #333;
 }
 
 .formulario .alt-btn:hover {
-  background-color: #777;
+    background-color: #777;
 }
 
-/* Links abaixo do formulário */
+/* Labels do Formulário */
+.formulario label {
+    color: #1d3557; /* Usado no CSS de cadastro */
+    font-weight: bold; /* Consolidado para bold */
+}
+
+/* Links abaixo do formulário (p, a) */
 .formulario div p {
-  margin: 0;
-  text-align: center;
-  font-size: 0.9rem;
+    margin: 0;
+    text-align: center;
+    font-size: 0.9rem;
 }
 
 .formulario div a {
-  color: #cc0000;
-  text-decoration: none;
-  font-weight: 500;
-  font-weight: bold;
+    color: #cc0000;
+    text-decoration: none;
+    font-weight: bold; /* Consolidado para bold */
 }
 
 .formulario div a:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 
-/* Mensagem de Login */
+/* Mensagem de Login (ex: erro de credenciais) */
 #login-msg {
-  background-color: #ffeeee;
-  color: #cc0000;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 6px;
-  text-align: center;
+    background-color: #ffeeee;
+    color: #cc0000;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    text-align: center;
+    
 }
 
-/* Área de Consulta */
+/* Área de Consulta (após o login) */
 #area-consulta {
-  margin-top: 30px;
-  padding: 20px;
-
-  border-radius: 10px;
+    margin-top: 30px;
+    padding: 20px;
+    border-radius: 10px;
+    /* Adicione um background-color se quiser que a área de consulta tenha um fundo */
+    /* background-color: #f9f9f9; */
 }
 
 #area-consulta > div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 16px;
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente o conteúdo direto */
+    align-items: center; /* Centraliza verticalmente o conteúdo direto */
+    margin-bottom: 16px;
 }
 
 #area-consulta span {
-  color: #003366;
-  font-weight: bold;
-  text-align: center;
+    color: #003366;
+    font-weight: bold;
+    text-align: center; /* Se o span for um bloco, isso centraliza o texto */
 }
 
 /* Tabela de Usuários */
 #area-consulta table {
-  width: 100%;
-  margin-top: 20px;
-  border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
 }
 
 #area-consulta th,
 #area-consulta td {
-  padding: 10px;
-  text-align: left;
-  border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ccc;
 }
 
 #area-consulta th {
-  text-align: center;
-  background-color: #003366;
-  color: #e0f0ff;
-  font-weight: bold;
+    text-align: center;
+    background-color: #003366;
+    color: #e0f0ff;
+    font-weight: bold;
 }
 
 #area-consulta table tr td[colspan="4"] {
-  background-color: #e0f0ff;
-  text-align: center;
-  font-weight: bold;
-  color: #003366;
-  padding: 8px;
-  border-radius: 4px;
+    background-color: #e0f0ff;
+    text-align: center;
+    font-weight: bold;
+    color: #003366;
+    padding: 8px;
+    border-radius: 4px;
 }
 
 #area-consulta a {
-  color: #cc0000;
-  text-decoration: none;
+    color: #cc0000;
+    text-decoration: none;
 }
 
 #area-consulta a:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 
 /* Botão de Logout */
 #btnLogout {
-  display: block;
-  margin: 5px auto;
-  padding: 14px 50px;
-  font-size: 1rem;
-  background: linear-gradient(150deg,#630202, #c20202);
-  color: #ffffff;
-  border: none;
-  border-radius: 24px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+    display: block;
+    margin: 5px auto;
+    padding: 14px 50px;
+    font-size: 1rem;
+    background: linear-gradient(150deg,#630202, #c20202);
+    color: #ffffff;
+    border: none;
+    border-radius: 24px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 #btnLogout:hover {
-  background-color: #2b7003;
-  color: #ffffff;
+    background-color: #2b7003; /* Cor diferente do excluirconta para hover, mantido */
+    color: #ffffff;
 }
 
-/* Mensagens de Exclusão */
-#mensagem-exclusao {
-  display: none;
-  margin: 20px auto;
-  padding: 12px 16px;
-  max-width: 480px;
-  font-size: 0.95rem;
-  text-align: center;
-  font-weight: 500;
-  border-radius: 6px;
+/* Mensagem de Exclusão (contagem regressiva) */
+#msg-excluir {
+    color: #aa0000; /* Cor vermelha para destaque */
+    align-self: center; /* Centraliza a div no eixo cruzado (horizontalmente) */
+    width: 90%; /* Define uma largura para que a centralização funcione */
+    font-weight: bold;
+    text-align: center; /* Centraliza o texto dentro da própria div */
+
+    margin: 5px;
+    padding: 15px;
+
 }
 
-#mensagem-exclusao.sucesso {
-  background-color: #d4edda;
-  color: #155724;
-  border: 1px solid #c3e6cb;
+/* Aviso e Botão de Exclusão (grupo) */
+.excluir-aviso {
+    margin: 12px;
+    color: #aa0000;
+    font-weight: bold;
+padding: 20px;
+    text-align: center;
+
 }
 
-#mensagem-exclusao.erro {
-  background-color: #f8d7da;
-  color: #cc0000;
-  border: 1px solid #f5c6cb;
+.excluir-aviso p {
+    margin: 0 0 12px 0;
 }
 
-#mensagem-exclusao.aviso {
-  background-color: #fff3cd;
-  color: #856404;
-  border: 1px solid #ffeeba;
+.excluir-botao {
+    margin: 10px;
+    /* Faz o contêiner do botão ser um flex container para centralizar o botão filho */
+    display: flex;
+    justify-content: center; /* Centraliza o botão dentro de .excluir-botao */
+    width: 100%; /* Garante que o container ocupe a largura total */
+    padding: 10px;
 }
+
+/* Estilos específicos para o botão #excluirconta */
+#excluirconta {
+    /* As propriedades de #excluirconta no início do seu CSS foram sobrescritas por essa aqui. Consolidei. */
+    background-color: #c70000; /* Cor de fundo vermelho sólida */
+
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    border-radius: 24px;
+    margin-bottom: 12px;
+    color: #f1f1f1;
+    text-align: center;
+}
+
+#excluirconta:hover {
+    /* Use a cor do hover mais escura, como no seu segundo bloco, ou defina um gradiente */
+    background-color: #a00000;
+    /* Se quiser a cor escura do primeiro bloco, troque para: background-color: #f06464; color: #020000; */
+}
+
+
+
+/* Removido: .excluir-aviso, .excluir-botao { display: block; width: 100%; }
+   Pois já foi tratado individualmente ou pelo flex.
+*/
+/* Removido: .excluir-botao button { display: block; margin: 0 auto; }
+   Pois .excluir-botao agora é um flex container que centraliza seu item filho.
+*/

@@ -86,7 +86,7 @@
 
 /* Estilo do campo de cidades como listbox vertical */
 #campo-cidades {
-  max-height: 200px;
+  max-height: 125px;
   overflow-y: auto;
   border: 1px solid #ccc;
   padding: 10px;
@@ -177,4 +177,69 @@
   color: #000; /* azul Facebook clássico */
   margin-bottom: 10px;
   transition: color 0.3s ease;
+}
+.excluir-aviso {
+  margin-bottom: 12px;
+  color: #aa0000;
+  font-weight: bold;
+}
+
+.excluir-botao {
+  margin-top: 10px;
+}
+
+#excluirconta {
+  background-color: #c70000;
+  color: white;
+  padding: 10px 16px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+#excluirconta:hover {
+  background-color: #a00000;
+}
+.excluir-aviso,
+.excluir-botao {
+  display: block;
+  width: 100%;
+}
+.excluir-aviso p {
+  margin: 0 0 12px 0;
+}
+
+.excluir-botao button {
+  display: block;
+  margin: 0 auto; /* Centraliza o botão */
+}
+
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+#excluirconta:disabled {
+  background-color: #999;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+#msg-excluir {
+    /* Estilos para o destaque e aparência */
+    background-color: #fffacd; /* Fundo amarelo claro */
+    padding: 10px; /* Espaçamento interno */
+    border-radius: 5px; /* Bordas arredondadas */
+    margin-top: 15px; /* Espaço acima */
+    margin-bottom: 15px; /* Espaço abaixo */
+    color: #333; /* Cor do texto para garantir contraste */
+
+    /* Estilos para centralização no Flexbox */
+    align-self: center; /* Centraliza a div no eixo cruzado (horizontalmente, já que flex-direction é column) */
+    width: 90%; /* Define uma largura para que a centralização funcione */
+    max-width: 400px; /* Adiciona um limite de largura para não ficar muito grande em telas largas */
+    text-align: center; /* Centraliza o texto dentro da própria div */
+
+    /* Garante que o box-sizing seja border-box para o padding não aumentar a largura */
+    box-sizing: border-box; 
 }
