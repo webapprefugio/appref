@@ -98,16 +98,16 @@ main {
 
 @media screen and (max-width: 450px) {
   .menu-links {
-    gap: 20px;
+    gap: 10px;
   }
 
   .menu-links li a {
-    font-size: 12px;
+    font-size: 10px;
     padding: 6px;
   }
 
   .menu-links li a i {
-    font-size: 18px;
+    font-size: 15px;
     margin-bottom: 4px;
   }
 }
@@ -129,7 +129,7 @@ footer a {
   background-color: transparent;
   color: white;
   text-decoration: none;
-  font-size: 1rem;
+  font-size: 0.85rem;
   font-weight: bold;
   border: 2px solid #05dbeb;
   border-radius: 25px;
@@ -137,10 +137,17 @@ footer a {
   background: linear-gradient(to right, #004080, #0074D9);
 }
 
-footer a:hover {
-  background-color: #1f8102;
+@keyframes pulse {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+footer a {
+  animation: pulse 1.5s ease-in-out infinite;
 }
 
 
-
-
+footer a:hover {
+  animation: pulse 0.4s ease-in-out;
+}

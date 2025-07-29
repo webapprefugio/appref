@@ -11,7 +11,8 @@ body {
   width: 100%;
   padding: 20px;
   box-sizing: border-box;
-  margin-bottom: 40px;
+  margin-bottom: 10px;
+  
 }
 
 /* Título e nota */
@@ -30,23 +31,25 @@ body {
 /* Galeria em grid flexível */
 .galeria-thumbs {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 280px));
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
   justify-content: start; /* agora alinha à esquerda */
-  gap: 1.5rem;
+  gap: 1rem 1rem;   
+  overflow-y: auto; /* desativa rolagem vertical */
+  max-height: 33vh;
 }
-
-
 
 /* Thumb dos vídeos */
 .video-thumb {
-  position: relative;
+  position:relative;
   aspect-ratio: 16 / 9;
   overflow: hidden;
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.2);
   transition: transform 0.3s ease;
-  max-width: 320px;
+  max-width: 200px;
+  min-width: 150px;
   margin: 0; /* remove o centramento */
+  width: 100%;
 }
 .video-thumb:hover {
   transform: scale(1.03);
@@ -59,6 +62,19 @@ body {
   display: block;
   border-radius: 8px;
 }
+
+@media (min-width: 768px) {
+  .galeria-thumbs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    overflow-x: unset;
+  }
+
+  .video-thumb {
+    width: 100%;
+  }
+}
+
 
 /* Botão de play centralizado */
 .play-button {
@@ -73,3 +89,4 @@ body {
   border-radius: 50%;
   pointer-events: none;
 }
+

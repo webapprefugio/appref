@@ -3,7 +3,7 @@
     width: 90vw; /* ocupa 90% da viewport */
     max-width: 480px; /* Reduzido para o container de login, conforme seu CSS original. No de cadastro, é 800px. Você pode precisar de uma classe separada para diferenciar. */
     min-width: 280px;
-    margin: 20px auto;
+    margin: 15px auto;
     padding: 30px 10px;
     text-align: left;
     background-color: #ffffff;
@@ -33,8 +33,9 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
-    padding: 0 20px; /* Adicionado do seu código de cadastro para consistência */
+    padding: 0 10px; /* Adicionado do seu código de cadastro para consistência */
     box-sizing: border-box; /* Adicionado do seu código de cadastro para consistência */
+    
 }
 
 /* Campos de entrada e select */
@@ -44,7 +45,7 @@
 .formulario select,
 .formulario textarea {
     padding: 12px; /* Padronizado para 12px */
-    font-size: 1rem;
+    font-size: 0.85rem;
     border: 1px solid #ccc;
     border-radius: 6px;
     width: 100%; /* Adicionado para garantir largura total */
@@ -207,24 +208,26 @@ background: linear-gradient(to right, #004080, #0074D9);
     text-decoration: underline;
 }
 
-/* Botão de Logout */
 #btnLogout {
-    display: block;
-    margin: 5px auto;
-    padding: 14px 50px;
-    font-size: 1rem;
-    background: linear-gradient(150deg,#630202, #c20202);
-    color: #ffffff;
-    border: none;
-    border-radius: 24px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  display: inline-block;
+  padding: 12px 28px;
+  background: linear-gradient(to right, #630202, #c20202);
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 25px;
+  transition: background-color 0.3s ease;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  margin: 5px auto;
+}
+#btnLogout:hover {
+  background-color: #1f8102; /* mesmo hover do botao-destaque */
+  color: #ffffff;
 }
 
-#btnLogout:hover {
-    background-color: #2b7003; /* Cor diferente do excluirconta para hover, mantido */
-    color: #ffffff;
-}
 
 /* Mensagem de Exclusão (contagem regressiva) */
 #msg-excluir {
@@ -262,31 +265,23 @@ padding: 20px;
     padding: 10px;
 }
 
-/* Estilos específicos para o botão #excluirconta */
 #excluirconta {
-    /* As propriedades de #excluirconta no início do seu CSS foram sobrescritas por essa aqui. Consolidei. */
-    background-color: #c70000; /* Cor de fundo vermelho sólida */
-
-    font-weight: bold;
-    border: none;
-    cursor: pointer;
-    border-radius: 24px;
-    margin-bottom: 12px;
-    color: #f1f1f1;
-    text-align: center;
+  display: inline-block;
+  padding: 12px 28px;
+  background: linear-gradient(to right, #8b0000, #c70000);
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  border: none;
+  border-radius: 25px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  margin-bottom: 12px;
+  text-align: center;
+  font-size: 1rem;
 }
-
 #excluirconta:hover {
-    /* Use a cor do hover mais escura, como no seu segundo bloco, ou defina um gradiente */
-    background-color: #a00000;
-    /* Se quiser a cor escura do primeiro bloco, troque para: background-color: #f06464; color: #020000; */
+  background-color: #1f8102; /* mesmo padrão de hover unificado */
+  color: white;
 }
 
-
-
-/* Removido: .excluir-aviso, .excluir-botao { display: block; width: 100%; }
-   Pois já foi tratado individualmente ou pelo flex.
-*/
-/* Removido: .excluir-botao button { display: block; margin: 0 auto; }
-   Pois .excluir-botao agora é um flex container que centraliza seu item filho.
-*/

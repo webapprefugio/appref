@@ -12,11 +12,11 @@ h1  {
 
 /* Seções Gerais */
 .secao {
-  padding: 15px;
+  padding: 15px 5px;
   max-width: 960px;
   margin: 0px auto;
   box-shadow: none;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 
 .secao h2 {
@@ -25,14 +25,14 @@ h1  {
 }
 
 .destaque {
-  background: linear-gradient(to bottom, #f2fcfd, #ffffff, #ffffff, #ffffff, #ffffff);
-  padding: 10px;
+
+  padding: 15px;
 }
 
 
 .destaque p {
-   padding: 10px;
-   font-size: 0.9rem;
+   padding: 10px ;
+   font-size: 0.8rem;
 }
 /* Galeria de Vídeos */
 .galeria-videos {
@@ -49,13 +49,13 @@ h2 a.ver-todos {
   display: flex;
   overflow-x: auto;
   scroll-behavior: smooth;
-  gap: 10px;
+  gap: 5px;
   padding: 20px 0;
 }
 
 .video-item {
   flex: 0 0 auto;
-  width: 300px;
+  width: 150px;
   position: relative;
   text-align: center;
 }
@@ -85,14 +85,14 @@ h2 a.ver-todos {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 16px;
+  gap: 10px;
   margin-top: 10px;
   flex-wrap: wrap;
 }
 
 .seta-carrossel {
   cursor: pointer;
-  font-size: 32px;
+  font-size: 25px;
   color: #0074D9;
 }
 
@@ -106,7 +106,7 @@ h2 a.ver-todos {
 }
 
 #indicadores span.ativo {
-  background: #0074D9;
+  background: #86c4fa;
 }
 
 /* Botões de Destaque */
@@ -146,11 +146,10 @@ h2 a.ver-todos {
 .links-sites a {
   font-size: 0.7rem;
   display: inline-block;
-  margin: 4px;
-  padding: 10px 20px;
+  margin: 5px;
+  padding: 5px 5px;
   background-color: transparent;
   color: #004080;
-  
   text-decoration: none;
   border-radius: 25px;
   font-weight: bold;
@@ -164,3 +163,121 @@ h2 a.ver-todos {
   color: #ccc;
   transform: translateY(-2px);
 }
+
+#rolarversiculos {
+  text-align: center;
+  font-size: 0.75rem;
+  color: #004080;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  font-style: italic;
+  height: 50px;
+  margin: 15px auto;
+  border-top: #0074D9 1px solid;
+  border-bottom: #0074D9 1px solid;
+
+}
+
+.ref-biblica {
+  color: #0074D9;
+  font-style: italic;
+  font-size: 0.75rem;
+
+}
+
+.verso-animado {
+  opacity: 0;
+  animation: fadeInOutSuave 7s ease-in-out;
+  margin: 0;
+  padding: 5px 5px;
+}
+
+@keyframes fadeInOutSuave {
+  0%   {opacity: 0;}
+  10%  {opacity: 1;}
+  90%  {opacity: 1;}
+  100% {opacity: 0;}
+}
+
+/*BOLETIN REFÚGIOS*/
+.galeria-noticias {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  padding: 1rem 0;
+  scroll-snap-type: x mandatory;
+}
+
+.noticia {
+  flex: 0 0 auto;
+  width: 250px;
+  scroll-snap-align: start;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 0.5rem;
+  background: #fff;
+  transition: transform 0.3s;
+}
+
+.noticia:hover {
+  transform: scale(1.03);
+}
+
+.noticia img {
+  width: 100%;
+  border-radius: 4px;
+}
+
+.noticia h3 {
+  font-size: 1rem;
+  margin: 0.5rem 0;
+}
+
+.noticia p {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+
+/*AGENDA DE EVENTOS*/
+.galeria-eventos {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  padding: 1rem 0;
+  scroll-snap-type: x mandatory;
+}
+
+.eventos {
+  flex: 0 0 auto;
+  width: 250px;
+  scroll-snap-align: start;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 0.5rem;
+  background: #fff;
+  transition: transform 0.3s;
+}
+
+.eventos:hover {
+  transform: scale(1.03);
+}
+
+.eventos img {
+  width: 100%;
+  border-radius: 4px;
+}
+
+.eventos h3 {
+  font-size: 1rem;
+  margin: 0.5rem 0;
+}
+
+.eventos p {
+  font-size: 0.9rem;
+  color: #555;
+}
+
