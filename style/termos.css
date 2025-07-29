@@ -46,7 +46,7 @@ h3 {
 .botao-destaque {
   display: inline-block;
   padding: 12px 28px;
-  background: linear-gradient(150deg,#196302, #2fc202);
+background: linear-gradient(to right, #004080, #0074D9);
   color: white;
   text-decoration: none;
   font-weight: bold;

@@ -93,7 +93,7 @@ h2 a.ver-todos {
 .seta-carrossel {
   cursor: pointer;
   font-size: 32px;
-  color: #004080;
+  color: #0074D9;
 }
 
 #indicadores span {
@@ -106,14 +106,14 @@ h2 a.ver-todos {
 }
 
 #indicadores span.ativo {
-  background: #f77070;
+  background: #0074D9;
 }
 
 /* Botões de Destaque */
 .botao-destaque {
   display: inline-block;
   padding: 12px 28px;
-  background: linear-gradient(150deg,#196302, #2fc202);
+  background: linear-gradient(to right, #004080, #0074D9);
   color: white;
   text-decoration: none;
   font-weight: bold;

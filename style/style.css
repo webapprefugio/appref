@@ -70,7 +70,7 @@ main {
 }
 
 .menu-links li a.ativo {
-  border-bottom: 4px solid rgb(0, 192, 0);
+  border-bottom: 4px solid #05dbeb;
   padding-bottom: 6px;
 }
 
@@ -131,9 +131,10 @@ footer a {
   text-decoration: none;
   font-size: 1rem;
   font-weight: bold;
-  border: 2px solid #729b65;
+  border: 2px solid #05dbeb;
   border-radius: 25px;
   transition: all 0.3s ease;
+  background: linear-gradient(to right, #004080, #0074D9);
 }
 
 footer a:hover {

@@ -51,7 +51,7 @@
 /* Botão padrão */
 .formulario button[type="submit"],
 #btnLogin {
-  background-color: #1d3557;
+background: linear-gradient(to right, #004080, #0074D9);
   color: white;
   font-weight: bold;
   padding: 12px;
@@ -60,6 +60,7 @@
   border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  border-radius: 24px;
 
 }
 
@@ -68,6 +69,7 @@
   background-color: #ccc;
   color: #333;
   font-weight: bold;
+  border-radius: 24px;
 }
 
 /* Espaço extra para botão extra */

@@ -111,14 +111,16 @@
 
 /* Botão de envio */
 .formulario button[type="submit"] {
-  background-color: #1d3557;
+background: linear-gradient(to right, #004080, #0074D9);
   color: white;
+  border-radius: 24px;
 }
 
 /* Botão alternativo */
 .formulario .alt-btn {
   background-color: #ccc;
   color: #333;
+  border-radius: 24px;
 }
 
 /* Mensagem de erro */
@@ -186,6 +188,10 @@
 
 .excluir-botao {
   margin-top: 10px;
+}
+.social-container a {
+  margin-right: 12px;
+  text-decoration: none;
 }
 
 #excluirconta {

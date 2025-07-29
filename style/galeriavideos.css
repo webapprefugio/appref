@@ -1,140 +1,55 @@
-/* Layout principal */
-main {
-  width: 90vw;
-  max-width: 1100px;
-  margin: 10px auto;
-  padding: 20px;
-  min-width: 180px;
+/* Body zerado */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  align-items: righ;
 }
 
-/* Seções de autor */
+/* Seção do autor ocupa largura total */
 .autor-section {
-  background-color: #ffffff;
-  border: 1px solid #ddd;
-  border-radius: 12px;
+  width: 100%;
   padding: 20px;
-  margin-bottom: 10px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  box-sizing: border-box;
+  margin-bottom: 40px;
 }
 
+/* Título e nota */
 .autor-section h2 {
   margin-top: 0;
+  font-size: 1.4rem;
   color: #002244;
 }
 
-.autor-section p {
-  color: #333;
-  margin-bottom: 16px;
-}
-
-/* Galeria de vídeos responsiva (YouTube) */
-.galeria-videos {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  gap: 1.5rem;
-  
-}
-
-/* Wrapper do vídeo */
-.video-wrapper {
-  flex: 1 1 45%;
-  aspect-ratio: 16 / 9;
-  border-radius: 8px;
-  overflow: hidden;
-  min-width: 180px;
-  max-width: 100%;
-    width: 90%;
-  max-width: 990px; /* opcional, para limitar o tamanho */
-  margin: 0 auto; /* para centralizar */
-}
-
-/* Iframe do vídeo */
-.video-wrapper iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-
-/* Carrossel horizontal (vídeos locais ou alternativos) */
-.carrossel-videos {
-  display: flex;
-  gap: 20px;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  scroll-snap-type: x mandatory;
-  padding-bottom: 12px;
-}
-
-.carrossel-videos::-webkit-scrollbar {
-  display: none;
-}
-
-.carrossel-videos video {
-  scroll-snap-align: center;
-  width: 320px;
-  max-width: 100%;
-  border-radius: 8px;
-  border: 2px solid transparent;
-}
-
-.carrossel-videos video.central {
-  border-color: #003366;
-}
-
-/* Indicadores por seção */
-.indicadores {
-  text-align: center;
-  margin-top: 12px;
-}
-
-.indicadores span {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  background-color: #ccc;
-  border-radius: 50%;
-  margin: 0 4px;
-}
-
-.indicadores span.ativo {
-  background-color: #003366;
-}
-
-@media screen and (max-width: 600px) {
-  .video-wrapper {
-    flex: 1 1 100%;
-    margin-bottom: 1rem;
-    
-  }
-
-  .video-thumb {
-    flex: 1 1 100%;
-    margin-bottom: 0,5rem;
-  }
-}
-
-
-.galeria-thumbs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  justify-content: center;
-}
 .nota {
-  font-size: 0.7rem;
+  font-size: 0.8rem;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+/* Galeria em grid flexível */
+.galeria-thumbs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 280px));
+  justify-content: start; /* agora alinha à esquerda */
+  gap: 1.5rem;
 }
 
 
+
+/* Thumb dos vídeos */
 .video-thumb {
   position: relative;
-  flex: 1 1 45%;
   aspect-ratio: 16 / 9;
   overflow: hidden;
   border-radius: 8px;
-  min-width: 180px;
-  max-width: 100%;
-  width: 50%;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+  max-width: 320px;
+  margin: 0; /* remove o centramento */
+}
+.video-thumb:hover {
+  transform: scale(1.03);
 }
 
 .video-thumb img {
@@ -145,7 +60,7 @@ main {
   border-radius: 8px;
 }
 
-/* Botão de play personalizado */
+/* Botão de play centralizado */
 .play-button {
   position: absolute;
   top: 50%;
@@ -158,21 +73,3 @@ main {
   border-radius: 50%;
   pointer-events: none;
 }
-
-.video-thumb::after {
-  
-  position: absolute;
-  bottom: 8px;
-  left: 12px;
-  background-color: rgba(0,0,0,0.5);
-  color: #fff;
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-size: 0.9rem;
-}
-
-
-.video-thumb:hover .video-title {
-  background-color: rgba(0, 0, 0, 0.8);
-}
-
