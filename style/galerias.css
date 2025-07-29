@@ -1,0 +1,121 @@
+/* Galerias horizontais com rolagem suave */
+.galeria-noticias,
+.galeria-eventos,
+.galeria-refugios,
+.galeria-yshua,
+.galeria-semillas,
+.galeria-ayral {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  padding: 1rem 0;
+  scroll-snap-type: x mandatory;
+}
+
+/* Cards dinâmicos inseridos pelo JS */
+.item-noticia,
+.item-evento,
+.item-refugio,
+.item-yshua,
+.item-semillas,
+.item-ayral {
+  flex: 0 0 auto;
+  width: 250px;
+  scroll-snap-align: start;
+/* border: 1px solid #ccc; */
+/* border-radius: 8px; */
+  padding: 0.5rem;
+  background: #fff;
+  transition: transform 0.3s;
+}
+
+.item-noticia:hover,
+.item-evento:hover,
+.item-refugio:hover,
+.item-yshua:hover,
+.item-semillas:hover,
+.item-ayral:hover {
+  transform: scale(1.03);
+}
+
+/* Imagem dos cards */
+.item-noticia img,
+.item-evento img,
+.item-refugio img,
+.item-yshua img,
+.item-semillas img,
+.item-ayral img {
+  width: 100%;
+  border-radius: 4px;
+}
+
+/* Título dos cards */
+.item-noticia h3,
+.item-evento h3,
+.item-refugio h3,
+.item-yshua h3,
+.item-semillas h3,
+.item-ayral h3 {
+  font-size: 1rem;
+  margin: 0.5rem 0;
+}
+
+/* Descrição dos cards */
+.item-noticia p,
+.item-evento p,
+.item-refugio p,
+.item-yshua p,
+.item-semillas p,
+.item-ayral p {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.galeria-noticias::-webkit-scrollbar,
+.galeria-eventos::-webkit-scrollbar,
+.galeria-refugios::-webkit-scrollbar,
+.galeria-yshua::-webkit-scrollbar,
+.galeria-semillas::-webkit-scrollbar,
+.galeria-ayral::-webkit-scrollbar {
+  height: 6px;
+}
+
+.galeria-noticias::-webkit-scrollbar-thumb,
+.galeria-eventos::-webkit-scrollbar-thumb,
+.galeria-refugios::-webkit-scrollbar-thumb,
+.galeria-yshua::-webkit-scrollbar-thumb,
+.galeria-semillas::-webkit-scrollbar-thumb,
+.galeria-ayral::-webkit-scrollbar-thumb {
+  background: #0074D9;/*cor da barra de rolagem*/
+  border-radius: 10px;
+}
+
+.item-noticia h3,
+.item-evento h3,
+.item-refugio h3,
+.item-yshua h3,
+.item-semillas h3,
+.item-ayral h3,
+.item-noticia p,
+.item-evento p,
+.item-refugio p,
+.item-yshua p,
+.item-semillas p,
+.item-ayral p {
+  text-decoration: none;
+}
+
+.item-noticia a,
+.item-evento a,
+.item-refugio a,
+.item-yshua a,
+.item-semillas a,
+.item-ayral a {
+  text-decoration: none;
+  color: inherit; /* mantém a cor padrão */
+}
+
+#apoio {
+  padding: 5px 32px;
+  color:#004080 ;
+}

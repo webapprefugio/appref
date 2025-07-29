@@ -17,6 +17,7 @@ h1  {
   margin: 0px auto;
   box-shadow: none;
   font-size: 0.85rem;
+ 
 }
 
 .secao h2 {
@@ -146,15 +147,15 @@ h2 a.ver-todos {
 .links-sites a {
   font-size: 0.7rem;
   display: inline-block;
-  margin: 5px;
-  padding: 5px 5px;
+  margin: 3px;
+  padding: 3px 3px;
   background-color: transparent;
   color: #004080;
   text-decoration: none;
-  border-radius: 25px;
+
   font-weight: bold;
   transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
 }
 
 .links-canais a:hover,
@@ -202,8 +203,13 @@ h2 a.ver-todos {
   100% {opacity: 0;}
 }
 
-/*BOLETIN REFÚGIOS*/
-.galeria-noticias {
+/* GALERIAS GERAIS */
+.galeria-noticias,
+.galeria-eventos,
+.galeria-refugios,
+.galeria-yshua,
+.galeria-semillas,
+.galeria-ayral {
   display: flex;
   overflow-x: auto;
   gap: 1rem;
@@ -211,7 +217,11 @@ h2 a.ver-todos {
   scroll-snap-type: x mandatory;
 }
 
-.noticia {
+/* ITENS GERAIS */
+.noticia,
+.eventos,
+.refugios,
+.video {
   flex: 0 0 auto;
   width: 250px;
   scroll-snap-align: start;
@@ -222,62 +232,34 @@ h2 a.ver-todos {
   transition: transform 0.3s;
 }
 
-.noticia:hover {
+.noticia:hover,
+.eventos:hover,
+.refugios:hover,
+.video:hover {
   transform: scale(1.03);
 }
 
-.noticia img {
+/* CONTEÚDO INTERNO */
+.noticia img,
+.eventos img,
+.refugios img,
+.video img {
   width: 100%;
   border-radius: 4px;
 }
 
-.noticia h3 {
+.noticia h3,
+.eventos h3,
+.refugios h3,
+.video h3 {
   font-size: 1rem;
   margin: 0.5rem 0;
 }
 
-.noticia p {
+.noticia p,
+.eventos p,
+.refugios p,
+.video p {
   font-size: 0.9rem;
   color: #555;
 }
-
-
-/*AGENDA DE EVENTOS*/
-.galeria-eventos {
-  display: flex;
-  overflow-x: auto;
-  gap: 1rem;
-  padding: 1rem 0;
-  scroll-snap-type: x mandatory;
-}
-
-.eventos {
-  flex: 0 0 auto;
-  width: 250px;
-  scroll-snap-align: start;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 0.5rem;
-  background: #fff;
-  transition: transform 0.3s;
-}
-
-.eventos:hover {
-  transform: scale(1.03);
-}
-
-.eventos img {
-  width: 100%;
-  border-radius: 4px;
-}
-
-.eventos h3 {
-  font-size: 1rem;
-  margin: 0.5rem 0;
-}
-
-.eventos p {
-  font-size: 0.9rem;
-  color: #555;
-}
-
