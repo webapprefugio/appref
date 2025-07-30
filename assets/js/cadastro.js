@@ -22,7 +22,8 @@ function forcarSugestoes(input) {
       return (
         dominio.includes("facebook.com") ||
         dominio.includes("instagram.com") ||
-        dominio.includes("instagram.com")
+        dominio.includes("twitter.com")
+
       );
     } catch (err) {
       return false;
@@ -126,8 +127,8 @@ function forcarSugestoes(input) {
         } else if (host.includes("instagram.com")) {
           msg = "✅ Instagram detectado — link válido.";
         } 
-        else if (host.includes("twiter.com")) {
-          msg = "✅ X (Twiter) detectado — link válido.";
+        else if (host.includes("twitter.com")) {
+          msg = "✅ X (Twitter) detectado — link válido.";
         } else {
           msg = "❌ Insira uma URL válida do Instagram, Facebook ou X-Twitter";
         }
@@ -228,4 +229,57 @@ await db.collection("usuarios").doc(user.uid).set({
 
     });
   }); 
+
+let html5QrCode;
+
+function abrirLeitorQR() {
+  const overlay = document.getElementById("popup-qr-overlay");
+  overlay.style.display = "flex";
+
+  if (typeof Html5Qrcode !== "undefined") {
+    html5QrCode = new Html5Qrcode("scanner");
+
+    html5QrCode.start(
+      { facingMode: "environment" },
+      {
+        fps: 10,
+        qrbox: 250,
+        aspectRatio: 1
+      },
+      (decodedText) => {
+        document.getElementById("txtPerfilSocial").value = decodedText;
+        document.getElementById("txtNome").focus();
+        fecharLeitorQR();
+      },
+      (errorMessage) => {
+        // Erros esperados
+      }
+    ).catch((err) => {
+      console.error("Erro ao abrir scanner:", err);
+      document.getElementById("scanner").innerHTML = "<p style='color:red;'>Erro ao acessar câmera.</p>";
+    });
+  } else {
+    console.error("Html5Qrcode não está disponível.");
+    document.getElementById("scanner").innerHTML = "<p style='color:red;'>Biblioteca de QR não carregada.</p>";
+  }
+}
+
+
+function fecharLeitorQR() {
+  const overlay = document.getElementById("popup-qr-overlay");
+
+  if (html5QrCode) {
+    html5QrCode.stop().then(() => {
+      html5QrCode.clear();
+      overlay.style.display = "none";
+      html5QrCode = null;
+    }).catch((err) => {
+      console.warn("Erro ao parar scanner:", err);
+      overlay.style.display = "none"; // Fecha mesmo com erro
+    });
+  } else {
+    overlay.style.display = "none";
+  }
+}
+
 

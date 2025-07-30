@@ -75,33 +75,33 @@ const eventos = [
 const refugios = [
   {
     titulo: 'Super Corte Grupo Y\'shua',
-    descricao: 'Grupo Y´shua - Lucas Gelásio, Xavier Ayral e Luz de Maria -REFÚGIOS.',
+    descricao: 'Grupo Y´shua - Lucas Gelásio, Xavier Ayral e Luz de Maria - REFÚGIOS.',
     link: 'https://www.youtube.com/watch?v=1dlvVPuDcrI',
-    img: 'https://img.youtube.com/vi/1dlvVPuDcrI/hqdefault.jpg'
+    img: 'https://img.youtube.com/vi/1dlvVPuDcrI/hqdefault.jpg',
   },
   {
     titulo: 'Live com Pe. Michel Rodrigue',
-    descricao: 'Padre MICHEL RODRIGUE! El AVISO, Los REFUGIOS, Los EVENTOS FUTUROS, XAVIER AYRAL.',
+    descricao: 'Padre Michel Rodrigue! El Aviso, los REFUGIOS, Los eventos futuros, Xavier Ayaral.',
     link: 'https://www.youtube.com/watch?v=BwYeIqEz7bI',
-    img: 'https://img.youtube.com/vi/BwYeIqEz7bI/hqdefault.jpg'
+    img: 'https://img.youtube.com/vi/BwYeIqEz7bI/hqdefault.jpg',
   },
   {
     titulo: 'Refúgio espiritual',
-    descricao: 'RETIRO - MONTANDO UM REFÚGIO ESPIRITUAL- REMASTERIZADO!',
+    descricao: 'Retiro - Montando um REFÚGIO espiritual - Remasterizado\!',
     link: 'https://www.youtube.com/watch?v=N-2K2jSyNS8',
-    img: 'https://img.youtube.com/vi/N-2K2jSyNS8/hqdefault.jpg'
+    img: 'https://img.youtube.com/vi/N-2K2jSyNS8/hqdefault.jpg',
   },
   {
     titulo: 'Sua casa como refúgio',
     descricao: 'Fr Michel Rodrigue: Preparing Your Home As A Refuge 101 and Q&A.',
     link: 'https://www.youtube.com/watch?v=-zc7vdmxKss',
-    img: 'https://img.youtube.com/vi/-zc7vdmxKss/hqdefault.jpg'
+    img: 'https://img.youtube.com/vi/-zc7vdmxKss/hqdefault.jpg',
   },
   {
-    titulo: 'Oração de consagração da casa',
-    descricao: '¿Cómo consagrar su hogar y tierra como refugio? "Oración poderosa del Padre Michel Rodrigue."',
+    titulo: 'Consagração da casa como refúgio',
+    descricao: '¿Cómo consagrar su hogar y tierra como refugio? Oración poderosa del Padre Michel Rodrigue.',
     link: 'https://www.youtube.com/watch?v=us1qNeQplBA',
-    img: 'https://img.youtube.com/vi/us1qNeQplBA/hqdefault.jpg'
+    img: 'https://img.youtube.com/vi/us1qNeQplBA/hqdefault.jpg',
   }
 ];
 
@@ -110,15 +110,15 @@ const refugios = [
 const yshua = [
   {
     titulo: 'Super Corte Grupo Y\'shua',
-    descricao: 'Grupo Y´shua - Lucas Gelásio, Xavier Ayral e Luz de Maria -REFÚGIOS.',
+    descricao: 'Grupo Y´shua - Lucas Gelásio, Xavier Ayral e Luz de Maria - REFÚGIOS.',
     link: 'https://www.youtube.com/watch?v=1dlvVPuDcrI',
-    img: 'https://img.youtube.com/vi/1dlvVPuDcrI/hqdefault.jpg'
+    img: 'https://img.youtube.com/vi/1dlvVPuDcrI/hqdefault.jpg',
   },
   {
-    titulo: 'Refúgio espiritual – Retiro',
-    descricao: 'RETIRO - MONTANDO UM REFÚGIO ESPIRITUAL - REMASTERIZADO!',
+    titulo: 'Refúgio espiritual',
+    descricao: 'Retiro - Montando um REFÚGIO espiritual - Remasterizado\!',
     link: 'https://www.youtube.com/watch?v=N-2K2jSyNS8',
-    img: 'https://img.youtube.com/vi/N-2K2jSyNS8/hqdefault.jpg'
+    img: 'https://img.youtube.com/vi/N-2K2jSyNS8/hqdefault.jpg',
   },
 ];
 
@@ -127,15 +127,16 @@ const yshua = [
 const semillas = [
   {
     titulo: 'Consagração da casa como refúgio',
-    descricao: '¿Cómo consagrar su hogar y tierra como refugio? Oración poderosa do Padre Michel Rodrigue.',
+    descricao: '¿Cómo consagrar su hogar y tierra como refugio? Oración poderosa del Padre Michel Rodrigue.',
     link: 'https://www.youtube.com/watch?v=us1qNeQplBA',
-    img: 'https://img.youtube.com/vi/us1qNeQplBA/hqdefault.jpg'
+    img: 'https://img.youtube.com/vi/us1qNeQplBA/hqdefault.jpg',
+
   },
     {
     titulo: 'Live com Pe. Michel Rodrigue',
-    descricao: 'Padre MICHEL RODRIGUE! El AVISO, Los REFUGIOS, Los EVENTOS FUTUROS, XAVIER AYRAL.',
+    descricao: 'Padre Michel Rodrigue! El Aviso, los REFUGIOS, Los eventos futuros, Xavier Ayaral.',
     link: 'https://www.youtube.com/watch?v=BwYeIqEz7bI',
-    img: 'https://img.youtube.com/vi/BwYeIqEz7bI/hqdefault.jpg'
+    img: 'https://img.youtube.com/vi/BwYeIqEz7bI/hqdefault.jpg',
   },
 ];
 
@@ -147,13 +148,7 @@ const Ayral = [
     titulo: 'Sua casa como refúgio',
     descricao: 'Fr Michel Rodrigue: Preparing Your Home As A Refuge 101 and Q&A.',
     link: 'https://www.youtube.com/watch?v=-zc7vdmxKss',
-    img: 'https://img.youtube.com/vi/-zc7vdmxKss/hqdefault.jpg'
-  },
-    {
-    titulo: 'Sua casa como refúgio',
-    descricao: 'Fr Michel Rodrigue: Preparing Your Home As A Refuge 101 and Q&A.',
-    link: 'https://www.youtube.com/watch?v=-zc7vdmxKss',
-    img: 'https://img.youtube.com/vi/-zc7vdmxKss/hqdefault.jpg'
+    img: 'https://img.youtube.com/vi/-zc7vdmxKss/hqdefault.jpg',
   },
 ];
 
