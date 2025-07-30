@@ -1,3 +1,31 @@
+
+
+/* Galerias horizontais com rolagem suave */
+.destaque {
+  padding: 10px 0px 0px 0px;
+  width: 100vw; /* ocupa 903% da viewport */
+  width: 100vw; /* ocupa 90% da viewport */
+  background-color: #ffffff;
+  border-bottom: solid 10px #dbd9d9;
+
+}
+
+h2 {
+  padding: 5px 5px 5px 5px;
+  width: 100vw; /* ocupa 903% da viewport */
+}
+
+#apoio {
+  padding: 0px 0px 10px 40px;
+  color:#004080 ;
+}
+
+
+.destaque p {
+   padding: 10px ;
+   font-size: 0.8rem;
+}
+
 /* Galerias horizontais com rolagem suave */
 .galeria-noticias,
 .galeria-eventos,
@@ -8,8 +36,51 @@
   display: flex;
   overflow-x: auto;
   gap: 1rem;
-  padding: 1rem 0;
   scroll-snap-type: x mandatory;
+  width: 100vw; /* ocupa 90% da viewport */
+  text-align: center;
+
+}
+
+
+/* Galerias horizontais com rolagem suave */
+.secao-noticias,
+.galeria-eventos,
+.galeria-refugios,
+.galeria-yshua,
+.galeria-semillas,
+.galeria-ayral {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  scroll-snap-type: x mandatory;
+  width: 95vw; /* ocupa 90% da viewport */
+  text-align: center;
+  background-color: #ffffff;
+
+}
+
+
+
+
+
+/* Galerias horizontais com rolagem suave */
+.galeria-noticias,
+.galeria-eventos,
+.galeria-refugios,
+.galeria-yshua,
+.galeria-semillas,
+.galeria-ayral {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  scroll-snap-type: x mandatory;
+  width: 100vw; /* ocupa 90% da viewport */
+  text-align: center;
+  background-color: #ffffff;
+  box-sizing: border-box;
+  margin: 0px 5px 0px 5px;
+  
 }
 
 /* Cards dinâmicos inseridos pelo JS */
@@ -35,7 +106,7 @@
 .item-yshua:hover,
 .item-semillas:hover,
 .item-ayral:hover {
-  transform: scale(1.03);
+transform: scale(1.03);
 }
 
 /* Imagem dos cards */
@@ -77,7 +148,7 @@
 .galeria-yshua::-webkit-scrollbar,
 .galeria-semillas::-webkit-scrollbar,
 .galeria-ayral::-webkit-scrollbar {
-  height: 6px;
+  height: 5px;
 }
 
 .galeria-noticias::-webkit-scrollbar-thumb,
@@ -88,6 +159,7 @@
 .galeria-ayral::-webkit-scrollbar-thumb {
   background: #0074D9;/*cor da barra de rolagem*/
   border-radius: 10px;
+  
 }
 
 .item-noticia h3,
@@ -103,6 +175,8 @@
 .item-semillas p,
 .item-ayral p {
   text-decoration: none;
+  margin-bottom: -3px;
+  color:#004080;
 }
 
 .item-noticia a,
@@ -115,7 +189,3 @@
   color: inherit; /* mantém a cor padrão */
 }
 
-#apoio {
-  padding: 5px 32px;
-  color:#004080 ;
-}

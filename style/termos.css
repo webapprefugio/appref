@@ -9,7 +9,7 @@ body {
   padding: 20px;
   background-color: #ffffff;
   text-align: justify;
-    width: 90vw; /* ocupa 90% da viewport */
+  width: 90vw; /* ocupa 90% da viewport */
 }
 
 .termos-content h1,
@@ -25,6 +25,8 @@ h3 {
 .termos-content p {
   line-height: 1.6;
   margin-bottom: 16px;
+    text-decoration: none;
+  text-underline-offset: 0px;
 }
 
 .termos-content ul {
@@ -39,29 +41,24 @@ h3 {
 .termos-content a[href^="mailto:"] {
   color: #cc0000;
   font-weight: bold;
-  text-decoration: underline;
+  text-decoration: none;
+  text-underline-offset: 0px;
 }
 
 /* Botões de Destaque */
 .botao-destaque {
   display: inline-block;
-  padding: 12px 28px;
-background: linear-gradient(to right, #004080, #0074D9);
+  padding: 12px 50px;
+  background: linear-gradient(to right, #004080, #0074D9);
   color: white;
   text-decoration: none;
   font-weight: bold;
   border-radius: 25px;
-
   transition: background-color 0.3s ease;
+  margin: 0px 5px 20px 5px;
 }
 .botao-destaque:hover {
   background-color: #1f8102;
-  text-align: center;
-}
-.termos-content .botao-destaque {
-  display: block;
-  margin: 0 auto; /* centraliza horizontalmente */
-  text-align: center;
 }
 
 @keyframes coracao {
@@ -75,4 +72,11 @@ background: linear-gradient(to right, #004080, #0074D9);
 
 .botao-destaque {
   animation: coracao 1s ease-in-out infinite;
+}
+
+
+.termos-content .botao-destaque {
+  display: block;
+  margin: 0 auto; /* centraliza horizontalmente */
+  text-align: center;
 }

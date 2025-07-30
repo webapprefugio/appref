@@ -143,6 +143,22 @@ footer a {
   100% { transform: scale(1); }
 }
 
+/*Termos*/
+.lerTermoUso {
+  color: #cc0000;
+  cursor: pointer;
+  text-align: center;
+  font-weight: bold;
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+.lerTermoUso:hover,
+.lerTermoUso:focus {
+  color: #990000;
+  outline: none;
+}
+
 footer a {
   animation: pulse 1.5s ease-in-out infinite;
 }

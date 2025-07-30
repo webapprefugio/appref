@@ -3,6 +3,8 @@
   text-align: center;
   color: #004080;
   font-size: 0.9rem;
+  margin: 20px 10px 5px 0px;
+  border-bottom: solid 10px #dbd9d9;
 }
 
 h1  {
@@ -11,115 +13,24 @@ h1  {
 }
 
 /* Seções Gerais */
-.secao {
-  padding: 15px 5px;
-  max-width: 960px;
-  margin: 0px auto;
-  box-shadow: none;
-  font-size: 0.85rem;
- 
-}
+
 
 .secao h2 {
   color: #003366;
   
 }
 
-.destaque {
-
-  padding: 15px;
-}
-
-
-.destaque p {
-   padding: 10px ;
-   font-size: 0.8rem;
-}
-/* Galeria de Vídeos */
-.galeria-videos {
-  margin-top: 5px;
-}
-
-h2 a.ver-todos {
-  text-decoration: none;
-  color: inherit;
-  font-weight: inherit;
-}
-
-.carrossel-videos {
-  display: flex;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  gap: 5px;
-  padding: 20px 0;
-}
-
-.video-item {
-  flex: 0 0 auto;
-  width: 150px;
-  position: relative;
-  text-align: center;
-}
-
-.video-thumb {
-  position: relative;
-  cursor: pointer;
-}
-
-.video-thumb img {
-  width: 100%;
-  border-radius: 8px;
-}
-
-.play-button {
-  position: absolute;
-  top: 40%;
-  left: 45%;
-  transform: translate(-50%, -50%);
-  font-size: 32px;
-  color: white;
-  text-shadow: 0 0 5px black;
-}
-
-/* Controles do Carrossel */
-.controle-carrossel {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  margin-top: 10px;
-  flex-wrap: wrap;
-}
-
-.seta-carrossel {
-  cursor: pointer;
-  font-size: 25px;
-  color: #0074D9;
-}
-
-#indicadores span {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  margin: 0 4px;
-  background: #ccc;
-  border-radius: 50%;
-}
-
-#indicadores span.ativo {
-  background: #86c4fa;
-}
-
 /* Botões de Destaque */
 .botao-destaque {
   display: inline-block;
-  padding: 12px 28px;
+  padding: 12px 50px;
   background: linear-gradient(to right, #004080, #0074D9);
   color: white;
   text-decoration: none;
   font-weight: bold;
   border-radius: 25px;
   transition: background-color 0.3s ease;
+  margin: 0px 5px 20px 5px;
 }
 
 .botao-destaque:hover {
@@ -176,7 +87,7 @@ h2 a.ver-todos {
   position: relative;
   font-style: italic;
   height: 50px;
-  margin: 15px auto;
+  margin: 10px 15px;
   border-top: #0074D9 1px solid;
   border-bottom: #0074D9 1px solid;
 
@@ -201,65 +112,4 @@ h2 a.ver-todos {
   10%  {opacity: 1;}
   90%  {opacity: 1;}
   100% {opacity: 0;}
-}
-
-/* GALERIAS GERAIS */
-.galeria-noticias,
-.galeria-eventos,
-.galeria-refugios,
-.galeria-yshua,
-.galeria-semillas,
-.galeria-ayral {
-  display: flex;
-  overflow-x: auto;
-  gap: 1rem;
-  padding: 1rem 0;
-  scroll-snap-type: x mandatory;
-}
-
-/* ITENS GERAIS */
-.noticia,
-.eventos,
-.refugios,
-.video {
-  flex: 0 0 auto;
-  width: 250px;
-  scroll-snap-align: start;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 0.5rem;
-  background: #fff;
-  transition: transform 0.3s;
-}
-
-.noticia:hover,
-.eventos:hover,
-.refugios:hover,
-.video:hover {
-  transform: scale(1.03);
-}
-
-/* CONTEÚDO INTERNO */
-.noticia img,
-.eventos img,
-.refugios img,
-.video img {
-  width: 100%;
-  border-radius: 4px;
-}
-
-.noticia h3,
-.eventos h3,
-.refugios h3,
-.video h3 {
-  font-size: 1rem;
-  margin: 0.5rem 0;
-}
-
-.noticia p,
-.eventos p,
-.refugios p,
-.video p {
-  font-size: 0.9rem;
-  color: #555;
 }

@@ -43,6 +43,8 @@
   font-weight: bold;
   text-decoration: underline;
   transition: color 0.3s ease;
+  text-decoration: none;
+  text-underline-offset: 0px;
 }
 
 .lerTermoUso:hover,
@@ -140,6 +142,8 @@ background: linear-gradient(to right, #004080, #0074D9);
 .formulario p a {
   color: #cc0000;
   font-weight: bold;
+  text-decoration: none;
+  text-underline-offset: 0px;
 }
 
 /* Texto azul informativo de cidade */
@@ -177,6 +181,12 @@ background: linear-gradient(to right, #004080, #0074D9);
 .fa-x-twitter {
   font-size: 0.9rem;
   color: #000; /* azul Facebook clássico */
+  margin-bottom: 10px;
+  transition: color 0.3s ease;
+}
+.fa-qrcode {
+  font-size: 0.9rem;
+  color: #3cbb0a; /* azul Facebook clássico */
   margin-bottom: 10px;
   transition: color 0.3s ease;
 }
