@@ -4,20 +4,33 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
     <title>Cadastrar | WebApp Refúgios</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script src="assets/js/cadastro.js"></script>
-    <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="style/style.css" />
-    <link rel="stylesheet" href="style/cadastro.css" />
+
+
+<!-- 🔧 Estilos e ícone -->
+<link rel="icon" href="assets/img/favicon.ico" type="image/x-icon" />
+<link rel="stylesheet" href="style/style.css" />
+<link rel="stylesheet" href="style/cadastro.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="all" onload="this.media='all'">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-    <!-- Firebase SDKs -->
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<!-- 📦 Firebase SDKs: app primeiro! -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+
+<!-- 🧩 Outras bibliotecas JS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+
+
+
+
+
+
+<!-- 💡 Seu código JS final -->
+
+
     <script>
       // Inicialização do Firebase com as credenciais reais
       const firebaseConfig = {
@@ -66,10 +79,18 @@
         <h1>Cadastre-se</h1>
         <form class="formulario" id="formCadastro">
                           <div>
-                <a href="termos.html" class="lerTermoUso">Ler Termos de Uso e Privacidade</a>
+                <a href="termos.html" class="lerTermoUso">🔐 Ler Termos de Uso e Privacidade</a>
               </div>
             <div class="social-container">
 
+<div id="popup-qr-overlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+  background:rgba(0,0,0,0.6); z-index:9999; justify-content:center; align-items:center;">
+  <div id="popup-qr" style="background:#fff; padding:20px; border-radius:10px; box-shadow:0 0 20px rgba(0,0,0,0.4);">
+    <h3 style="text-align:center; margin-bottom:10px;">Escanear QR Code</h3>
+    <div id="scanner" style="width:300px; margin:auto;"></div>
+    <button onclick="fecharLeitorQR()" style="margin-top:10px; display:block; margin:auto;">Fechar</button>
+  </div>
+</div>
 
 <!-- Instagram -->
 <a href="https://www.instagram.com/" target="_blank"
@@ -88,6 +109,15 @@
    title="No X (Twitter), vá até seu perfil e copie o link da barra do navegador.">
   <i class="fa-brands fa-x-twitter"></i>
 </a>
+
+
+<!-- QR Code Scanner -->
+<a href="#" onclick="abrirLeitorQR(); return false;" title="Escanear QR Code">
+  <i class="fa-solid fa-qrcode"></i>
+</a>
+
+
+
 
 
 
@@ -109,9 +139,9 @@
             <option value="" disabled selected>Selecione um Estado</option>
           </select>
           <div id="campo-cidades">
-            <span id="msg-cidade-placeholder">Selecione uma Cidade</span>
+            <span id="msg-cidade-placeholder">Selecione até 3 Cidades</span>
           </div>
-          <div id="msg-cidade-info">Selecione no máximo 3 cidades</div>
+          <div id="msg-cidade-info"></div>
           <div id="mensagem"></div>
           <div>
             <input type="checkbox" id="chkTermos" required />
@@ -123,18 +153,24 @@
             Já possui uma conta? <a href="login.html">Entrar</a>
           </p>
         </form>
+        
         <br>
       </div>
     </main>
 
 <footer>
   <div><a href="cadastro.html">Junte-se a nós!</a></div><br>
-  <div>Cadastre-se e entre em contato pelos links disponibilizados</div><br>
+  <div>Cadastre-se e entre em contato pelos links disponibilizados</div><span>
   <i class="fas fa-home" style="margin-right: 6px;"></i>
-  &copy; 2025 — Refúgios WebApp • Versão 1.0<br>
+  &copy; 2025 — WebApp Refúgios • Versão 1.0<br>
 </footer>
 
  
 
-  </body>
+<!-- 📦 Biblioteca QR Code local -->
+<script src="assets/libs/html5-qrcode.min.js"></script>
+
+<!-- 🚀 Seu script principal -->
+<script src="assets/js/cadastro.js"></script>
+</body>
 </html>
