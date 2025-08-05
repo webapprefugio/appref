@@ -230,6 +230,55 @@ await db.collection("usuarios").doc(user.uid).set({
     });
   }); 
 
+
+  /*LOGIN SOCIAL FACEBOOK*/
+const auth = firebase.auth();
+const provider = new firebase.auth.FacebookAuthProvider();
+
+function loginComFacebook() {
+  auth.signInWithPopup(provider)
+    .then((result) => {
+      const user = result.user;
+
+      // 👤 Preencher automaticamente o campo de nome
+      document.getElementById("txtNome").value = user.displayName || "";
+
+      // 🌐 Montar a URL do perfil com o Facebook ID (caso disponível)
+      // ⚠️ O Facebook normalmente não retorna o link direto do perfil pelo Firebase Auth.
+      // Então usamos uma estrutura aproximada com o user.providerData[0].uid
+
+      const facebookUID = user.providerData[0]?.uid;
+
+      if (facebookUID) {
+        const perfilURL = `https://facebook.com/${facebookUID}`;
+        document.getElementById("txtPerfilSocial").value = perfilURL;
+      } else {
+        document.getElementById("txtPerfilSocial").value = ""; // fallback
+      }
+
+      // 💾 Salvar no Firestore como antes
+      const db = firebase.firestore();
+      db.collection("usuarios").doc(user.uid).set({
+        nome: user.displayName,
+        email: user.email,
+        loginSocial: "facebook",
+        logadoEm: firebase.firestore.FieldValue.serverTimestamp()
+      }, { merge: true });
+
+      // 🚀 Redirecionar (ou aguardar preenchimento extra antes)
+      window.location.href = "dashboard.html";
+    })
+    .catch((error) => {
+      console.error("Erro no login:", error.message);
+    });
+}
+
+
+
+
+
+
+  /* QR CODE LEITOR */
 let html5QrCode;
 
 function abrirLeitorQR() {
@@ -269,17 +318,22 @@ function fecharLeitorQR() {
   const overlay = document.getElementById("popup-qr-overlay");
 
   if (html5QrCode) {
-    html5QrCode.stop().then(() => {
-      html5QrCode.clear();
-      overlay.style.display = "none";
+    try {
+      html5QrCode.stop().then(() => {
+        html5QrCode.clear();
+        html5QrCode = null;
+        overlay.style.display = "none";
+      }).catch((err) => {
+        console.warn("Erro ao parar scanner:", err);
+        html5QrCode = null;
+        overlay.style.display = "none";
+      });
+    } catch (err) {
+      console.error("Falha ao acessar scanner:", err);
       html5QrCode = null;
-    }).catch((err) => {
-      console.warn("Erro ao parar scanner:", err);
-      overlay.style.display = "none"; // Fecha mesmo com erro
-    });
+      overlay.style.display = "none";
+    }
   } else {
     overlay.style.display = "none";
   }
 }
-
-
